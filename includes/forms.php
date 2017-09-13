@@ -7,31 +7,42 @@
  */
 require 'HttpClient.php';
 
+/*
+ * Form Index Page
+ * @param WpQuery
+ * @return void
+ */
 add_action('pre_get_posts','caag_rental_form_index');
-function caag_rental_form_index()
+function caag_rental_form_index($query)
 {
-	$client = new HttpClient();
-	$brands = $client->get(CAAG_RENTAL_API_GET_CALLS)->fleets_brands;
-	foreach ($brands as $form){
-		if(!caag_rental_exists($form->id)){
-			$args = array(
-				'post_title'    =>  $form->name,
-				'post_status'   =>  'publish',
-				'post_type'     =>  CAAG_RENTAL_CUSTOM_POST_TYPE
-			);
-			$post_id = wp_insert_post($args);
-			add_post_meta($post_id, CAAG_RENTAL_CAAG_ID, $form->id);
-
-			add_post_meta($post_id, CAAG_RENTAL_LINK, $form->public_reservations_link_full);
-			add_post_meta($post_id, CAAG_RENTAL_SHORTCODE, '[caag_rental_forms id='.$form->id.' ]');
-		}else{
-			$post_id = get_caag_rental_by_meta($form->id);
-			$args = array(
-				'ID'    =>  $post_id,
-				'title' =>  $form->name
-			);
-			wp_update_post($args);
-			update_post_meta($post_id, CAAG_RENTAL_LINK, $form->public_reservations_link_full);
+	if(isset($query->query['post_type']) and  $query->query['post_type'] == CAAG_RENTAL_CUSTOM_POST_TYPE) {
+		$client = new HttpClient();
+		$api    = $client->get( CAAG_RENTAL_API_GET_CALLS );
+		if ( ! is_null( $api->fleets_brands ) ) {
+			$brands = $api->fleets_brands;
+			foreach ( $brands as $form ) {
+				if ( ! caag_rental_exists( $form->id ) ) {
+					$args = array(
+						'post_title'  => $form->name,
+						'post_status' => 'publish',
+						'post_type'   => CAAG_RENTAL_CUSTOM_POST_TYPE
+					);
+					$post_id = wp_insert_post( $args, true );
+					add_post_meta( $post_id, CAAG_RENTAL_CAAG_ID, $form->id );
+					add_post_meta( $post_id, CAAG_RENTAL_LINK, $form->public_reservations_link_full );
+					add_post_meta( $post_id, CAAG_RENTAL_SHORTCODE, '[caag_rental_forms id=' . $form->id . ' ]' );
+				} else {
+					$post_id = get_caag_rental_by_meta( $form->id );
+					$args    = array(
+						'ID'    => $post_id,
+						'title' => $form->name
+					);
+					wp_update_post( $args );
+					update_post_meta( $post_id, CAAG_RENTAL_LINK, $form->public_reservations_link_full );
+				}
+			}
+		} else {
+			$error = $api->message;
 		}
 	}
 }
@@ -54,8 +65,8 @@ function add_meta_columns($defaults)
  * Displaying Actual Meta Data Values
  * return @void
  */
-add_action( 'manage_posts_custom_column' , 'fill_meta_column_link', 10, 2 );
-function fill_meta_column_link($column_name, $post_id)
+add_action( 'manage_posts_custom_column' , 'fill_meta_columns', 10, 2 );
+function fill_meta_columns($column_name, $post_id)
 {
 	if ($column_name == CAAG_RENTAL_ID_COLUMN) {
 		if(isset(get_post_meta($post_id, CAAG_RENTAL_CAAG_ID)[0])){
@@ -68,7 +79,6 @@ function fill_meta_column_link($column_name, $post_id)
 		$post = get_post($post_id);
 		echo $post->post_title;
 	}
-
 	if ($column_name == CAAG_RENTAL_LINK_COLUMN) {
 		if(isset(get_post_meta($post_id, CAAG_RENTAL_LINK)[0])){
 			echo get_post_meta($post_id, CAAG_RENTAL_LINK)[0];
@@ -81,6 +91,40 @@ function fill_meta_column_link($column_name, $post_id)
 			echo get_post_meta($post_id, CAAG_RENTAL_SHORTCODE)[0];
 		}else{
 			echo '';
+		}
+	}
+}
+
+
+/*
+ * Make Id and Title Table Header sortable
+ * @param array
+ * @return array
+ */
+add_filter( 'manage_edit-'.CAAG_RENTAL_CUSTOM_POST_TYPE.'_sortable_columns', 'caag_rental_all_sortable_columns' );
+function caag_rental_all_sortable_columns( $columns )
+{
+	$columns[CAAG_RENTAL_ID_COLUMN] = 'Identifier';
+	$columns[CAAG_RENTAL_NAME_COLUMN] = 'Name';
+	return $columns;
+}
+
+/*
+ * Orders Columns By Id and Title in Admin Table
+ * @param WpQuery
+ * @return void
+ */
+add_action( 'pre_get_posts', 'caag_rental_sort_by_column' );
+function caag_rental_sort_by_column( $query )
+{
+	if ( ! is_admin() )
+		return;
+	if($query->query['post_type'] == CAAG_RENTAL_CUSTOM_POST_TYPE){
+		if($query->query['orderby'] == CAAG_RENTAL_NAME_COLUMN){
+			$query->set('meta_key', CAAG_RENTAL_CAAG_ID );
+			$query->set('orderby', 'meta_value_num' );
+		}elseif($query->query['orderby'] == CAAG_RENTAL_NAME_COLUMN){
+			$query->set('orderby','title');
 		}
 	}
 }

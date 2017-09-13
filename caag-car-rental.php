@@ -53,6 +53,7 @@ require_once 'includes/settings.php';
 require_once 'includes/utils.php';
 require_once 'includes/post-registration.php';
 require_once 'includes/forms.php';
+require_once 'includes/shortcodes.php';
 /*
  * Activation Routine
  * @return void

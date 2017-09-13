@@ -8,12 +8,14 @@
 
 function caag_car_rental_shortcode($atts = [])
 {
-	
+	caag_rental_styles();
+	caag_rental_scripts();
+	$caag_id = $atts['id'];
+	$link = get_caag_rental_link($caag_id);
 	$output = '<div id="caag-form">
 					<iframe id="caag-iframe" src="' . $link . '">
 	                </iframe>
                 </div>';
 	return $output;
 }
-
 add_shortcode('caag_rental_forms','caag_car_rental_shortcode');

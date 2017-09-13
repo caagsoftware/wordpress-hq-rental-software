@@ -17,6 +17,21 @@ function caag_rental_styles()
 }
 add_action('caag_rental_styles','caag_rental_styles');
 
+/*
+ * Load Plugin Js Files
+ * return void
+ */
+function caag_rental_scripts()
+{
+	wp_register_script('caag-rental-iframe-resize', plugins_url(CAAG_RENTAL_PLUGIN_FOLDER.'/assets/js/iframeResizer.min.js'), array( 'jquery' ), false, true);
+	wp_register_script('caag-rental-iframe-resize', plugins_url(CAAG_RENTAL_PLUGIN_FOLDER.'/assets/js/iframeResizer.contentWindow.min.js'), array( 'jquery' ), false, true);
+	wp_register_script('caag-rental-iframe-init', plugins_url(CAAG_RENTAL_PLUGIN_FOLDER.'/assets/js/caagResize.js'), array( 'jquery' ), '1.0', true);
+	wp_enqueue_script('caag-rental-iframe-resize');
+	wp_enqueue_script('caag-rental-iframe-resize');
+	wp_enqueue_script('caag-rental-iframe-init');
+}
+add_action('wp_enqueue_script','caag_rental_scripts');
+
 
 /*
  * Retrieves Caag Rental Users Settings
@@ -88,18 +103,3 @@ function get_caag_rental_link($caag_id)
 	return get_post_meta($post[0]->post_id, CAAG_RENTAL_LINK)[0];
 }
 add_action('get_caag_rental_link','get_caag_rental_link');
-
-/*
- * Load Plugin Js Files
- * return void
- */
-function caag_rental_scripts()
-{
-	wp_register_script('caag-rental-iframe-resize', plugins_url(CAAG_PLUGIN_FOLDER.'/assets/js/iframeResizer.min.js'), array( 'jquery' ), false, true);
-	wp_register_script('caag-rental-iframe-resize', plugins_url(CAAG_PLUGIN_FOLDER.'/assets/js/iframeResizer.contentWindow.min.js'), array( 'jquery' ), false, true);
-	wp_register_script('caag-rental-iframe-init', plugins_url(CAAG_PLUGIN_FOLDER.'/assets/js/caagResize.js'), array( 'jquery' ), '1.0', true);
-	wp_enqueue_script('caag-rental-iframe-resize');
-	wp_enqueue_script('caag-rental-iframe-resize');
-	wp_enqueue_script('caag-rental-iframe-init');
-}
-add_action('wp_enqueue_script','caag_rental_scripts');

@@ -30,7 +30,7 @@ function caag_rental_form_index($query)
 					$post_id = wp_insert_post( $args, true );
 					add_post_meta( $post_id, CAAG_RENTAL_CAAG_ID, $form->id );
 					add_post_meta( $post_id, CAAG_RENTAL_LINK, $form->public_reservations_link_full );
-					add_post_meta( $post_id, CAAG_RENTAL_SHORTCODE, '[caag_rental_forms id=' . $form->id . ' ]' );
+					add_post_meta( $post_id, CAAG_RENTAL_SHORTCODE, '[caag_rental_forms id=' . $form->id . ']' );
 				} else {
 					$post_id = get_caag_rental_by_meta( $form->id );
 					$args    = array(

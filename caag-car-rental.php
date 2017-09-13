@@ -25,7 +25,22 @@ define('CAAG_RENTAL_PLUGIN_FOLDER','caag-car-rental');
 define('CAAG_RENTAL_USER_TOKEN','caag_rental_user_token');
 define('CAAG_RENTAL_TENANT_TOKEN','caag_rental_tenant_token');
 define('CAAG_RENTAL_CUSTOM_POST_TYPE','caag_rental_forms');
+define('CAAG_RENTAL_API_GET_CALLS','https://api.caagcrm.com/api/fleets/brands');
 
+/*
+ * Meta Values
+ */
+define('CAAG_RENTAL_CAAG_ID','caag_rental_id');
+define('CAAG_RENTAL_NAME','caag_rental_name');
+define('CAAG_RENTAL_LINK','caag_rental_link');
+define('CAAG_RENTAL_SHORTCODE','caag_rental_shortcode');
+/*
+ * Meta Values Columns Name
+ */
+define('CAAG_RENTAL_ID_COLUMN','Id');
+define('CAAG_RENTAL_NAME_COLUMN','Name');
+define('CAAG_RENTAL_LINK_COLUMN','Link');
+define('CAAG_RENTAL_SHORTCODE_COLUMN','Shortcode');
 
 define('CAAG_RENTAL_SETTING_TITLE','Caag Rental');
 define('CAAG_RENTAL_SETTING_MENU','Caag Rental');
@@ -36,8 +51,8 @@ define('CAAG_RENTAL_NONCE', 'caag_nonce');
  */
 require_once 'includes/settings.php';
 require_once 'includes/utils.php';
-require_once 'includes/rental.php';
 require_once 'includes/post-registration.php';
+require_once 'includes/forms.php';
 /*
  * Activation Routine
  * @return void

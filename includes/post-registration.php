@@ -36,9 +36,9 @@ function register_caag_rental_custom_post_type()
 		'supports'                  => array('title'),
 		'menu_icon'                 => 'dashicons-feedback',
 		'capabilities'              => array(
-			'create_posts' => 'do_not_allow', // false < WP 4.5
+			'create_posts' => 'do_not_allow',
 		),
-		'map_meta_cap' => false, // Set to `false`, if users are not allowed to edit/delete existing posts
+		'map_meta_cap' => false,
 	);
 	register_post_type(CAAG_RENTAL_CUSTOM_POST_TYPE, $args);
 }

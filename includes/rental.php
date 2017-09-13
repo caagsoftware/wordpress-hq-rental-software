@@ -11,7 +11,7 @@ add_action('pre_get_posts','caag_rental_update_forms');
 function caag_rental_update_forms()
 {
 	$client = new HttpClient();
-	$data = $client->get('https://api.caagcrm.com/api/fleets/brands');
-	print_r($data);
+	$data = $client->get(CAAG_RENTAL_API_GET_CALLS);
+	print_r($data->fleets_brands);
 	die();
 }

@@ -18,6 +18,7 @@ Author URI:   https://caagsoftware.com
 define('CAAG_RENTAL_VERSION','0.1');
 define('CAAG_RENTAL_POST_TYPE','caag-rental-form');
 define('CAAG_RENTAL_ROOT',__DIR__);
+define('CAAG_RENTAL_PLUGIN_FOLDER','caag-car-rental');
 /*
  * Plugin Variables
  */

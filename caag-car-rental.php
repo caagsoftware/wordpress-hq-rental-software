@@ -24,6 +24,8 @@ define('CAAG_RENTAL_PLUGIN_FOLDER','caag-car-rental');
  */
 define('CAAG_RENTAL_USER_TOKEN','caag_rental_user_token');
 define('CAAG_RENTAL_TENANT_TOKEN','caag_rental_tenant_token');
+define('CAAG_RENTAL_CUSTOM_POST_TYPE','caag_rental_forms');
+
 
 define('CAAG_RENTAL_SETTING_TITLE','Caag Rental');
 define('CAAG_RENTAL_SETTING_MENU','Caag Rental');
@@ -34,7 +36,8 @@ define('CAAG_RENTAL_NONCE', 'caag_nonce');
  */
 require_once 'includes/settings.php';
 require_once 'includes/utils.php';
-
+require_once 'includes/rental.php';
+require_once 'includes/post-registration.php';
 /*
  * Activation Routine
  * @return void
@@ -42,6 +45,7 @@ require_once 'includes/utils.php';
 function caag_rental_activation()
 {
 	caag_rental_settings_init();
+	register_caag_rental_custom_post_type();
 }
 register_activation_hook(__FILE__,'caag_rental_activation');
 

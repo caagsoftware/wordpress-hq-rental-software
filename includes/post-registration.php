@@ -34,7 +34,7 @@ function register_caag_rental_custom_post_type()
 		'hierarchical'              => false,
 		'menu_position'             => 80,
 		'supports'                  => array('title'),
-		'menu_icon'                 => 'dashicons-feedback',
+		'menu_icon'                 => 'dashicons-welcome-widgets-menus',
 		'capabilities'              => array(
 			'create_posts' => 'do_not_allow',
 		),

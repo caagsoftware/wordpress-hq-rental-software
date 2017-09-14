@@ -13,8 +13,7 @@ function caag_car_rental_shortcode($atts = [])
 	$caag_id = $atts['id'];
 	$link = get_caag_rental_link($caag_id);
 	$output = '<div id="caag-rental-form">
-					<iframe id="caag-rental-iframe" src="' . $link . '">
-	                </iframe>
+					<iframe id="caag-rental-iframe" src="' . $link . '" />				
                 </div>';
 	return $output;
 }

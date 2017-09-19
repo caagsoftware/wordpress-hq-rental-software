@@ -39,6 +39,7 @@ function caag_rental_form_index($query)
 					);
 					wp_update_post( $args );
 					update_post_meta( $post_id, CAAG_RENTAL_LINK, $form->public_reservations_link_full );
+					update_post_meta($post_id, CAAG_RENTAL_SHORTCODE, '[caag_rental_forms id=' . $form->id . ']' );
 				}
 			}
 		} else {

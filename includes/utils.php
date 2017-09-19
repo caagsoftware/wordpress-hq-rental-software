@@ -63,7 +63,7 @@ add_action('get_caag_rental_user_token','get_caag_rental_user_token');
  */
 function get_caag_rental_tenant_token()
 {
-	return get_option(CAAG_RENTAL_TENANT_TOKEN);    
+	return get_option(CAAG_RENTAL_TENANT_TOKEN);
 }
 add_action('get_caag_rental_tenant_token','get_caag_rental_tenant_token');
 

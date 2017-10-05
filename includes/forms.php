@@ -54,8 +54,8 @@ function caag_rental_form_index($query)
  * Add Meta Data columns to Post Table: Link
  * Only Header and Footer
  */
-add_filter('manage_'.CAAG_RENTAL_CUSTOM_POST_TYPE.'_posts_columns', 'add_meta_columns');
-function add_meta_columns($defaults)
+add_filter('manage_'.CAAG_RENTAL_CUSTOM_POST_TYPE.'_posts_columns', 'caag_rental_add_meta_columns');
+function caag_rental_add_meta_columns($defaults)
 {
 	$columns[CAAG_RENTAL_ID_COLUMN] = CAAG_RENTAL_ID_COLUMN;
 	$columns[CAAG_RENTAL_NAME_COLUMN] = CAAG_RENTAL_NAME_COLUMN;
@@ -68,8 +68,8 @@ function add_meta_columns($defaults)
  * Displaying Actual Meta Data Values
  * return @void
  */
-add_action( 'manage_posts_custom_column' , 'fill_meta_columns', 10, 2 );
-function fill_meta_columns($column_name, $post_id)
+add_action( 'manage_posts_custom_column' , 'caag_rental_fill_meta_columns', 10, 2 );
+function caag_rental_fill_meta_columns($column_name, $post_id)
 {
 	if ($column_name == CAAG_RENTAL_ID_COLUMN) {
 		if(isset(get_post_meta($post_id, CAAG_RENTAL_CAAG_ID)[0])){

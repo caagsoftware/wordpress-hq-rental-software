@@ -1,13 +1,13 @@
 <?php
 /*
  * @package Caag Car Rental
- * @version 0.2
+ * @version 1.0
  *
  *
 Plugin Name:  Caag Car Rental
 Plugin URI:   https://caagsoftware.com
 Description:  Display Car Rental Forms
-Version:      0.2
+Version:      1.0
 Author:       Miguel Faggioni
 Author URI:   https://caagsoftware.com
 */

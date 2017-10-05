@@ -5,7 +5,7 @@
  * Date: 9/13/2017
  * Time: 8:19 AM
  */
-require 'HttpClient.php';
+require 'HttpClientRental.php';
 
 /*
  * Form Index Page
@@ -16,8 +16,8 @@ add_action('pre_get_posts','caag_rental_form_index');
 function caag_rental_form_index($query)
 {
 	if(isset($query->query['post_type']) and  $query->query['post_type'] == CAAG_RENTAL_CUSTOM_POST_TYPE) {
-		$client = new HttpClient();
-		$api    = $client->get( CAAG_RENTAL_API_GET_CALLS );
+		$client = new HttpClientRental();
+		$api = $client->get( CAAG_RENTAL_API_GET_CALLS );
 		if ( ! is_null( $api->fleets_brands ) ) {
 			$brands = $api->fleets_brands;
 			foreach ( $brands as $form ) {
@@ -44,8 +44,10 @@ function caag_rental_form_index($query)
 					update_post_meta($post_id, CAAG_RENTAL_SHORTCODE, '[caag_rental_forms id=' . $form->id . ']' );
 				}
 			}
+		} elseif( isset($api['curl_error']) ) {
+			echo '<div class="notice notice-error"><p>'.$api['curl_error'].'</p></div>';
 		} else {
-			$error = $api->message;
+			echo '<div class="notice notice-error"><p>'.$api->message.'</p></div>';
 		}
 	}
 }

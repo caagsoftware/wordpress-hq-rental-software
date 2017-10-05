@@ -59,7 +59,6 @@ function caag_rental_settings_html()
 			</div>
 		</div>
 		<?php
-
 		if(!empty($_POST) and wp_verify_nonce($_POST['caag_nonce'], CAAG_RENTAL_NONCE)){
 			caag_rental_save_settings($_POST);
 			if(caag_rental_check_settings_save($_POST)){

@@ -25,13 +25,13 @@ function caag_car_rental_shortcode($atts = [])
 						<iframe id="caag-rental-iframe" name="caag-rental-iframe" src="' . $link . '"></iframe>
 					</div>';
 		$output .= '<form action="'.$first_step_link.'" method="POST" target="caag-rental-iframe" id="reserve_form" hidden="hidden">
-						<input hidden="hidden" type="text" autocomplete="off" name="pick_up_date" id="pick_up_date" value="'.$pickup_date->toDateString().'"/>
-						<input hidden="hidden" type="text" autocomplete="off" name="return_date" id="return_date" value="'.$return_date->toDateString().'"/>
-						<input hidden="hidden" type="text" autocomplete="off" name="pick_up_time" id="pick_up_time" value="'.$pickup_date->format('H:i').'"/>
-						<input hidden="hidden" type="text" autocomplete="off" name="return_time" id="return_time" value="'.$return_date->format('H:i').'"/>
-						<input hidden="hidden" type="radio" name="pick_up_location" value="'.$pick_up_location.'" checked="checked"/>
-						<input hidden="hidden" type="radio" name="pick_up_location" value="custom"/>
-						<input hidden="hidden" type="text" autocomplete="off" name="pick_up_location_custom" id="pick_up_location_custom" value="'.$pick_up_location_custom.'"/>
+						<input type="text" autocomplete="off" name="pick_up_date" id="pick_up_date" value="'.$pickup_date->toDateString().'"/>
+						<input type="text" autocomplete="off" name="return_date" id="return_date" value="'.$return_date->toDateString().'"/>
+						<input type="text" autocomplete="off" name="pick_up_time" id="pick_up_time" value="'.$pickup_date->format('H:i').'"/>
+						<input type="text" autocomplete="off" name="return_time" id="return_time" value="'.$return_date->format('H:i').'"/>
+						<input type="radio" name="pick_up_location" value="'.$pick_up_location.'" checked="checked"/>
+						<input type="radio" name="pick_up_location" value="custom"/>
+						<input type="text" autocomplete="off" name="pick_up_location_custom" id="pick_up_location_custom" value="'.$pick_up_location_custom.'"/>
 					</form>';
 		$output .= '<script type="text/javascript">
 				(function ($) {

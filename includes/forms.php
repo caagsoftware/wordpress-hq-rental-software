@@ -31,6 +31,7 @@ function caag_rental_form_index($query)
 					add_post_meta( $post_id, CAAG_RENTAL_CAAG_ID, $form->id );
 					add_post_meta( $post_id, CAAG_RENTAL_LINK, $form->public_reservations_link_full );
 					add_post_meta( $post_id, CAAG_RENTAL_SHORTCODE, '[caag_rental_forms id=' . $form->id . ']' );
+					add_post_meta( $post_id, CAAG_RENTAL_FIRST_STEP_LINK, $form->public_reservations_link_first_step );
 				} else {
 					$post_id = get_caag_rental_by_meta( $form->id );
 					$args    = array(
@@ -39,6 +40,7 @@ function caag_rental_form_index($query)
 					);
 					wp_update_post( $args );
 					update_post_meta( $post_id, CAAG_RENTAL_LINK, $form->public_reservations_link_full );
+					update_post_meta( $post_id, CAAG_RENTAL_FIRST_STEP_LINK, $form->public_reservations_link_first_step );
 					update_post_meta($post_id, CAAG_RENTAL_SHORTCODE, '[caag_rental_forms id=' . $form->id . ']' );
 				}
 			}

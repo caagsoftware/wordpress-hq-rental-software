@@ -28,7 +28,6 @@ define('CAAG_RENTAL_USER_TOKEN','caag_rental_user_token');
 define('CAAG_RENTAL_TENANT_TOKEN','caag_rental_tenant_token');
 define('CAAG_RENTAL_CUSTOM_POST_TYPE','caag_rental_forms');
 define('CAAG_RENTAL_API_GET_CALLS','https://api.caagcrm.com/api/fleets/brands');
-
 /*
  * Meta Values
  */
@@ -36,7 +35,7 @@ define('CAAG_RENTAL_CAAG_ID','caag_rental_id');
 define('CAAG_RENTAL_NAME','caag_rental_name');
 define('CAAG_RENTAL_LINK','caag_rental_link');
 define('CAAG_RENTAL_SHORTCODE','caag_rental_shortcode');
-
+define('CAAG_RENTAL_FIRST_STEP_LINK','caag_rental_first_step_link');
 /*
  * Meta Values Columns Name
  */

@@ -114,3 +114,33 @@ function get_caag_rental_first_step_link($caag_id)
 	return get_post_meta($post[0]->post_id, CAAG_RENTAL_FIRST_STEP_LINK)[0];
 }
 add_action('get_caag_rental_first_step_link','get_caag_rental_first_step_link');
+
+/*
+ *
+ *
+ */
+function get_caag_rental_package_link($caag_id)
+{
+	$post = get_caag_rental_by_meta($caag_id);
+	return get_post_meta($post[0]->post_id, CAAG_RENTAL_PUBLIC_PACKAGES_LINK)[0];
+}
+add_action('get_caag_rental_package_link','get_caag_rental_package_link');
+
+/*
+ *
+ *
+ */
+function get_caag_rental_package_first_step_link($caag_id)
+{
+	$post = get_caag_rental_by_meta($caag_id);
+	return get_post_meta($post[0]->post_id, CAAG_RENTAL_FIRST_STEP_LINK_PACKAGES[0]);
+}
+add_action('get_caag_rental_package_first_step_link','get_caag_rental_package_first_step_link');
+
+function get_caag_rental_reservation_package_link($caag_id)
+{
+	$post = get_caag_rental_by_meta($caag_id);
+	return get_post_meta($post[0]->post_id, CAAG_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK)[0];
+}
+add_action('get_caag_rental_reservation_package_link','get_caag_rental_reservation_package_link');
+

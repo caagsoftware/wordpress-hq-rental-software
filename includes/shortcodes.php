@@ -51,3 +51,51 @@ function caag_car_rental_shortcode($atts = [])
 
 }
 add_shortcode('caag_rental_forms','caag_car_rental_shortcode');
+
+
+function caag_rental_forms_packages($atts = [])
+{
+	caag_rental_styles();
+	caag_rental_scripts();
+	$caag_id = $atts['id'];
+	$link = get_caag_rental_package_link($caag_id);
+	$first_step_link = get_caag_rental_package_first_step_link($caag_id);
+	if(isset($_GET['pickup_date']) or isset($_GET['return_date'])){
+		$pickup_date = Carbon::createFromFormat("Y-m-d H:i", str_replace('/','-', $_GET['pickup_date']));
+		$return_date = Carbon::createFromFormat("Y-m-d H:i", str_replace('/','-', $_GET['return_date']));
+		$output = '<div id="caag-rental-form">
+						<iframe id="caag-rental-iframe" name="caag-rental-iframe" src="' . $link . '"></iframe>
+					</div>';
+		$output .= '<form action="'.$first_step_link.'" method="POST" target="caag-rental-iframe" id="reserve_form" hidden="hidden">
+						<input type="text" autocomplete="off" name="pick_up_date_date" id="pick_up_date_date" value="'.$pickup_date->toDateString().'"/>
+						<input type="text" autocomplete="off" name="return_date_date" id="return_date_date" value="'.$return_date->toDateString().'"/>
+					</form>';
+		$output .= '<script type="text/javascript">
+				(function ($) {
+					"use strict";
+					$(document).ready(function () {
+						$(\'#reserve_form\').submit();
+					})
+				})(jQuery);
+			</script>';
+		return $output;
+	}
+	$output = '<div id="caag-rental-form">
+						<iframe id="caag-rental-iframe" src="' . $link . '"></iframe>
+					</div>';
+	return $output;
+}
+add_shortcode('caag_rental_forms_packages', 'caag_rental_forms_packages');
+
+function caag_rental_forms_reservation_packages($atts = [])
+{
+	caag_rental_styles();
+	caag_rental_scripts();
+	$caag_id = $atts['id'];
+	$link = get_caag_rental_reservation_package_link($caag_id);
+	$output = '<div id="caag-rental-form">
+						<iframe id="caag-rental-iframe" src="' . $link . '"></iframe>
+					</div>';
+	return $output;
+}
+add_shortcode('caag_rental_forms_reservation_packages', 'caag_rental_forms_reservation_packages');

@@ -3,7 +3,7 @@
 function register_caag_rental_custom_post_type()
 {
 	$labels = array(
-		'name'               => 'Caag Rental',
+		'name'               => 'Caag  Reservations, Packages, Reservations + Packages',
 		'singular_name'      => 'Caag Rental',
 		'menu_name'          => 'Caag Rental',
 		'name_admin_bar'     => 'Caag Rental',

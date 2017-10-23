@@ -4,7 +4,7 @@
  * @version 1.0
  *
  *
-Plugin Name:  Caag Car Rental
+Plugin Name:  Wordpress HQ Rental Software
 Plugin URI:   https://caagsoftware.com
 Description:  Display Car Rental Forms
 Version:      1.0

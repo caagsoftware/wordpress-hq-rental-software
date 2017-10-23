@@ -16,10 +16,13 @@ Author URI:   https://caagsoftware.com
 /*
  * Global Constant
  */
+$root = __DIR__;
+$folders = explode('\\', $root);
+$folder = $folders[count($folders) - 1];
 define('CAAG_RENTAL_VERSION','1.0');
 define('CAAG_RENTAL_POST_TYPE','caag-rental-form');
-define('CAAG_RENTAL_ROOT',__DIR__);
-define('CAAG_RENTAL_PLUGIN_FOLDER','caag-car-rental');
+define('CAAG_RENTAL_ROOT', __DIR__);
+define('CAAG_RENTAL_PLUGIN_FOLDER', $folder);
 
 /*
  * Plugin Variables

@@ -1,6 +1,6 @@
 <?php
 /*
- * @package Caag Car Rental
+ * @package Wordpress HQ Rental Software
  * @version 1.0
  *
  *

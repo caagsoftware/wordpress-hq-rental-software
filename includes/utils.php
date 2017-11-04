@@ -12,7 +12,7 @@
  */
 function caag_rental_styles()
 {
-	wp_register_style('caag-rental', plugins_url(CAAG_RENTAL_PLUGIN_FOLDER.'/assets/css/caag.css'));
+	wp_register_style('caag-rental', plugins_url(CAAG_RENTAL_PLUGIN_FOLDER.'/assets/css/caag_rental.css'));
 	wp_enqueue_style('caag-rental');
 }
 add_action('caag_rental_styles','caag_rental_styles');
@@ -23,11 +23,11 @@ add_action('caag_rental_styles','caag_rental_styles');
  */
 function caag_rental_scripts()
 {
-	wp_register_script('caag-rental-iframe-resize', plugins_url(CAAG_RENTAL_PLUGIN_FOLDER.'/assets/js/iframeResizer.min.js'), array( 'jquery' ), false, true);
-	wp_register_script('caag-rental-iframe-resize', plugins_url(CAAG_RENTAL_PLUGIN_FOLDER.'/assets/js/iframeResizer.contentWindow.min.js'), array( 'jquery' ), false, true);
-	wp_register_script('caag-rental-iframe-init', plugins_url(CAAG_RENTAL_PLUGIN_FOLDER.'/assets/js/caagResize.js'), array( 'jquery' ), '1.0', true);
+	wp_register_script('caag-rental-iframe-resize', plugins_url(CAAG_RENTAL_PLUGIN_FOLDER.'/assets/js/iframeResizer.min.js'));
+	wp_register_script('caag-rental-iframe-resize-window', plugins_url(CAAG_RENTAL_PLUGIN_FOLDER.'/assets/js/iframeResizer.contentWindow.min.js'));
+	wp_register_script('caag-rental-iframe-init', plugins_url(CAAG_RENTAL_PLUGIN_FOLDER.'/assets/js/caagResize.js'), array( 'jquery' ));
 	wp_enqueue_script('caag-rental-iframe-resize');
-	wp_enqueue_script('caag-rental-iframe-resize');
+	wp_enqueue_script('caag-rental-iframe-resize-window');
 	wp_enqueue_script('caag-rental-iframe-init');
 }
 add_action('wp_enqueue_script','caag_rental_scripts');
@@ -103,3 +103,44 @@ function get_caag_rental_link($caag_id)
 	return get_post_meta($post[0]->post_id, CAAG_RENTAL_LINK)[0];
 }
 add_action('get_caag_rental_link','get_caag_rental_link');
+
+/*
+ *  Retrieves First Step Link by caag_id
+ *
+ */
+function get_caag_rental_first_step_link($caag_id)
+{
+	$post = get_caag_rental_by_meta($caag_id);
+	return get_post_meta($post[0]->post_id, CAAG_RENTAL_FIRST_STEP_LINK)[0];
+}
+add_action('get_caag_rental_first_step_link','get_caag_rental_first_step_link');
+
+/*
+ *
+ *
+ */
+function get_caag_rental_package_link($caag_id)
+{
+	$post = get_caag_rental_by_meta($caag_id);
+	return get_post_meta($post[0]->post_id, CAAG_RENTAL_PUBLIC_PACKAGES_LINK)[0];
+}
+add_action('get_caag_rental_package_link','get_caag_rental_package_link');
+
+/*
+ *
+ *
+ */
+function get_caag_rental_package_first_step_link($caag_id)
+{
+	$post = get_caag_rental_by_meta($caag_id);
+	return get_post_meta($post[0]->post_id, CAAG_RENTAL_FIRST_STEP_LINK_PACKAGES[0]);
+}
+add_action('get_caag_rental_package_first_step_link','get_caag_rental_package_first_step_link');
+
+function get_caag_rental_reservation_package_link($caag_id)
+{
+	$post = get_caag_rental_by_meta($caag_id);
+	return get_post_meta($post[0]->post_id, CAAG_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK)[0];
+}
+add_action('get_caag_rental_reservation_package_link','get_caag_rental_reservation_package_link');
+

@@ -3,7 +3,7 @@
 /*
  * Http Client Class for Api Requests
  */
-class HttpClient
+class HttpClientRental
 {
 	private $data;
 	private $tenant;
@@ -31,10 +31,10 @@ class HttpClient
 		));
 
 		if(curl_error($ch)){
-			echo 'error:' . curl_error($ch);
+			return [ 'curl_error' => 'Curl error: ' . curl_error($ch)];
 		}
 		if(curl_exec($ch) === false){
-			echo 'Curl error: ' . curl_error($ch);
+			return [ 'curl_error' => 'Curl error: ' . curl_error($ch)];
 		}else{
 			$data = curl_exec($ch);
 		}

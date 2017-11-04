@@ -33,7 +33,8 @@ function caag_car_rental_shortcode($atts = [])
 						<input type="radio" name="pick_up_location" value="custom"/>
 						<input type="text" autocomplete="off" name="pick_up_location_custom" id="pick_up_location_custom" value="'.$pick_up_location_custom.'"/>
 					</form>';
-		$output .= '<script type="text/javascript">
+		wp_enqueue_script('script-submit');
+		wp_add_inline_script('script-submit','<script type="text/javascript">
 				(function ($) {
 					"use strict";
 					$(document).ready(function () {
@@ -41,7 +42,6 @@ function caag_car_rental_shortcode($atts = [])
 					})
 				})(jQuery);
 			</script>';
-		return $output;
 	}else{
 		$output = '<div id="caag-rental-form">
 						<iframe id="caag-rental-iframe" src="' . $link . '"></iframe>

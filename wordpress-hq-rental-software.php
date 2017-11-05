@@ -5,7 +5,7 @@
  *
  *
 Plugin Name:  Wordpress HQ Rental Software
-Description:  Display Car Rental Forms
+Description:  Display and Use Caag Software Car Rental Forms
 Version:      1.0
 Author:       Miguel Faggioni
 Author URI:   https://www.caagsoftware.com

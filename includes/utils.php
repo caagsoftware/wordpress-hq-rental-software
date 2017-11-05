@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Miguel Faggioni
- * Date: 9/12/2017
- * Time: 9:41 PM
- */
 
 /*
  * Register and Enqueue Caag Rental Styles

@@ -41,7 +41,7 @@ function caag_car_rental_shortcode($atts = [])
 						$(\'#reserve_form\').submit();
 					})
 				})(jQuery);
-			</script>';
+			</script>');
 	}else{
 		$output = '<div id="caag-rental-form">
 						<iframe id="caag-rental-iframe" src="' . $link . '"></iframe>

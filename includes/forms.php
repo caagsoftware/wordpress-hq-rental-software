@@ -1,7 +1,5 @@
 <?php
 
-//require 'HttpClientRental.php';
-
 /*
  * Form Index Page
  * @param WpQuery
@@ -11,20 +9,17 @@ add_action('pre_get_posts','caag_rental_form_index');
 function caag_rental_form_index($query)
 {
 	if(isset($query->query['post_type']) and  $query->query['post_type'] == CAAG_RENTAL_CUSTOM_POST_TYPE) {
-		//$client = new HttpClientRental();
 		$tenant = get_caag_rental_tenant_token();
 		$user = get_caag_rental_user_token();
-		$final_token = base64_encode($this->tenant . ':' . $this->user);
+		$final_token = base64_encode($tenant . ':' . $user);
 		$args = array(
 		    'headers' => array(
-		        'Authorization' => 'Basic ' . base64_encode( $final_token )
+		        'Authorization' => 'Basic ' . $final_token
 		    )
 		);
-		$data = wp_remote_get( CAAG_RENTAL_API_GET_CALLS, $args)
-		var_dump($data);
-		$api = $client->get( CAAG_RENTAL_API_GET_CALLS );
-		if ( ! is_null( $api->fleets_brands ) ) {
-			$brands = $api->fleets_brands;
+		$api = wp_remote_get( CAAG_RENTAL_API_GET_CALLS, $args);
+		if ( is_array( $api ) ) {
+			$brands = json_decode($api['body'])->fleets_brands;
 			foreach ( $brands as $form ) {
 				if ( ! caag_rental_exists( $form->id ) ) {
 					$args = array(
@@ -48,7 +43,6 @@ function caag_rental_form_index($query)
 					}
 				} else {
 					$post = get_caag_rental_by_meta( $form->id )[0];
-
 					update_post_meta( (int)$post->post_id, CAAG_RENTAL_LINK, $form->public_reservations_link_full );
 					update_post_meta( (int)$post->post_id, CAAG_RENTAL_FIRST_STEP_LINK, $form->public_reservations_link_first_step );
 					update_post_meta( (int)$post->post_id, CAAG_RENTAL_SHORTCODE, '[caag_rental_forms id=' . $form->id . ']' );
@@ -68,10 +62,8 @@ function caag_rental_form_index($query)
 					wp_update_post( $args );
 				}
 			}
-		} elseif( isset($api['curl_error']) ) {
-			echo '<div class="notice notice-error"><p>'.$api['curl_error'].'</p></div>';
 		} else {
-			echo '<div class="notice notice-error"><p>'.$api->message.'</p></div>';
+			echo '<div class="notice notice-error"><p>'. $api->errors[0] .'</p></div>';
 		}
 	}
 }

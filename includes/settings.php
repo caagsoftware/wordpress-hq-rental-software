@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Miguel Faggioni
- * Date: 9/12/2017
- * Time: 9:29 PM
- */
+
 
 function caag_rental_settings_init()
 {

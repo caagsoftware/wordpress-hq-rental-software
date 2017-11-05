@@ -28,6 +28,21 @@ add_action('wp_enqueue_script','caag_rental_scripts');
 
 
 /*
+ * Loading Inline Js Submit Script
+ * return void
+*/
+function caag_rental_inline_script()
+{
+	if(isset($_GET['pickup_date']) and isset($_GET['return_date']) and (isset($_GET['pickup_location']) or isset($_GET['pick_up_location_custom']))) {
+		wp_enqueue_script( 'caag-rental-script-submit', plugins_url( CAAG_RENTAL_PLUGIN_FOLDER . '/assets/js/submit.js' ), array( 'jquery' ) );
+	}elseif (isset($_GET['pickup_date']) or isset($_GET['return_date'])){
+		wp_enqueue_script( 'caag-rental-script-submit', plugins_url( CAAG_RENTAL_PLUGIN_FOLDER . '/assets/js/submit.js' ), array( 'jquery' ) );
+	}
+}
+add_action( 'wp_enqueue_script', 'caag_rental_inline_script' );
+
+
+/*
  * Retrieves Caag Rental Users Settings
  * @return Array
  */

@@ -9,6 +9,8 @@ Description:  Display Car Rental Forms
 Version:      1.0
 Author:       Miguel Faggioni
 Author URI:   https://www.caagsoftware.com
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 
@@ -16,7 +18,7 @@ Author URI:   https://www.caagsoftware.com
  * Global Constant
  */
 $root = __DIR__;
-$folders = explode('/', $root);
+$folders = explode('\\', $root);
 $folder = $folders[count($folders) - 1];
 define('CAAG_RENTAL_VERSION','1.0');
 define('CAAG_RENTAL_POST_TYPE','caag-rental-form');

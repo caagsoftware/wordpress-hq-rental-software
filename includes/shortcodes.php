@@ -46,7 +46,7 @@ function caag_car_rental_shortcode($atts = [])
 	}
 
 }
-add_shortcode('caag_hq_rental_forms','caag_car_rental_shortcode');
+add_shortcode('caag_rental_forms','caag_car_rental_shortcode');
 
 
 function caag_hq_rental_forms_packages($atts = [])
@@ -60,7 +60,7 @@ function caag_hq_rental_forms_packages($atts = [])
 					</div>';
 	return $output;
 }
-add_shortcode('caag_hq_rental_forms_packages', 'caag_hq_rental_forms_packages');
+add_shortcode('caag_rental_forms_packages', 'caag_hq_rental_forms_packages');
 
 function caag_hq_rental_forms_reservation_packages($atts = [])
 {
@@ -73,4 +73,4 @@ function caag_hq_rental_forms_reservation_packages($atts = [])
 					</div>';
 	return $output;
 }
-add_shortcode('caag_hq_rental_forms_reservation_packages', 'caag_hq_rental_forms_reservation_packages');
+add_shortcode('caag_rental_forms_reservation_packages', 'caag_hq_rental_forms_reservation_packages');

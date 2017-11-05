@@ -1,6 +1,6 @@
 <?php
 
-function register_caag_rental_custom_post_type()
+function register_caag_hq_rental_custom_post_type()
 {
 	$labels = array(
 		'name'               => 'Caag  Reservations, Packages, Reservations + Packages',
@@ -28,7 +28,7 @@ function register_caag_rental_custom_post_type()
 		'show_in_menu'              => true,
 		'show_in_nav_menus'         => false,
 		'query_var'                 => true,
-		'rewrite'                   => array( 'slug' => CAAG_RENTAL_SLUG ),
+		'rewrite'                   => array( 'slug' => CAAG_HQ_RENTAL_SLUG ),
 		'capability_type'           => 'post',
 		'has_archive'               => false,
 		'hierarchical'              => false,
@@ -40,10 +40,10 @@ function register_caag_rental_custom_post_type()
 		),
 		'map_meta_cap' => false,
 	);
-	register_post_type(CAAG_RENTAL_CUSTOM_POST_TYPE, $args);
+	register_post_type(CAAG_HQ_RENTAL_CUSTOM_POST_TYPE, $args);
 }
 
 /*
  * Hook the registration function
  */
-add_action( 'init', 'register_caag_rental_custom_post_type');
+add_action( 'init', 'register_caag_hq_rental_custom_post_type');

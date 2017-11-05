@@ -1,6 +1,6 @@
 <?php
 
-function register_caag_rental_custom_post_type()
+function register_caag_hq_rental_custom_post_type()
 {
 	$labels = array(
 		'name'               => 'Caag  Reservations, Packages, Reservations + Packages',
@@ -46,4 +46,4 @@ function register_caag_rental_custom_post_type()
 /*
  * Hook the registration function
  */
-add_action( 'init', 'register_caag_rental_custom_post_type');
+add_action( 'init', 'register_caag_hq_rental_custom_post_type');

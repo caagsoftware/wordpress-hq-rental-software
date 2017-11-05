@@ -5,17 +5,17 @@ use Carbon\Carbon;
 
 function caag_car_rental_shortcode($atts = [])
 {
-	caag_rental_styles();
-	caag_rental_scripts();
+	caag_hq_rental_styles();
+	caag_hq_rental_scripts();
 	$caag_id = $atts['id'];
-	$link = get_caag_rental_link($caag_id);
-	$first_step_link = get_caag_rental_first_step_link($caag_id);
+	$link = get_caag_hq_rental_link($caag_id);
+	$first_step_link = get_caag_hq_rental_first_step_link($caag_id);
 	if(isset($_GET['pickup_date']) and isset($_GET['return_date']) and (isset($_GET['pickup_location']) or isset($_GET['pick_up_location_custom']))){
 		$pickup_date = Carbon::createFromFormat("Y-m-d H:i", str_replace('/','-', $_GET['pickup_date']));
 		$return_date = Carbon::createFromFormat("Y-m-d H:i", str_replace('/','-', $_GET['return_date']));
 		$pick_up_location = $_GET['pickup_location'];
 		$pick_up_location_custom = $_GET['pick_up_location_custom'];
-		if($pick_up_location == 'Airport' or $pick_up_location == 'Office') {
+		if($pick_up_location == '1' or $pick_up_location == '2') {
 			$output = '<div id="caag-rental-form">
 						<iframe id="caag-rental-iframe" name="caag-rental-iframe" src="' . $link . '"></iframe>
 					</div>';
@@ -29,7 +29,7 @@ function caag_car_rental_shortcode($atts = [])
 						<input type="text" autocomplete="off" name="pick_up_location_custom" id="pick_up_location_custom" value="' . $pick_up_location_custom . '"/>
 					</form>';
 
-			caag_rental_inline_script();
+			caag_hq_rental_inline_script();
 
 			return $output;
 		}else {
@@ -46,31 +46,31 @@ function caag_car_rental_shortcode($atts = [])
 	}
 
 }
-add_shortcode('caag_rental_forms','caag_car_rental_shortcode');
+add_shortcode('caag_hq_rental_forms','caag_car_rental_shortcode');
 
 
-function caag_rental_forms_packages($atts = [])
+function caag_hq_rental_forms_packages($atts = [])
 {
-	caag_rental_styles();
-	caag_rental_scripts();
+	caag_hq_rental_styles();
+	caag_hq_rental_scripts();
 	$caag_id = $atts['id'];
-	$link = get_caag_rental_package_link($caag_id);
+	$link = get_caag_hq_rental_package_link($caag_id);
 	$output = '<div id="caag-rental-form">
 						<iframe id="caag-rental-iframe" src="' . $link . '"></iframe>
 					</div>';
 	return $output;
 }
-add_shortcode('caag_rental_forms_packages', 'caag_rental_forms_packages');
+add_shortcode('caag_hq_rental_forms_packages', 'caag_hq_rental_forms_packages');
 
-function caag_rental_forms_reservation_packages($atts = [])
+function caag_hq_rental_forms_reservation_packages($atts = [])
 {
-	caag_rental_styles();
-	caag_rental_scripts();
+	caag_hq_rental_styles();
+	caag_hq_rental_scripts();
 	$caag_id = $atts['id'];
-	$link = get_caag_rental_reservation_package_link($caag_id);
+	$link = get_caag_hq_rental_reservation_package_link($caag_id);
 	$output = '<div id="caag-rental-form">
 						<iframe id="caag-rental-iframe" src="' . $link . '"></iframe>
 					</div>';
 	return $output;
 }
-add_shortcode('caag_rental_forms_reservation_packages', 'caag_rental_forms_reservation_packages');
+add_shortcode('caag_hq_rental_forms_reservation_packages', 'caag_hq_rental_forms_reservation_packages');

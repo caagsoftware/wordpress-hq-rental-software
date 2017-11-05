@@ -1,29 +1,29 @@
 <?php
 
 
-function caag_rental_settings_init()
+function caag_hq_rental_settings_init()
 {
-	caag_rental_settings_registration();
+	caag_hq_rental_settings_registration();
 }
 
 
 
-add_action('admin_menu','caag_rental_settings_menu');
-function caag_rental_settings_menu()
+add_action('admin_menu','caag_hq_rental_settings_menu');
+function caag_hq_rental_settings_menu()
 {
 	add_options_page(
 		CAAG_HQ_RENTAL_SETTING_TITLE,
 		CAAG_HQ_RENTAL_SETTING_MENU,
 		'manage_options',
 		CAAG_HQ_RENTAL_SLUG,
-		'caag_rental_settings_html'
+		'caag_hq_rental_settings_html'
 	);
 }
 
-function caag_rental_settings_html()
+function caag_hq_rental_settings_html()
 {
-	caag_rental_styles();
-	$settings = get_caag_rental_user_settings();
+	caag_hq_rental_styles();
+	$settings = get_caag_hq_rental_user_settings();
 	?>
 	<?php if(isset($success)): ?>
 		<div class="message updated"><p><?php echo $success; ?></p></div>
@@ -55,8 +55,8 @@ function caag_rental_settings_html()
 		</div>
 		<?php
 		if(!empty($_POST) and wp_verify_nonce($_POST['caag_nonce'], CAAG_HQ_RENTAL_NONCE)){
-			caag_rental_save_settings($_POST);
-			if(caag_rental_check_settings_save($_POST)){
+			caag_hq_rental_save_settings($_POST);
+			if(caag_hq_rental_check_settings_save($_POST)){
 				$success = __('Settings were successfully saved!');
 			}else{
 				$error = __('It was an Error Proccessing the Information. Please Try Again!!!');
@@ -81,7 +81,7 @@ function caag_rental_settings_html()
  * Add Caag Rental Options
  * @return void
  */
-function caag_rental_settings_registration()
+function caag_hq_rental_settings_registration()
 {
 	add_option(CAAG_HQ_RENTAL_USER_TOKEN,'');
 	add_option(CAAG_HQ_RENTAL_TENANT_TOKEN,'');
@@ -92,7 +92,7 @@ function caag_rental_settings_registration()
  * @param Array
  * @return void
  */
-function caag_rental_save_settings($settings)
+function caag_hq_rental_save_settings($settings)
 {
 	update_option(CAAG_HQ_RENTAL_USER_TOKEN, $settings[CAAG_HQ_RENTAL_USER_TOKEN]);
 	update_option(CAAG_HQ_RENTAL_TENANT_TOKEN, $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]);
@@ -103,7 +103,7 @@ function caag_rental_save_settings($settings)
  * @param Array
  * @return bool
  */
-function caag_rental_check_settings_save($settings)
+function caag_hq_rental_check_settings_save($settings)
 {
 	return (get_option(CAAG_HQ_RENTAL_TENANT_TOKEN) == $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]) and (get_option(CAAG_HQ_RENTAL_USER_TOKEN) == $settings[CAAG_HQ_RENTAL_USER_TOKEN]);
 }

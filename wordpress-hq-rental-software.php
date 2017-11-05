@@ -28,24 +28,24 @@ define('CAAG_HQ_RENTAL_PLUGIN_FOLDER', $folder);
 /*
  * Plugin Variables
  */
-define('CAAG_HQ_RENTAL_USER_TOKEN','caag_rental_user_token');
-define('CAAG_HQ_RENTAL_TENANT_TOKEN','caag_rental_tenant_token');
-define('CAAG_HQ_RENTAL_CUSTOM_POST_TYPE','caag_rental_forms');
+define('CAAG_HQ_RENTAL_USER_TOKEN','caag_hq_rental_user_token');
+define('CAAG_HQ_RENTAL_TENANT_TOKEN','caag_hq_rental_tenant_token');
+define('CAAG_HQ_RENTAL_CUSTOM_POST_TYPE','caag_hq_rental_forms');
 define('CAAG_HQ_RENTAL_API_GET_CALLS','https://api.caagcrm.com/api/fleets/brands');
 
 /*
  * Meta Values Keys
  */
-define('CAAG_HQ_RENTAL_CAAG_ID','caag_rental_id');
-define('CAAG_HQ_RENTAL_NAME','caag_rental_name');
-define('CAAG_HQ_RENTAL_LINK','caag_rental_link');
-define('CAAG_HQ_RENTAL_SHORTCODE','caag_rental_shortcode');
-define('CAAG_HQ_RENTAL_FIRST_STEP_LINK', 'caag_rental_first_step_link');
-define('CAAG_HQ_RENTAL_SHORTCODE_PACKAGES','caag_rental_shortcode_package');
-define('CAAG_HQ_RENTAL_PUBLIC_PACKAGES_LINK', 'caag_rental_public_package_link');
-define('CAAG_HQ_RENTAL_FIRST_STEP_LINK_PACKAGES', 'caag_rental_first_step_link_packages');
-define('CAAG_HQ_RENTAL_SHORTCODE_RESERVATION_PACKAGES', 'caag_rental_shortcode_reservation_packages');
-define('CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK', 'caag_rental_public_reservation_package_link');
+define('CAAG_HQ_RENTAL_CAAG_ID','caag_hq_rental_id');
+define('CAAG_HQ_RENTAL_NAME','caag_hq_rental_name');
+define('CAAG_HQ_RENTAL_LINK','caag_hq_rental_link');
+define('CAAG_HQ_RENTAL_SHORTCODE','caag_hq_rental_shortcode');
+define('CAAG_HQ_RENTAL_FIRST_STEP_LINK', 'caag_hq_rental_first_step_link');
+define('CAAG_HQ_RENTAL_SHORTCODE_PACKAGES','caag_hq_rental_shortcode_package');
+define('CAAG_HQ_RENTAL_PUBLIC_PACKAGES_LINK', 'caag_hq_rental_public_package_link');
+define('CAAG_HQ_RENTAL_FIRST_STEP_LINK_PACKAGES', 'caag_hq_rental_first_step_link_packages');
+define('CAAG_HQ_RENTAL_SHORTCODE_RESERVATION_PACKAGES', 'caag_hq_rental_shortcode_reservation_packages');
+define('CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK', 'caag_hq_rental_public_reservation_package_link');
 
 /*
  * Meta Values Columns Name - Admin Table
@@ -80,8 +80,8 @@ require_once 'includes/shortcodes.php';
  */
 function caag_hq_rental_activation()
 {
-	caag_rental_settings_init();
-	register_caag_rental_custom_post_type();
+	caag_hq_rental_settings_init();
+	register_caag_hq_rental_custom_post_type();
 }
 register_activation_hook(__FILE__,'caag_hq_rental_activation');
 

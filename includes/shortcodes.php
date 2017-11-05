@@ -15,21 +15,29 @@ function caag_car_rental_shortcode($atts = [])
 		$return_date = Carbon::createFromFormat("Y-m-d H:i", str_replace('/','-', $_GET['return_date']));
 		$pick_up_location = $_GET['pickup_location'];
 		$pick_up_location_custom = $_GET['pick_up_location_custom'];
-		$output = '<div id="caag-rental-form">
+		if($pick_up_location == 'Airport' or $pick_up_location == 'Office') {
+			$output = '<div id="caag-rental-form">
 						<iframe id="caag-rental-iframe" name="caag-rental-iframe" src="' . $link . '"></iframe>
 					</div>';
-		$output .= '<form action="'.$first_step_link.'" method="POST" target="caag-rental-iframe" id="reserve_form" hidden="hidden">
-						<input type="text" autocomplete="off" name="pick_up_date" id="pick_up_date" value="'.$pickup_date->toDateString().'"/>
-						<input type="text" autocomplete="off" name="return_date" id="return_date" value="'.$return_date->toDateString().'"/>
-						<input type="text" autocomplete="off" name="pick_up_time" id="pick_up_time" value="'.$pickup_date->format('H:i').'"/>
-						<input type="text" autocomplete="off" name="return_time" id="return_time" value="'.$return_date->format('H:i').'"/>
-						<input type="radio" name="pick_up_location" value="'.$pick_up_location.'" checked="checked"/>
+			$output .= '<form action="' . $first_step_link . '" method="POST" target="caag-rental-iframe" id="reserve_form" hidden="hidden">
+						<input type="text" autocomplete="off" name="pick_up_date" id="pick_up_date" value="' . $pickup_date->toDateString() . '"/>
+						<input type="text" autocomplete="off" name="return_date" id="return_date" value="' . $return_date->toDateString() . '"/>
+						<input type="text" autocomplete="off" name="pick_up_time" id="pick_up_time" value="' . $pickup_date->format( 'H:i' ) . '"/>
+						<input type="text" autocomplete="off" name="return_time" id="return_time" value="' . $return_date->format( 'H:i' ) . '"/>
+						<input type="radio" name="pick_up_location" value="' . $pick_up_location . '" checked="checked"/>
 						<input type="radio" name="pick_up_location" value="custom"/>
-						<input type="text" autocomplete="off" name="pick_up_location_custom" id="pick_up_location_custom" value="'.$pick_up_location_custom.'"/>
+						<input type="text" autocomplete="off" name="pick_up_location_custom" id="pick_up_location_custom" value="' . $pick_up_location_custom . '"/>
 					</form>';
-		
-		caag_rental_inline_script();
-		return $output;
+
+			caag_rental_inline_script();
+
+			return $output;
+		}else {
+			$output = '<div id="caag-rental-form">
+						<iframe id="caag-rental-iframe" src="' . $link . '"></iframe>
+					</div>';
+			return $output;
+		}
 	}else{
 		$output = '<div id="caag-rental-form">
 						<iframe id="caag-rental-iframe" src="' . $link . '"></iframe>

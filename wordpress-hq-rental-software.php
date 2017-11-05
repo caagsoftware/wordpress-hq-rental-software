@@ -78,19 +78,19 @@ require_once 'includes/shortcodes.php';
  * Activation Routine
  * @return void
  */
-function caag_rental_activation()
+function caag_hq_rental_activation()
 {
 	caag_rental_settings_init();
 	register_caag_rental_custom_post_type();
 }
-register_activation_hook(__FILE__,'caag_rental_activation');
+register_activation_hook(__FILE__,'caag_hq_rental_activation');
 
 /*
  * Deactivation Routine
  * @return void
  */
-function caag_rental_deactivation()
+function caag_hq_rental_deactivation()
 {
 	// Do nothing
 }
-register_deactivation_hook(__FILE__,'caag_rental_deactivation');
+register_deactivation_hook(__FILE__,'caag_hq_rental_deactivation');

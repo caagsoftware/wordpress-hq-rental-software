@@ -5,9 +5,9 @@
  *
  *
 Plugin Name:  Wordpress HQ Rental Software
-Description:  Display and Use Caag Software Car Rental Forms
+Description:  HQ Rental Software
 Version:      1.0
-Author:       Miguel Faggioni
+Author:       Caag Software
 Author URI:   https://www.caagsoftware.com
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl.html
@@ -18,7 +18,8 @@ License URI: https://www.gnu.org/licenses/gpl.html
  * Global Constant
  */
 $root = __DIR__;
-$folders = explode('\\', $root);
+//$folders = explode('\\', $root);
+$folders = explode('/', $root);
 $folder = $folders[count($folders) - 1];
 define('CAAG_HQ_RENTAL_VERSION','1.0');
 define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');

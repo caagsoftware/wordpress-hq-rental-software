@@ -1,7 +1,6 @@
-var iframes = iFrameResize({
+iFrameResize({
     log: false,
     checkOrigin: false,
     maxWidth: screen.width,
     sizeWidth: true
-
 }, '#caag-rental-iframe');

@@ -1,28 +1,25 @@
-/*
- *
- * Caag Forms Styles
- *
- */
-iframe{
-    width:100%;
+#caag-rental-iframe {
+    width: 1px;
+    min-width: 100%;
 }
-#caag-rental-forms{
-    min-height: 500px;
+
+#caag-rental-assets {
+    min-height: 600px;
     width: 100%;
-
 }
 
-#caag-iframe{
+#caag-iframe {
     width: 100%;
 }
 
 /*
  * Setting Page Styles
  */
-.caag-notice-wp{
+.caag-notice-wp {
     margin: 5px 0 5px;
     padding-bottom: 15px;
 }
+
 .caag-dismiss {
     position: absolute;
     top: 0;
@@ -34,26 +31,32 @@ iframe{
     color: #b4b9be;
     cursor: pointer;
 }
+
 .notice {
     background: #fff;
     border-left: 4px solid #4272a8;
 }
+
 .caag-button.caag-button-primary {
     background-color: #4272a8;
 }
+
 .caag-button.caag-button-primary:hover {
     color: #fff;
     background-color: #4272cd;
 }
+
 .caag-button.caag-button-primary:active {
     color: #fff;
     background-color: #4272cd;
 }
+
 .caag-button.caag-button-primary:visited {
     color: #fff;
     background-color: #4272cd;
 }
-.caag-button{
+
+.caag-button {
     border-radius: 3px;
     border: 0;
     background-color: #999;
@@ -73,7 +76,7 @@ iframe{
     transition-timing-function: ease-in-out;
 }
 
-.caag-button-external-link:after{
+.caag-button-external-link:after {
     font-family: dashicons;
     font-weight: normal;
     font-style: normal;

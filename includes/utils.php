@@ -18,7 +18,7 @@ add_action('caag_hq_rental_styles','caag_hq_rental_styles');
  */
 function caag_hq_rental_scripts()
 {
-	wp_register_script('caag-rental-iframe-resize', plugins_url(CAAG_HQ_RENTAL_PLUGIN_FOLDER.'/assets/js/iframeSizer.min?version=3.5.15'));
+	wp_register_script('caag-rental-iframe-resize', plugins_url(CAAG_HQ_RENTAL_PLUGIN_FOLDER.'/assets/js/iframeSizer.min.js?version=3.5.15'));
 	wp_register_script('caag-rental-iframe-init', plugins_url(CAAG_HQ_RENTAL_PLUGIN_FOLDER.'/assets/js/caagResize.js'), array( 'jquery' ));
 	wp_enqueue_script('caag-rental-iframe-resize');
 	wp_enqueue_script('caag-rental-iframe-init');

@@ -11,8 +11,7 @@ function caag_car_rental_shortcode($atts = [])
     $caag_id = $atts['id'];
     $link = get_caag_hq_rental_link($caag_id);
     $first_step_link = get_caag_hq_rental_first_step_link($caag_id);
-    if (isset($_GET['pickup_date']) and
-        isset($_GET['return_date']) and (isset($_GET['pickup_location']) or isset($_GET['pick_up_location_custom']))) {
+        if (isset($_GET['pickup_date']) and isset($_GET['return_date']) and (isset($_GET['pickup_location']) or isset($_GET['pick_up_location_custom']))) {
         $pickup_date = Carbon::createFromFormat('Y-m-d H:i', str_replace('/', '-', $_GET['pickup_date']));
         $return_date = Carbon::createFromFormat('Y-m-d H:i', str_replace('/', '-', $_GET['return_date']));
         $pick_up_location = $_GET['pickup_location'];
@@ -33,7 +32,6 @@ function caag_car_rental_shortcode($atts = [])
 						<input type="text" autocomplete="off" name="pick_up_location_custom" id="pick_up_location_custom" value="' .
                        $pick_up_location_custom . '"/>
 					</form>';
-
             caag_hq_rental_inline_script();
 
             return $output;

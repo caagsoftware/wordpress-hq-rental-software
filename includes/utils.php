@@ -9,6 +9,7 @@ function caag_hq_rental_styles()
 	wp_register_style('caag-rental', plugins_url(CAAG_HQ_RENTAL_PLUGIN_FOLDER.'/assets/css/caag_hq_rental.css'));
 	wp_enqueue_style('caag-rental');
 }
+
 add_action('caag_hq_rental_styles','caag_hq_rental_styles');
 
 /*
@@ -17,11 +18,9 @@ add_action('caag_hq_rental_styles','caag_hq_rental_styles');
  */
 function caag_hq_rental_scripts()
 {
-	wp_register_script('caag-rental-iframe-resize', plugins_url(CAAG_HQ_RENTAL_PLUGIN_FOLDER.'/assets/js/iframeResizer.min.js'));
-	wp_register_script('caag-rental-iframe-resize-window', plugins_url(CAAG_HQ_RENTAL_PLUGIN_FOLDER.'/assets/js/iframeResizer.contentWindow.min.js'));
+	wp_register_script('caag-rental-iframe-resize', plugins_url(CAAG_HQ_RENTAL_PLUGIN_FOLDER.'/assets/js/iframeSizer.min.js?version=3.5.15'));
 	wp_register_script('caag-rental-iframe-init', plugins_url(CAAG_HQ_RENTAL_PLUGIN_FOLDER.'/assets/js/caagResize.js'), array( 'jquery' ));
 	wp_enqueue_script('caag-rental-iframe-resize');
-	wp_enqueue_script('caag-rental-iframe-resize-window');
 	wp_enqueue_script('caag-rental-iframe-init');
 }
 add_action('wp_enqueue_script','caag_hq_rental_scripts');

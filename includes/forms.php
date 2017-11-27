@@ -18,7 +18,6 @@ function caag_hq_rental_form_index($query)
 		    )
 		);
 		$api = wp_remote_get( CAAG_HQ_RENTAL_API_GET_CALLS, $args);
-		//var_dump(json_decode($api['body']));
 		if ( is_array( $api ) ) {
 			$brands = json_decode($api['body'])->fleets_brands;
 			foreach ( $brands as $form ) {

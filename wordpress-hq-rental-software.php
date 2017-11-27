@@ -19,7 +19,7 @@ License URI: https://www.gnu.org/licenses/gpl.html
  */
 $root = __DIR__;
 //$folders = explode('\\', $root);
-$folders = explode('/', $root);
+$folders = explode('\\', $root);
 $folder = $folders[count($folders) - 1];
 define('CAAG_HQ_RENTAL_VERSION','1.0');
 define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');
@@ -47,6 +47,10 @@ define('CAAG_HQ_RENTAL_PUBLIC_PACKAGES_LINK', 'caag_hq_rental_public_package_lin
 define('CAAG_HQ_RENTAL_FIRST_STEP_LINK_PACKAGES', 'caag_hq_rental_first_step_link_packages');
 define('CAAG_HQ_RENTAL_SHORTCODE_RESERVATION_PACKAGES', 'caag_hq_rental_shortcode_reservation_packages');
 define('CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK', 'caag_hq_rental_public_reservation_package_link');
+define('CAAG_HQ_RENTAL_SHORTCODE_MY_RESERVATION', 'caag_hq_rental_shortcode_my_reservation');
+define('CAAG_HQ_RENTAL_MY_RESERVATION_LINK', 'caag_hq_rental_public_my_reservation_link');
+define('CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION', 'caag_hq_rental_shortcode_my_package_reservation');
+define('CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK', 'caag_hq_rental_public_my_package_reservation_link');
 
 /*
  * Meta Values Columns Name - Admin Table
@@ -57,7 +61,8 @@ define('CAAG_HQ_RENTAL_LINK_COLUMN','Link');
 define('CAAG_HQ_RENTAL_SHORTCODE_COLUMN','Shortcode Reservations');
 define('CAAG_HQ_RENTAL_SHORTCODE_PACKAGES_COLUMN','Shortcode Packages');
 define('CAAG_HQ_RENTAL_SHORTCODE_RESERVATION_PACKAGES_COLUMN','Shortcode Reservation + Packages');
-
+define('CAAG_HQ_RENTAL_SHORTCODE_MY_RESERVATION_COLUMN','Shortcode My Reservations');
+define('CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION_COLUMN','Shortcode My Packages + Reservations');
 /*
  * Security and Decoration Variables
  */

@@ -4,6 +4,9 @@ require_once 'Carbon.php';
 
 use Carbon\Carbon;
 
+/*
+ * 
+ */
 function caag_car_rental_shortcode($atts = [])
 {
     caag_hq_rental_styles();
@@ -47,6 +50,9 @@ function caag_car_rental_shortcode($atts = [])
 add_shortcode('caag_hq_rental_forms', 'caag_car_rental_shortcode');
 
 
+/*
+ *
+ */
 function caag_hq_rental_forms_packages($atts = [])
 {
     caag_hq_rental_styles();
@@ -59,6 +65,10 @@ function caag_hq_rental_forms_packages($atts = [])
 
 add_shortcode('caag_hq_rental_forms_packages', 'caag_hq_rental_forms_packages');
 
+
+/*
+ *
+ */
 function caag_hq_rental_forms_reservation_packages($atts = [])
 {
     caag_hq_rental_styles();
@@ -70,3 +80,35 @@ function caag_hq_rental_forms_reservation_packages($atts = [])
 }
 
 add_shortcode('caag_hq_rental_forms_reservation_packages', 'caag_hq_rental_forms_reservation_packages');
+
+
+/*
+ *
+ */
+function caag_hq_rental_forms_my_reservations($atts = [])
+{
+    caag_hq_rental_styles();
+    caag_hq_rental_scripts();
+    $caag_id = $atts['id'];
+    $link = get_caag_hq_rental_my_reservation_link($caag_id);
+
+    return '<iframe id="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
+}
+
+add_shortcode('caag_hq_rental_forms_my_reservations', 'caag_hq_rental_forms_my_reservations');
+
+
+/*
+ *
+ */
+function caag_hq_rental_forms_my_package_reservation($atts = [])
+{
+    caag_hq_rental_styles();
+    caag_hq_rental_scripts();
+    $caag_id = $atts['id'];
+    $link = get_caag_hq_rental_my_package_reservation_link($caag_id);
+
+    return '<iframe id="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
+}
+
+add_shortcode('caag_hq_rental_forms_my_package_reservation', 'caag_hq_rental_forms_my_package_reservation');

@@ -11,8 +11,6 @@ function caag_car_rental_shortcode($atts = [])
     $caag_id = $atts['id'];
     $link = get_caag_hq_rental_link($caag_id);
     $first_step_link = get_caag_hq_rental_first_step_link($caag_id);
-    echo 'PICKUP DATE IS HERE';
-    echo get_data_from_post_var('pick_up_date');
 
     try {
         if (get_data_from_post_var('pick_up_date')) {
@@ -28,8 +26,7 @@ function caag_car_rental_shortcode($atts = [])
             $pick_up_location = get_data_from_post_var('pick_up_location');
             $pick_up_location_custom = get_data_from_post_var('pick_up_location_custom');
 
-            $output = '<iframe id="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
-            $output .= '<form action="' . $first_step_link . '" method="POST" target="caag-rental-iframe" id="caag_form_init">
+            $output = '<form action="' . $first_step_link . '" method="POST" target="caag-rental-iframe" id="caag_form_init">
 						<input type="hidden" name="pick_up_date" id="pick_up_date" value="' .
                        $pickup_date->toDateString() . '"/>
 						<input type="hidden" name="return_date" id="return_date" value="' .
@@ -42,6 +39,7 @@ function caag_car_rental_shortcode($atts = [])
 						<input type="hidden" name="pick_up_location_custom" id="pick_up_location_custom" value="' . $pick_up_location_custom . '"/>
 						<input type="submit" style="display: none;">
 					</form>';
+            $output .= '<iframe id="caag-rental-iframe" name="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
 
             caag_hq_rental_inline_script();
 

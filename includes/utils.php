@@ -35,7 +35,7 @@ add_action('wp_enqueue_script', 'caag_hq_rental_scripts');
 */
 function caag_hq_rental_inline_script()
 {
-    wp_enqueue_script('caag-rental-script-submit', plugins_url(CAAG_HQ_RENTAL_PLUGIN_FOLDER . '/assets/js/submit.js'),
+    wp_enqueue_script('caag-rental-script-submit', plugins_url(CAAG_HQ_RENTAL_PLUGIN_FOLDER . '/assets/js/submit.js?timestamp=' . time()),
         array('jquery'));
 }
 

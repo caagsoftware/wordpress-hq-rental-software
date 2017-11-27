@@ -1,4 +1,3 @@
 jQuery(function($) {
-    $("#reserve_form").submit();
+    $("#caag_form_init").submit();
 });
-

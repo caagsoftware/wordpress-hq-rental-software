@@ -11,31 +11,44 @@ function caag_car_rental_shortcode($atts = [])
     $caag_id = $atts['id'];
     $link = get_caag_hq_rental_link($caag_id);
     $first_step_link = get_caag_hq_rental_first_step_link($caag_id);
-    if (isset($_GET['pickup_date']) and
-        isset($_GET['return_date']) and (isset($_GET['pick_up_location']) or isset($_GET['pick_up_location_custom']))) {
-        $pickup_date = Carbon::createFromFormat('Y-m-d H:i', str_replace('/', '-', $_GET['pickup_date']));
-        $return_date = Carbon::createFromFormat('Y-m-d H:i', str_replace('/', '-', $_GET['return_date']));
-        $pick_up_location = $_GET['pick_up_location'];
-        $pick_up_location_custom = $_GET['pick_up_location_custom'];
-        $output = '<iframe id="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
-        $output .= '<form action="' . $first_step_link . '" method="POST" target="caag-rental-iframe" id="reserve_form" hidden="hidden">
-						<input type="text" autocomplete="off" name="pick_up_date" id="pick_up_date" value="' .
-                   $pickup_date->toDateString() . '"/>
-						<input type="text" autocomplete="off" name="return_date" id="return_date" value="' .
-                   $return_date->toDateString() . '"/>
-						<input type="text" autocomplete="off" name="pick_up_time" id="pick_up_time" value="' .
-                   $pickup_date->format('H:i') . '"/>
-						<input type="text" autocomplete="off" name="return_time" id="return_time" value="' .
-                   $return_date->format('H:i') . '"/>
-						<input type="radio" name="pick_up_location" value="' . $pick_up_location . '" checked="checked"/>
-						<input type="radio" name="pick_up_location" value="custom"/>
-						<input type="text" autocomplete="off" name="pick_up_location_custom" id="pick_up_location_custom" value="' .
-                   $pick_up_location_custom . '"/>
+    echo 'PICKUP DATE IS HERE';
+    echo get_data_from_post_var('pick_up_date');
+
+    try {
+        if (get_data_from_post_var('pick_up_date')) {
+            if (get_data_from_post_var('pick_up_time')) {
+                $pickup_date = Carbon::createFromFormat('Y-m-d H:i',
+                    get_data_from_post_var('pick_up_date') . ' ' . get_data_from_post_var('pick_up_time'));
+                $return_date = Carbon::createFromFormat('Y-m-d H:i',
+                    get_data_from_post_var('return_date') . ' ' . get_data_from_post_var('return_time'));
+            } else {
+                $pickup_date = Carbon::createFromFormat('Y-m-d H:i', get_data_from_post_var('pick_up_date'));
+                $return_date = Carbon::createFromFormat('Y-m-d H:i', get_data_from_post_var('return_date'));
+            }
+            $pick_up_location = get_data_from_post_var('pick_up_location');
+            $pick_up_location_custom = get_data_from_post_var('pick_up_location_custom');
+
+            $output = '<iframe id="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
+            $output .= '<form action="' . $first_step_link . '" method="POST" target="caag-rental-iframe" id="caag_form_init">
+						<input type="hidden" name="pick_up_date" id="pick_up_date" value="' .
+                       $pickup_date->toDateString() . '"/>
+						<input type="hidden" name="return_date" id="return_date" value="' .
+                       $return_date->toDateString() . '"/>
+						<input type="hidden" name="pick_up_time" id="pick_up_time" value="' .
+                       $pickup_date->format('H:i') . '"/>
+						<input type="hidden" name="return_time" id="return_time" value="' .
+                       $return_date->format('H:i') . '"/>
+						<input type="hidden" name="pick_up_location" value="' . $pick_up_location . '"/>
+						<input type="hidden" name="pick_up_location_custom" id="pick_up_location_custom" value="' . $pick_up_location_custom . '"/>
+						<input type="submit" style="display: none;">
 					</form>';
 
-        caag_hq_rental_inline_script();
+            caag_hq_rental_inline_script();
 
-        return $output;
+            return $output;
+        }
+    } catch (Exception $exception) {
+
     }
 
     return '<iframe id="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
@@ -65,6 +78,11 @@ function caag_hq_rental_forms_reservation_packages($atts = [])
     $link = get_caag_hq_rental_reservation_package_link($caag_id);
 
     return '<iframe id="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
+}
+
+function get_data_from_post_var($data)
+{
+    return $_POST[$data];
 }
 
 add_shortcode('caag_hq_rental_forms_reservation_packages', 'caag_hq_rental_forms_reservation_packages');

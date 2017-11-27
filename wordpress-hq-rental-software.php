@@ -4,7 +4,7 @@
  * @version 1.0
  *
  *
-Plugin Name:  Wordpress HQ Rental Software
+Plugin Name:  HQ Rental
 Description:  HQ Rental Software
 Version:      1.0
 Author:       Caag Software

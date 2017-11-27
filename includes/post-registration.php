@@ -4,9 +4,9 @@ function register_caag_hq_rental_custom_post_type()
 {
 	$labels = array(
 		'name'               => 'Caag  Reservations, Packages, Reservations + Packages',
-		'singular_name'      => 'Caag Rental',
-		'menu_name'          => 'Caag Rental',
-		'name_admin_bar'     => 'Caag Rental',
+		'singular_name'      => 'HQ Rentals',
+		'menu_name'          => 'HQ Rentals',
+		'name_admin_bar'     => 'HQ Rentals',
 		'add_new'            => 'Add New',
 		'add_new_item'       => 'Add New Form',
 		'new_item'           => 'New Form',

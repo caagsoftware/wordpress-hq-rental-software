@@ -5,7 +5,7 @@
  * @param WpQuery
  * @return void
  */
-add_action('pre_get_posts','caag_hq_rental_form_index');
+add_action('pre_get_posts', 'caag_hq_rental_form_index');
 function caag_hq_rental_form_index($query)
 {
 	if(isset($query->query['post_type']) and  $query->query['post_type'] == CAAG_HQ_RENTAL_CUSTOM_POST_TYPE) {
@@ -89,7 +89,7 @@ function caag_hq_rental_form_index($query)
  * Add Meta Data columns to Post Table: Link
  * Only Header and Footer
  */
-add_filter('manage_'.CAAG_HQ_RENTAL_CUSTOM_POST_TYPE.'_posts_columns', 'caag_hq_rental_add_meta_columns');
+add_filter('manage_' . CAAG_HQ_RENTAL_CUSTOM_POST_TYPE . '_posts_columns', 'caag_hq_rental_add_meta_columns');
 function caag_hq_rental_add_meta_columns($defaults)
 {
 	$columns[CAAG_HQ_RENTAL_ID_COLUMN] = CAAG_HQ_RENTAL_ID_COLUMN;
@@ -106,7 +106,7 @@ function caag_hq_rental_add_meta_columns($defaults)
  * Displaying Actual Meta Data Values
  * return @void
  */
-add_action( 'manage_posts_custom_column' , 'caag_hq_rental_fill_meta_columns', 10, 2 );
+add_action('manage_posts_custom_column', 'caag_hq_rental_fill_meta_columns', 10, 2);
 function caag_hq_rental_fill_meta_columns($column_name, $post_id)
 {
 	if ($column_name == CAAG_HQ_RENTAL_ID_COLUMN) {
@@ -164,12 +164,14 @@ function caag_hq_rental_fill_meta_columns($column_name, $post_id)
  * @param array
  * @return array
  */
-add_filter( 'manage_edit-'.CAAG_HQ_RENTAL_CUSTOM_POST_TYPE.'_sortable_columns', 'caag_hq_rental_all_sortable_columns' );
-function caag_hq_rental_all_sortable_columns( $columns )
+add_filter('manage_edit-' . CAAG_HQ_RENTAL_CUSTOM_POST_TYPE . '_sortable_columns',
+    'caag_hq_rental_all_sortable_columns');
+function caag_hq_rental_all_sortable_columns($columns)
 {
-	$columns[CAAG_HQ_RENTAL_ID_COLUMN] = 'Identifier';
-	$columns[CAAG_HQ_RENTAL_NAME_COLUMN] = 'Name';
-	return $columns;
+    $columns[CAAG_HQ_RENTAL_ID_COLUMN] = 'Identifier';
+    $columns[CAAG_HQ_RENTAL_NAME_COLUMN] = 'Name';
+
+    return $columns;
 }
 
 /*
@@ -177,17 +179,31 @@ function caag_hq_rental_all_sortable_columns( $columns )
  * @param WpQuery
  * @return void
  */
-add_action( 'pre_get_posts', 'caag_hq_rental_sort_by_column' );
-function caag_hq_rental_sort_by_column( $query )
+add_action('pre_get_posts', 'caag_hq_rental_sort_by_column');
+function caag_hq_rental_sort_by_column($query)
 {
-	if ( ! is_admin() )
-		return;
-	if($query->query['post_type'] == CAAG_HQ_RENTAL_CUSTOM_POST_TYPE){
-		if($query->query['orderby'] == CAAG_HQ_RENTAL_NAME_COLUMN){
-			$query->set('meta_key', CAAG_HQ_RENTAL_CAAG_ID );
-			$query->set('orderby', 'meta_value_num' );
-		}elseif($query->query['orderby'] == CAAG_HQ_RENTAL_NAME_COLUMN){
-			$query->set('orderby','title');
-		}
-	}
+    if (!is_admin()) {
+        return;
+    }
+    if ($query->query['post_type'] == CAAG_HQ_RENTAL_CUSTOM_POST_TYPE) {
+        if ($query->query['orderby'] == CAAG_HQ_RENTAL_NAME_COLUMN) {
+            $query->set('meta_key', CAAG_HQ_RENTAL_CAAG_ID);
+            $query->set('orderby', 'meta_value_num');
+        } elseif ($query->query['orderby'] == CAAG_HQ_RENTAL_NAME_COLUMN) {
+            $query->set('orderby', 'title');
+        }
+    }
+}
+
+add_filter('query_vars', 'caag_hq_rental_add_query_vars');
+function caag_hq_rental_add_query_vars($public_query_vars)
+{
+    $public_query_vars[] = 'pick_up_date';
+    $public_query_vars[] = 'pick_up_time';
+    $public_query_vars[] = 'return_date';
+    $public_query_vars[] = 'return_time';
+    $public_query_vars[] = 'some_unique_identifier_for_your_var';
+    $public_query_vars[] = 'some_unique_identifier_for_your_var';
+
+    return $public_query_vars;
 }

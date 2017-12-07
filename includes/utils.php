@@ -6,7 +6,7 @@
  */
 function caag_hq_rental_styles()
 {
-    wp_register_style('caag-rental', plugin_dir_url(__FILE__) . '../assets/css/caag_hq_rental.css');
+    wp_register_style('caag-rental', plugin_dir_url(__FILE__) . '../assets/css/caag_hq_rental.css?version=1.0.10');
     wp_enqueue_style('caag-rental');
 }
 

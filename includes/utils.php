@@ -94,7 +94,7 @@ add_action('caag_hq_rental_exists', 'caag_hq_rental_exists');
 
 
 /*
- *Retrieves post id for a meta Id
+ * Retrieves post id for a meta Id
  * @param int | meta Id
  * @return Array
  */
@@ -110,8 +110,9 @@ function get_caag_hq_rental_by_meta($caag_id)
 add_action('get_caag_hq_rental_by_meta', 'get_caag_hq_rental_by_meta');
 
 /*
- *  Retrieves Link by caag_id
- *
+ * Retrieve the Rental Link
+ * @param int | Caag CRM id
+ * @return int
  */
 function get_caag_hq_rental_link($caag_id)
 {
@@ -123,8 +124,9 @@ function get_caag_hq_rental_link($caag_id)
 add_action('get_caag_hq_rental_link', 'get_caag_hq_rental_link');
 
 /*
- *  Retrieves First Step Link by caag_id
- *
+ * Retrieve the Package Link
+ * @param int | Caag CRM id
+ * @return int
  */
 function get_caag_hq_rental_first_step_link($caag_id)
 {
@@ -136,8 +138,9 @@ function get_caag_hq_rental_first_step_link($caag_id)
 add_action('get_caag_hq_rental_first_step_link', 'get_caag_hq_rental_first_step_link');
 
 /*
- *
- *
+ * Retrieve the Package Link
+ * @param int | Caag CRM id
+ * @return int
  */
 function get_caag_hq_rental_package_link($caag_id)
 {
@@ -149,8 +152,9 @@ function get_caag_hq_rental_package_link($caag_id)
 add_action('get_caag_hq_rental_package_link', 'get_caag_hq_rental_package_link');
 
 /*
- *
- *
+ * Retrieve the Package First Step Link
+ * @param int | Caag CRM id
+ * @return int
  */
 function get_caag_hq_rental_package_first_step_link($caag_id)
 {
@@ -159,14 +163,37 @@ function get_caag_hq_rental_package_first_step_link($caag_id)
     return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK_PACKAGES[0]);
 }
 
-add_action('get_caag_hq_rental_package_first_step_link', 'get_caag_hq_rental_package_first_step_link');
+/*
+ * Retrieve the My Reservation
+ * @param int | Caag CRM id
+ * @return int
+ */
+function get_caag_hq_rental_my_reservation_link($caag_id)
+{
+	$post = get_caag_hq_rental_by_meta($caag_id);
+	return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_MY_RESERVATION_LINK)[0];
+}
+add_action('get_caag_hq_rental_my_reservation_link','get_caag_hq_rental_my_reservation_link');
 
+/*
+ * Retrieve the My Reservation + Package Link
+ * @param int | Caag CRM id
+ * @return int
+ */
+function get_caag_hq_rental_my_package_reservation_link($caag_id)
+{
+	$post = get_caag_hq_rental_by_meta($caag_id);
+	return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK)[0];
+}
+add_action('get_caag_hq_rental_my_package_reservation_link','get_caag_hq_rental_my_package_reservation_link');
+
+/*
+ * 
+ */
 function get_caag_hq_rental_reservation_package_link($caag_id)
 {
     $post = get_caag_hq_rental_by_meta($caag_id);
 
     return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK)[0];
 }
-
-add_action('get_caag_hq_rental_reservation_package_link', 'get_caag_hq_rental_reservation_package_link');
-
+add_action('get_caag_hq_rental_reservation_package_link','get_caag_hq_rental_reservation_package_link');

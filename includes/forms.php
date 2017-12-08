@@ -79,7 +79,7 @@ function caag_hq_rental_form_index($query)
 				}
 			}
 		} else {
-			echo '<div class="notice notice-error"><p>'. $api->errors[0] .'</p></div>';
+			echo '<div class="notice notice-error"><p>'. $api->errors['http_request_failed'][0] .'</p></div>';
 		}
 	}
 }

@@ -17,14 +17,9 @@ License URI: https://www.gnu.org/licenses/gpl.html
 /*
  * Global Constant
  */
-$root = __DIR__;
-//$folders = explode('\\', $root);
-$folders = explode('\\', $root);
-$folder = $folders[count($folders) - 1];
 define('CAAG_HQ_RENTAL_VERSION','1.0');
 define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');
-define('CAAG_HQ_RENTAL_ROOT', $root);
-define('CAAG_HQ_RENTAL_PLUGIN_FOLDER', $folder);
+
 
 /*
  * Plugin Variables
@@ -66,8 +61,8 @@ define('CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION_COLUMN','Shortcode My Pa
 /*
  * Security and Decoration Variables
  */
-define('CAAG_HQ_RENTAL_SETTING_TITLE','Caag Rental');
-define('CAAG_HQ_RENTAL_SETTING_MENU','Caag Rental');
+define('CAAG_HQ_RENTAL_SETTING_TITLE','HQ Rental Setup');
+define('CAAG_HQ_RENTAL_SETTING_MENU','HQ Rental Setup');
 define('CAAG_HQ_RENTAL_SLUG','caag-rental');
 define('CAAG_HQ_RENTAL_NONCE', 'caag_nonce');
 

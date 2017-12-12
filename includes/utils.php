@@ -13,16 +13,20 @@ function caag_hq_rental_styles()
 add_action('caag_hq_rental_styles', 'caag_hq_rental_styles');
 
 /*
- * Load Plugin Js Files
+ * Load Script Files
  * return void
  */
 function caag_hq_rental_scripts()
 {
+    //Registration
     wp_register_script('caag-rental-iframe-resize',
         plugin_dir_url(__FILE__) . '../assets/js/iframeSizer.min.js?version=3.5.15');
     wp_register_script('caag-rental-iframe-init', plugin_dir_url(__FILE__) . '../assets/js/caagResize.js', array('jquery'));
+    wp_register_script('hq-rental-script', plugin_dir_url(__FILE__) . '../assets/js/HQRental.js',array( ),false,true);
+    //Enqueue
     wp_enqueue_script('caag-rental-iframe-resize');
     wp_enqueue_script('caag-rental-iframe-init');
+    wp_enqueue_script('hq-rental-script');
 }
 
 add_action('wp_enqueue_script', 'caag_hq_rental_scripts');

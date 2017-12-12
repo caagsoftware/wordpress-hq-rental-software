@@ -9,13 +9,15 @@ use Carbon\Carbon;
  */
 function caag_car_rental_shortcode($atts = [])
 {
+    global $is_safari;
     caag_hq_rental_styles();
     caag_hq_rental_scripts();
     $caag_id = $atts['id'];
     $link = get_caag_hq_rental_link($caag_id);
     $first_step_link = get_caag_hq_rental_first_step_link($caag_id);
-    $user_agent = $_SERVER['HTTP_USER_AGENT'];
-    if(stripos( $user_agent, 'Safari') !== false){
+    //Safari Web Browser
+    if( !$is_safari and caag_hq_rental_safari_option() ){
+        caag_hq_rental_safari_script();
         try {
             if (get_data_from_post_var('pick_up_date')) {
                 if (get_data_from_post_var('pick_up_time')) {
@@ -30,6 +32,13 @@ function caag_car_rental_shortcode($atts = [])
                 $pick_up_location = get_data_from_post_var('pick_up_location');
                 $pick_up_location_custom = get_data_from_post_var('pick_up_location_custom');
                 $return_location = get_data_from_post_var('return_location');
+                $first_step_link .= '?pick_up_date='.$pickup_date;
+                $first_step_link .= '?return_date='.$return_date;
+                $first_step_link .= '?pick_up_time='.$pickup_date->format('H:i');
+                $first_step_link .= '?return_time='.$return_date->format('H:i');
+                $first_step_link .= '?pick_up_location='.$pick_up_location;
+                $first_step_link .= '?pick_up_location='.$return_location;
+                $first_step_link .= '?pick_up_location_custom='.$pick_up_location_custom;
                 $output = '<form target="_blank" action="' . $first_step_link . '" method="POST" target="caag-rental-iframe" id="caag_form_init">
 						<input type="hidden" name="pick_up_date" id="pick_up_date" value="' .
                           $pickup_date->toDateString() . '"/>
@@ -43,20 +52,16 @@ function caag_car_rental_shortcode($atts = [])
 						<input type="hidden" name="return_location" value="' . $return_location . '"/>
 						<input type="hidden" name="pick_up_location_custom" id="pick_up_location_custom" value="' . $pick_up_location_custom . '"/>
 						<input type="submit" style="display: none;">
-					</form>';
+					</form><script>document.getElementById("caag_form_init").submit();</script>';
                 $output .= '<iframe id="caag-rental-iframe" name="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
-
-                caag_hq_rental_inline_script();
-
                 return $output;
             }
         } catch (Exception $exception) {
 
         }
-
-        $output = '<iframe target="_blank" id="caag-rental-iframe" src="'. $link . '" scrolling="no"></iframe>';
+        $output = '<iframe id="caag-rental-iframe" src="'. $link . '" scrolling="no"></iframe>';
         return $output;
-
+        //Others
     }else{
         try {
             if (get_data_from_post_var('pick_up_date')) {
@@ -87,7 +92,6 @@ function caag_car_rental_shortcode($atts = [])
 						<input type="submit" style="display: none;">
 					</form>';
                 $output .= '<iframe id="caag-rental-iframe" name="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
-
                 caag_hq_rental_inline_script();
                 return $output;
             }

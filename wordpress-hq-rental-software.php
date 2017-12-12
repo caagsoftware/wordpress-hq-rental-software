@@ -96,3 +96,5 @@ function caag_hq_rental_deactivation()
 	// Do nothing
 }
 register_deactivation_hook(__FILE__,'caag_hq_rental_deactivation');
+
+?>

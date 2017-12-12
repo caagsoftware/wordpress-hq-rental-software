@@ -112,7 +112,6 @@ function caag_hq_rental_settings_registration()
  */
 function caag_hq_rental_save_settings($settings)
 {
-	var_dump($_POST);
 	update_option(CAAG_HQ_RENTAL_USER_TOKEN, $settings[CAAG_HQ_RENTAL_USER_TOKEN]);
 	update_option(CAAG_HQ_RENTAL_TENANT_TOKEN, $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]);
 	if(isset($_POST[CAAG_HQ_RENTAL_SAFARI_BROWSER])){

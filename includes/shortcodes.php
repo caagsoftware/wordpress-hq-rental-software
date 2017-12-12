@@ -16,7 +16,7 @@ function caag_car_rental_shortcode($atts = [])
     $link = get_caag_hq_rental_link($caag_id);
     $first_step_link = get_caag_hq_rental_first_step_link($caag_id);
     //Safari Web Browser
-    if( !$is_safari and caag_hq_rental_safari_option() ){
+    if( $is_safari and caag_hq_rental_safari_option() ){
         caag_hq_rental_safari_script();
         try {
             if (get_data_from_post_var('pick_up_date')) {

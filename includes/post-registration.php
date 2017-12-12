@@ -3,7 +3,7 @@
 function register_caag_hq_rental_custom_post_type()
 {
 	$labels = array(
-		'name'               => 'Caag  Reservations, Packages, Reservations + Packages',
+		'name'               => 'HQ Rentals  Reservations, Packages, Reservations + Packages',
 		'singular_name'      => 'HQ Rentals',
 		'menu_name'          => 'HQ Rentals',
 		'name_admin_bar'     => 'HQ Rentals',
@@ -21,7 +21,7 @@ function register_caag_hq_rental_custom_post_type()
 
 	$args = array(
 		'labels'                    => $labels,
-		'description'               => 'Caag Rental Form Plugin',
+		'description'               => 'HQ Rental Plugin',
 		'public'                    => false,
 		'publicly_queryable'        => false,
 		'show_ui'                   => true,

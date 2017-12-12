@@ -46,6 +46,23 @@ function caag_hq_rental_settings_html()
 							<th><label class="wp-heading-inline" id="title-prompt-text" for="title">User Token</label></th>
 							<td><input type="text" name="<?php echo CAAG_HQ_RENTAL_USER_TOKEN; ?>" size="70" value="<?php echo $settings[CAAG_HQ_RENTAL_USER_TOKEN]; ?>" id="title" spellcheck="true" autocomplete="off"></td>
 						</tr>
+
+						<table class="form-table">
+							<h2 class="title">Safari Browser</h2>
+							<tr>
+								<td class="td-full">
+									<label for="uploads_use_yearmonth_folders">
+										<?php if(get_option(CAAG_HQ_RENTAL_SAFARI_BROWSER) == "0"): ?>
+											<input name="<?php echo CAAG_HQ_RENTAL_SAFARI_BROWSER; ?>" type="checkbox" id="<?php echo CAAG_HQ_RENTAL_SAFARI_BROWSER; ?>" value="0" />
+											Open Form in a New Tab for Safari Browser</label>
+										<?php else: ?>
+											<input name="<?php echo CAAG_HQ_RENTAL_SAFARI_BROWSER; ?>" type="checkbox" id="<?php echo CAAG_HQ_RENTAL_SAFARI_BROWSER; ?>" value="1" checked/>
+											Open Form in a New Tab for Safari Browser</label>
+										<?php endif; ?>
+								</td>
+							</tr>
+
+						</table>
 						</tbody>
 					</table>
 					<?php wp_nonce_field( CAAG_HQ_RENTAL_NONCE, 'caag_nonce' ); ?>
@@ -85,6 +102,7 @@ function caag_hq_rental_settings_registration()
 {
 	add_option(CAAG_HQ_RENTAL_USER_TOKEN,'');
 	add_option(CAAG_HQ_RENTAL_TENANT_TOKEN,'');
+	add_option(CAAG_HQ_RENTAL_SAFARI_BROWSER, '0');
 }
 
 /*
@@ -96,6 +114,11 @@ function caag_hq_rental_save_settings($settings)
 {
 	update_option(CAAG_HQ_RENTAL_USER_TOKEN, $settings[CAAG_HQ_RENTAL_USER_TOKEN]);
 	update_option(CAAG_HQ_RENTAL_TENANT_TOKEN, $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]);
+	if(isset($_POST[CAAG_HQ_RENTAL_SAFARI_BROWSER])){
+		update_option(CAAG_HQ_RENTAL_SAFARI_BROWSER, '1');
+	}else{
+		update_option(CAAG_HQ_RENTAL_SAFARI_BROWSER, '0');
+	}
 }
 
 /*

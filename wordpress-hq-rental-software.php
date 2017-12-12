@@ -26,6 +26,7 @@ define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');
  */
 define('CAAG_HQ_RENTAL_USER_TOKEN','caag_hq_rental_user_token');
 define('CAAG_HQ_RENTAL_TENANT_TOKEN','caag_hq_rental_tenant_token');
+define('CAAG_HQ_RENTAL_SAFARI_BROWSER','caag_hq_rental_safari_browser');
 define('CAAG_HQ_RENTAL_CUSTOM_POST_TYPE','caag_hq_rental_forms');
 define('CAAG_HQ_RENTAL_API_GET_CALLS','https://api.caagcrm.com/api/fleets/brands');
 

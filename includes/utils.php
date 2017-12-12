@@ -53,8 +53,9 @@ function get_caag_hq_rental_user_settings()
 {
     $settings = array(
         CAAG_HQ_RENTAL_TENANT_TOKEN => get_option(CAAG_HQ_RENTAL_TENANT_TOKEN),
-        CAAG_HQ_RENTAL_USER_TOKEN => get_option(CAAG_HQ_RENTAL_USER_TOKEN)
-    );
+        CAAG_HQ_RENTAL_USER_TOKEN => get_option(CAAG_HQ_RENTAL_USER_TOKEN),
+        CAAG_HQ_RENTAL_SAFARI_BROWSER => get_option(CAAG_HQ_RENTAL_SAFARI_BROWSER)
+    );  
 
     return $settings;
 }
@@ -201,3 +202,10 @@ function get_caag_hq_rental_reservation_package_link($caag_id)
     return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK)[0];
 }
 add_action('get_caag_hq_rental_reservation_package_link','get_caag_hq_rental_reservation_package_link');
+
+/*
+ *
+ */
+function get_caag_hq_rental_safari_option(){
+    return get_option(CAAG_HQ_RENTAL_SAFARI_BROWSER) == '1';
+}

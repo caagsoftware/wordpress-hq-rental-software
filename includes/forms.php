@@ -64,12 +64,12 @@ function caag_hq_rental_form_index($query)
 						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_RESERVATION_PACKAGES, '[caag_hq_rental_forms_reservation_packages id=' . $form->id . ']' );
 					}
 					if( isset($form->my_reservations_link) and $form->my_reservations_link != ''){
-						update_post_meta( (int)$post_id, CAAG_HQ_RENTAL_MY_RESERVATION_LINK, esc_url_raw($form->my_reservations_link) );
-						update_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_RESERVATION, '[caag_hq_rental_forms_my_reservations id=' . $form->id . ']' );
+						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_MY_RESERVATION_LINK, esc_url_raw($form->my_reservations_link) );
+						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_RESERVATION, '[caag_hq_rental_forms_my_reservations id=' . $form->id . ']' );
 					}
 					if( isset($form->my_package_reservations_link) and $form->my_package_reservations_link != ''){
-						update_post_meta( (int)$post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK, esc_url_raw($form->my_package_reservations_link) );
-						update_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION, '[caag_hq_rental_forms_my_package_reservation id=' . $form->id . ']' );
+						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK, esc_url_raw($form->my_package_reservations_link) );
+						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION, '[caag_hq_rental_forms_my_package_reservation id=' . $form->id . ']' );
 					}
 					$args    = array(
 						'ID'    => (int)$post->post_id,

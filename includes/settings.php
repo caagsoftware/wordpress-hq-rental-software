@@ -46,6 +46,20 @@ function caag_hq_rental_settings_html()
 							<th><label class="wp-heading-inline" id="title-prompt-text" for="title">User Token</label></th>
 							<td><input type="text" name="<?php echo CAAG_HQ_RENTAL_USER_TOKEN; ?>" size="70" value="<?php echo $settings[CAAG_HQ_RENTAL_USER_TOKEN]; ?>" id="title" spellcheck="true" autocomplete="off"></td>
 						</tr>
+						<th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Date Format</label></th>
+						<td>
+							<?php if(get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == "YYYY-MM-DD"): ?>
+								<select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT; ?>">
+									<option value="YYYY-MM-DD" selected="selected">YYYY-MM-DD</option>
+									<option value="DD-MM-YYYY">DD-MM-YYYY</option>
+								</select>
+							<?php elseif(get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == "DD-MM-YYYY"): ?>
+								<select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT; ?>">
+									<option value="YYYY-MM-DD" selected="selected">YYYY-MM-DD</option>
+									<option value="DD-MM-YYYY" selected="selected">DD-MM-YYYY</option>
+								</select>
+							<?php endif; ?>
+						</td>
 						</tbody>
 					</table>
 					<?php wp_nonce_field( CAAG_HQ_RENTAL_NONCE, 'caag_nonce' ); ?>
@@ -75,8 +89,6 @@ function caag_hq_rental_settings_html()
 		<?php endif; ?>
 		<?php
 }
-
-
 /*
  * Add Caag Rental Options
  * @return void
@@ -85,6 +97,7 @@ function caag_hq_rental_settings_registration()
 {
 	add_option(CAAG_HQ_RENTAL_USER_TOKEN,'');
 	add_option(CAAG_HQ_RENTAL_TENANT_TOKEN,'');
+	add_option(CAAG_HQ_RENTAL_DATE_FORMAT,'YYYY-MM-DD');
 }
 
 /*
@@ -96,11 +109,7 @@ function caag_hq_rental_save_settings($settings)
 {
 	update_option(CAAG_HQ_RENTAL_USER_TOKEN, $settings[CAAG_HQ_RENTAL_USER_TOKEN]);
 	update_option(CAAG_HQ_RENTAL_TENANT_TOKEN, $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]);
-	if(isset($_POST[CAAG_HQ_RENTAL_SAFARI_BROWSER])){
-		update_option(CAAG_HQ_RENTAL_SAFARI_BROWSER, '1');
-	}else{
-		update_option(CAAG_HQ_RENTAL_SAFARI_BROWSER, '0');
-	}
+	update_option(CAAG_HQ_RENTAL_DATE_FORMAT, $settings[CAAG_HQ_RENTAL_DATE_FORMAT]);
 }
 
 /*

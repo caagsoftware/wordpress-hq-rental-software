@@ -206,3 +206,12 @@ function caag_hq_rental_safari_option()
 {
     return get_option(CAAG_HQ_RENTAL_SAFARI_BROWSER) == '1';
 }
+/*
+ * Return POST array value by key
+ * @string key
+ * @var value
+ */
+function get_data_from_post_var($data)
+{
+    return $_POST[$data];
+}

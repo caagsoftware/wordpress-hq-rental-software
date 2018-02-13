@@ -1,12 +1,12 @@
 <?php
 /*
  * @package Wordpress HQ Rental Software
- * @version 0.2
+ * @version 0.3
  *
  *
 Plugin Name:  HQ Rental
 Description:  HQ Rental Software
-Version:      0.2
+Version:      0.3
 Author:       Caag Software
 Author URI:   https://www.caagsoftware.com
 License: GPLv3
@@ -74,7 +74,16 @@ require_once 'includes/settings.php';
 require_once 'includes/utils.php';
 require_once 'includes/post-registration.php';
 require_once 'includes/forms.php';
-require_once 'includes/shortcodes.php';
+require_once 'includes/Carbon.php';
+
+/*
+ * Shortcode Includes
+ */
+require_once 'includes/shortcodes/my-package-reservation-form.php';
+require_once 'includes/shortcodes/my-reservation-form.php';
+require_once 'includes/shortcodes/package-form.php';
+require_once 'includes/shortcodes/reservation-form.php';
+require_once 'includes/shortcodes/reservation-package-form.php';
 
 /*
  * Activation Routine

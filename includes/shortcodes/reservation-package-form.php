@@ -1,8 +1,9 @@
 <?php
 
-
 /*
- *
+ * HQ Rental Package Form Shortcode
+ * @args array : caag_form_id
+ * @return string: html code
  */
 function caag_hq_rental_forms_reservation_packages($atts = [])
 {
@@ -13,4 +14,4 @@ function caag_hq_rental_forms_reservation_packages($atts = [])
 
 	return '<iframe id="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
 }
-add_shortcode('caag_hq_rental_forms_reservation_packages', 'caag_hq_rental_forms_reservation_packages');
+add_shortcode('hq_rental_forms_reservation_packages', 'caag_hq_rental_forms_reservation_packages');

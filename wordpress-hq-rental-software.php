@@ -75,7 +75,7 @@ require_once 'includes/utils.php';
 require_once 'includes/post-registration.php';
 require_once 'includes/forms.php';
 require_once 'includes/Carbon.php';
-
+require_once 'includes/shortcodes/link-form.php';
 /*
  * Shortcode Includes
  */

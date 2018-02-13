@@ -1,7 +1,9 @@
 <?php
 
 /*
- *
+ * HQ Rental My Package Reservation Form Shortcode
+ * @args array : caag_form_id
+ * @return string: html code
  */
 function caag_hq_rental_forms_packages($atts = [])
 {

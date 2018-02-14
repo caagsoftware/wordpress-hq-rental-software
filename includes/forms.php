@@ -18,68 +18,72 @@ function caag_hq_rental_form_index($query)
 		    )
 		);
 		$api = wp_remote_get( CAAG_HQ_RENTAL_API_GET_CALLS, $args);
-		if ( is_array( $api ) ) {
-			$brands = json_decode($api['body'])->fleets_brands;
-			foreach ( $brands as $form ) {
-				if ( ! caag_hq_rental_exists( $form->id ) ) {
-					$args = array(
-						'post_title'  => $form->name,
-						'post_status' => 'publish',
-						'post_type'   => CAAG_HQ_RENTAL_CUSTOM_POST_TYPE
-					);
-					$post_id = wp_insert_post( $args, true );
-					add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_CAAG_ID, (int)$form->id );
-					add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_LINK, esc_url_raw($form->public_reservations_link_full) );
-					add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE, '[caag_hq_rental_forms id=' . $form->id . ']' );
-					add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK, esc_url_raw($form->public_reservations_link_first_step) );
-					if( isset($form->public_packages_link_full) and $form->public_packages_link_full != ''){
-						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_PUBLIC_PACKAGES_LINK, esc_url_raw($form->public_packages_link_full) );
-						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK_PACKAGES, esc_url_raw($form->public_packages_link_first_step) );
-						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_PACKAGES, '[caag_hq_rental_forms_packages id=' . $form->id . ']' );
+		try{
+			if ( is_array( $api ) ) {
+				$brands = json_decode($api['body'])->fleets_brands;
+				foreach ( $brands as $form ) {
+					if ( ! caag_hq_rental_exists( $form->id ) ) {
+						$args = array(
+							'post_title'  => $form->name,
+							'post_status' => 'publish',
+							'post_type'   => CAAG_HQ_RENTAL_CUSTOM_POST_TYPE
+						);
+						$post_id = wp_insert_post( $args, true );
+						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_CAAG_ID, (int)$form->id );
+						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_LINK, esc_url_raw($form->public_reservations_link_full) );
+						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE, '[hq_rental_reservation_form id=' . $form->id . ']' );
+						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK, esc_url_raw($form->public_reservations_link_first_step) );
+						if( isset($form->public_packages_link_full) and $form->public_packages_link_full != ''){
+							add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_PUBLIC_PACKAGES_LINK, esc_url_raw($form->public_packages_link_full) );
+							add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK_PACKAGES, esc_url_raw($form->public_packages_link_first_step) );
+							add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_PACKAGES, '[hq_rental_forms_packages id=' . $form->id . ']' );
+						}
+						if( isset($form->public_reservations_packages_link_first_step) and $form->public_reservations_packages_link_first_step != '' ){
+							add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK, esc_url_raw($form->public_reservations_packages_link_first_step) );
+							add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_RESERVATION_PACKAGES, '[hq_rental_forms_reservation_packages id=' . $form->id . ']' );
+						}
+						if( isset($form->my_reservations_link) and $form->my_reservations_link != ''){
+							add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_MY_RESERVATION_LINK, esc_url_raw($form->my_reservations_link) );
+							add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_RESERVATION, '[hq_rental_forms_my_reservations id=' . $form->id . ']' );
+						}
+						if( isset($form->my_package_reservations_link) and $form->my_package_reservations_link != ''){
+							add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK, esc_url_raw($form->my_package_reservations_link) );
+							add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION, '[hq_rental_forms_my_package_reservation id=' . $form->id . ']' );
+						}
+					} else {
+						$post = get_caag_hq_rental_by_meta( $form->id )[0];
+						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_LINK, esc_url_raw($form->public_reservations_link_full) );
+						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK, esc_url_raw($form->public_reservations_link_first_step) );
+						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE, '[hq_rental_reservation_form id=' . $form->id . ']' );
+						if( isset($form->public_packages_link_full) and $form->public_packages_link_full != '' ){
+							update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_PUBLIC_PACKAGES_LINK, esc_url_raw($form->public_packages_link_full) );
+							update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK_PACKAGES, esc_url_raw($form->public_packages_link_first_step) );
+							update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_PACKAGES, '[hq_rental_forms_packages id=' . $form->id . ']' );
+						}
+						if( isset($form->public_reservations_packages_link_first_step) and $form->public_reservations_packages_link_first_step != ''){
+							update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK, esc_url_raw($form->public_reservations_packages_link_first_step) );
+							update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_RESERVATION_PACKAGES, '[hq_rental_forms_reservation_packages id=' . $form->id . ']' );
+						}
+						if( isset($form->my_reservations_link) and $form->my_reservations_link != ''){
+							update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_MY_RESERVATION_LINK, esc_url_raw($form->my_reservations_link) );
+							update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_RESERVATION, '[hq_rental_forms_my_reservations id=' . $form->id . ']' );
+						}
+						if( isset($form->my_package_reservations_link) and $form->my_package_reservations_link != ''){
+							update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK, esc_url_raw($form->my_package_reservations_link) );
+							update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION, '[hq_rental_forms_my_package_reservation id=' . $form->id . ']' );
+						}
+						$args    = array(
+							'ID'    => (int)$post->post_id,
+							'title' => $form->name
+						);
+						wp_update_post( $args );
 					}
-					if( isset($form->public_reservations_packages_link_first_step) and $form->public_reservations_packages_link_first_step != '' ){
-						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK, esc_url_raw($form->public_reservations_packages_link_first_step) );
-						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_RESERVATION_PACKAGES, '[caag_hq_rental_forms_reservation_packages id=' . $form->id . ']' );
-					}
-					if( isset($form->my_reservations_link) and $form->my_reservations_link != ''){
-						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_MY_RESERVATION_LINK, esc_url_raw($form->my_reservations_link) );
-						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_RESERVATION, '[caag_hq_rental_forms_my_reservations id=' . $form->id . ']' );
-					}
-					if( isset($form->my_package_reservations_link) and $form->my_package_reservations_link != ''){
-						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK, esc_url_raw($form->my_package_reservations_link) );
-						add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION, '[caag_hq_rental_forms_my_package_reservation id=' . $form->id . ']' );
-					}
-				} else {
-					$post = get_caag_hq_rental_by_meta( $form->id )[0];
-					update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_LINK, esc_url_raw($form->public_reservations_link_full) );
-					update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK, esc_url_raw($form->public_reservations_link_first_step) );
-					update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE, '[caag_hq_rental_forms id=' . $form->id . ']' );
-					if( isset($form->public_packages_link_full) and $form->public_packages_link_full != '' ){
-						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_PUBLIC_PACKAGES_LINK, esc_url_raw($form->public_packages_link_full) );
-						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK_PACKAGES, esc_url_raw($form->public_packages_link_first_step) );
-						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_PACKAGES, '[caag_hq_rental_forms_packages id=' . $form->id . ']' );
-					}
-					if( isset($form->public_reservations_packages_link_first_step) and $form->public_reservations_packages_link_first_step != ''){
-						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK, esc_url_raw($form->public_reservations_packages_link_first_step) );
-						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_RESERVATION_PACKAGES, '[caag_hq_rental_forms_reservation_packages id=' . $form->id . ']' );
-					}
-					if( isset($form->my_reservations_link) and $form->my_reservations_link != ''){
-						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_MY_RESERVATION_LINK, esc_url_raw($form->my_reservations_link) );
-						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_RESERVATION, '[caag_hq_rental_forms_my_reservations id=' . $form->id . ']' );
-					}
-					if( isset($form->my_package_reservations_link) and $form->my_package_reservations_link != ''){
-						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK, esc_url_raw($form->my_package_reservations_link) );
-						update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION, '[caag_hq_rental_forms_my_package_reservation id=' . $form->id . ']' );
-					}
-					$args    = array(
-						'ID'    => (int)$post->post_id,
-						'title' => $form->name
-					);
-					wp_update_post( $args );
 				}
+			} else {
+				echo '<div class="notice notice-error"><p>'. $api->errors['http_request_failed'][0] .'</p></div>';
 			}
-		} else {
-			echo '<div class="notice notice-error"><p>'. $api->errors['http_request_failed'][0] .'</p></div>';
+		} catch (Exception $e){
+			echo '<div class="notice notice-error"><p>Please Check your Caag Credentials</p></div>';
 		}
 	}
 }

@@ -7,7 +7,7 @@ use Carbon\Carbon;
  * @input caag_form_id
  * @return html string
  */
-function caag_car_rental_shortcode($atts = [])
+function caag_hq_rental_shortcode($atts = [])
 {
 	caag_hq_rental_styles();
 	caag_hq_rental_scripts();
@@ -65,4 +65,4 @@ function caag_car_rental_shortcode($atts = [])
 	$output .= '<iframe id="caag-rental-iframe" src="'. $link . '" scrolling="no"></iframe>';
 	return $output;
 }
-add_shortcode('hq_rental_reservation_form', 'caag_hq_car_rental_shortcode');
+add_shortcode('hq_rental_reservation_form', 'caag_hq_rental_shortcode');

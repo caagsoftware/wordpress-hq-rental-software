@@ -74,8 +74,10 @@ require_once('includes/settings.php');
 require_once('includes/utils.php');
 require_once('includes/post-registration.php');
 require_once('includes/forms.php');
-require_once('includes/Carbon.php');
 require_once('includes/shortcodes/link-form.php');
+if(! class_exists('Carbon\Carbon')){
+    require_once('includes/Carbon.php');
+}
 /*
  * Shortcode Includes
  */

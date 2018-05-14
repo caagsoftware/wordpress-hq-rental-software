@@ -70,20 +70,20 @@ define('CAAG_HQ_RENTAL_NONCE', 'caag_nonce');
 /*
  * Require Files
  */
-require_once 'includes/settings.php';
-require_once 'includes/utils.php';
-require_once 'includes/post-registration.php';
-require_once 'includes/forms.php';
-require_once 'includes/Carbon.php';
-require_once 'includes/shortcodes/link-form.php';
+require_once('includes/settings.php');
+require_once('includes/utils.php');
+require_once('includes/post-registration.php');
+require_once('includes/forms.php');
+require_once('includes/Carbon.php');
+require_once('includes/shortcodes/link-form.php');
 /*
  * Shortcode Includes
  */
-require_once 'includes/shortcodes/my-package-reservation-form.php';
-require_once 'includes/shortcodes/my-reservation-form.php';
-require_once 'includes/shortcodes/package-form.php';
-require_once 'includes/shortcodes/reservation-form.php';
-require_once 'includes/shortcodes/reservation-package-form.php';
+require_once('includes/shortcodes/my-package-reservation-form.php');
+require_once('includes/shortcodes/my-reservation-form.php');
+require_once('includes/shortcodes/package-form.php');
+require_once('includes/shortcodes/reservation-form.php');
+require_once('includes/shortcodes/reservation-package-form.php');
 
 /*
  * Activation Routine

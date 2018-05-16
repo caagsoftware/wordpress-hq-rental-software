@@ -18,8 +18,9 @@ function caag_hq_rental_form_index($query)
 		    )
 		);
 		$api = wp_remote_get( CAAG_HQ_RENTAL_API_GET_CALLS, $args);
+		$api_body = json_decode($api['body']);
 		try{
-			if ( is_array( $api ) ) {
+			if ( !is_wp_error( $api ) and is_array( $api ) ) {
 				$brands = json_decode($api['body'])->fleets_brands;
 				foreach ( $brands as $form ) {
 					if ( ! caag_hq_rental_exists( $form->id ) ) {
@@ -80,7 +81,15 @@ function caag_hq_rental_form_index($query)
 					}
 				}
 			} else {
-				echo '<div class="notice notice-error"><p>'. $api->errors['http_request_failed'][0] .'</p></div>';
+			    if( is_wp_error($api) ){
+                    echo '<div class="notice notice-error"><p>'. $api->get_error_message() .'</p></div>';
+                }else if( empty($api) ){
+                    echo '<div class="notice notice-error"><p>Please Check your Caag Credentials</p></div>';
+                }else if( $api_body->status_code == 401 or $api_body->status_code == 500 ){
+                    echo '<div class="notice notice-error"><p>'. $api_body->message .'</p></div>';
+                }else {
+                    echo '<div class="notice notice-error"><p>Something went Wrong!!!</p></div>';
+                }
 			}
 		} catch (Exception $e){
 			echo '<div class="notice notice-error"><p>Please Check your Caag Credentials</p></div>';

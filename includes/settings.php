@@ -24,6 +24,7 @@ function caag_hq_rental_settings_html()
 {
 	caag_hq_rental_styles();
 	$settings = get_caag_hq_rental_user_settings();
+	$current_endpoint =caag_hq_rental_get_api_endpoint();
 	?>
 	<?php if(isset($success)): ?>
 		<div class="message updated"><p><?php echo $success; ?></p></div>
@@ -46,20 +47,32 @@ function caag_hq_rental_settings_html()
 							<th><label class="wp-heading-inline" id="title-prompt-text" for="title">User Token</label></th>
 							<td><input type="text" name="<?php echo CAAG_HQ_RENTAL_USER_TOKEN; ?>" size="70" value="<?php echo $settings[CAAG_HQ_RENTAL_USER_TOKEN]; ?>" id="title" spellcheck="true" autocomplete="off"></td>
 						</tr>
-						<th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Date Format</label></th>
-						<td>
-							<?php if(get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == "YYYY-MM-DD"): ?>
-								<select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT; ?>">
-									<option value="YYYY-MM-DD" selected="selected">YYYY-MM-DD</option>
-									<option value="DD-MM-YYYY">DD-MM-YYYY</option>
-								</select>
-							<?php elseif(get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == "DD-MM-YYYY"): ?>
-								<select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT; ?>">
-									<option value="YYYY-MM-DD" selected="selected">YYYY-MM-DD</option>
-									<option value="DD-MM-YYYY" selected="selected">DD-MM-YYYY</option>
-								</select>
-							<?php endif; ?>
-						</td>
+                        <tr>
+                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Date Format</label></th>
+                            <td>
+                                <?php if(get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == "YYYY-MM-DD"): ?>
+                                    <select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT; ?>">
+                                        <option value="YYYY-MM-DD" selected="selected">YYYY-MM-DD</option>
+                                        <option value="DD-MM-YYYY">DD-MM-YYYY</option>
+                                    </select>
+                                <?php elseif(get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == "DD-MM-YYYY"): ?>
+                                    <select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT; ?>">
+                                        <option value="YYYY-MM-DD" selected="selected">YYYY-MM-DD</option>
+                                        <option value="DD-MM-YYYY" selected="selected">DD-MM-YYYY</option>
+                                    </select>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+						<tr>
+                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Api Endpoint</label></th>
+                            <td>
+                                <select name="<?php echo CAAG_HQ_RENTAL_API_END_POINT; ?>">
+                                    <option value="https://api.caagcrm.com/" <?php echo ($current_endpoint == 'https://api.caagcrm.com/') ? 'selected="selected"' : ''; ?>>America</option>
+                                    <option value="https://api-europe.caagcrm.com/api-europe/" <?php echo ($current_endpoint == 'https://api-europe.caagcrm.com/api-europe/') ? 'selected="selected"' : ''; ?>>Europe</option>
+                                    <option value="https://api-asia.caagcrm.com/api-asia/" <?php echo ($current_endpoint == 'https://api-asia.caagcrm.com/api-asia/') ? 'selected="selected"' : ''; ?>>Asia</option>
+                                </select>
+                            </td>
+                        </tr>
 						</tbody>
 					</table>
 					<?php wp_nonce_field( CAAG_HQ_RENTAL_NONCE, 'caag_nonce' ); ?>
@@ -95,9 +108,18 @@ function caag_hq_rental_settings_html()
  */
 function caag_hq_rental_settings_registration()
 {
-	add_option(CAAG_HQ_RENTAL_USER_TOKEN,'');
-	add_option(CAAG_HQ_RENTAL_TENANT_TOKEN,'');
-	add_option(CAAG_HQ_RENTAL_DATE_FORMAT,'YYYY-MM-DD');
+    if(! get_option(CAAG_HQ_RENTAL_USER_TOKEN)){
+        add_option(CAAG_HQ_RENTAL_USER_TOKEN,'');
+    }
+    if(! get_option(CAAG_HQ_RENTAL_TENANT_TOKEN)){
+        add_option(CAAG_HQ_RENTAL_TENANT_TOKEN,'');
+    }
+    if(! get_option(CAAG_HQ_RENTAL_DATE_FORMAT)){
+        add_option(CAAG_HQ_RENTAL_DATE_FORMAT,'YYYY-MM-DD');
+    }
+    if(! get_option(CAAG_HQ_RENTAL_API_END_POINT)){
+        add_option(CAAG_HQ_RENTAL_API_END_POINT,'https://api.caagcrm.com/api/fleets/brands');
+    }
 }
 
 /*
@@ -109,7 +131,8 @@ function caag_hq_rental_save_settings($settings)
 {
 	update_option(CAAG_HQ_RENTAL_USER_TOKEN, $settings[CAAG_HQ_RENTAL_USER_TOKEN]);
 	update_option(CAAG_HQ_RENTAL_TENANT_TOKEN, $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]);
-	update_option(CAAG_HQ_RENTAL_DATE_FORMAT, $settings[CAAG_HQ_RENTAL_DATE_FORMAT]);
+    update_option(CAAG_HQ_RENTAL_DATE_FORMAT, $settings[CAAG_HQ_RENTAL_DATE_FORMAT]);
+    update_option(CAAG_HQ_RENTAL_API_END_POINT, $settings[CAAG_HQ_RENTAL_API_END_POINT]);
 }
 
 /*

@@ -215,3 +215,17 @@ function get_data_from_post_var($data)
 {
     return $_POST[$data];
 }
+
+/*
+ * Return Api Endpoint
+ * @var value
+ */
+function caag_hq_rental_get_api_endpoint()
+{
+    return get_option(CAAG_HQ_RENTAL_API_END_POINT);
+}
+
+function caag_hq_rental_get_form_refresh_endpoint()
+{
+    return get_option(CAAG_HQ_RENTAL_API_END_POINT) . 'fleets/brands';
+}

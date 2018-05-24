@@ -62,7 +62,12 @@ function caag_hq_rental_shortcode($atts = [])
 		}
 	} catch (Exception $exception) {
 	}
-	$output .= '<iframe id="caag-rental-iframe" src="'. $link . '" scrolling="no"></iframe>';
+    if(isset($_GET['vehicle_class_id'])){
+        $class_id = $_GET['vehicle_class_id'];
+        $output .= '<iframe id="caag-rental-iframe" src="'. $link . '&new=true&vehicle_class_id='. $class_id .'" scrolling="no"></iframe>';
+    }else{
+        $output .= '<iframe id="caag-rental-iframe" src="'. $link . '" scrolling="no"></iframe>';
+    }
 	return $output;
 }
 add_shortcode('hq_rental_reservation_form', 'caag_hq_rental_shortcode');

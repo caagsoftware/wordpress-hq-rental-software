@@ -70,6 +70,7 @@ define('CAAG_HQ_RENTAL_NONCE', 'caag_nonce');
 /*
  * Require Files
  */
+require_once('assets/init.php');
 require_once('includes/settings.php');
 require_once('includes/utils.php');
 require_once('includes/post-registration.php');

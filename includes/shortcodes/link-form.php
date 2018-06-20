@@ -10,9 +10,13 @@ function caag_hq_rental_link_form($atts = [])
 	if( isset( $atts['link'] ) ){
 		caag_hq_rental_styles();
 		caag_hq_rental_scripts();
-		$lang = get_option(CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE);
-		$link = $atts['link'] . '&forced_locale=' . $lang;
-		return '<iframe id="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
+        $link = $atts['link'];
+		if(isset( $atts['forced_locale'] )){
+            $lang = '&forced_locale=' . $atts['forced_locale'];
+        }else{
+		    $lang = '';
+        }
+		return '<iframe id="caag-rental-iframe" src="' . $link . $lang . '" scrolling="no"></iframe>';
 	}else {
 	}
 }

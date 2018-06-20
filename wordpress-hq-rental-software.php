@@ -6,7 +6,7 @@
  *
 Plugin Name:  HQ Rental
 Description:  HQ Rental Software
-Version:      0.3
+Version:      0.4
 Author:       Caag Software
 Author URI:   https://www.caagsoftware.com
 License: GPLv3
@@ -17,7 +17,7 @@ License URI: https://www.gnu.org/licenses/gpl.html
 /*
  * Global Constant
  */
-define('CAAG_HQ_RENTAL_VERSION','0.2');
+define('CAAG_HQ_RENTAL_VERSION','0.4');
 define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');
 
 

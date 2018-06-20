@@ -88,7 +88,7 @@ function caag_hq_rental_settings_html()
                             </td>
                         </tr>
 						<tr>
-                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Api Endpoint</label></th>
+                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Api Region</label></th>
                             <td>
                                 <select name="<?php echo CAAG_HQ_RENTAL_API_END_POINT; ?>">
                                     <option value="https://api.caagcrm.com/api/" <?php echo ($current_endpoint == 'https://api.caagcrm.com/api/') ? 'selected="selected"' : ''; ?>>America</option>

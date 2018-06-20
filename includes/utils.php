@@ -206,10 +206,10 @@ function caag_hq_rental_check_for_safari_browser()
     global $is_safari;
     global $post;
     $post_request_data = $_POST;
-    if( $is_safari ){
+    if( !$is_safari ){
         if(strpos($post->post_content, 'hq_rental_reservation_form') !== false){
             $strings = explode( 'hq_rental_reservation_form', $post->post_content );
-            $caag_id = substr($strings[1],4,1);
+            $caag_id = substr(trim($strings[1]),3,1);
             $first_step = get_caag_hq_rental_first_step_link($caag_id);
             foreach ($post_request_data as $key => $value){
                 $first_step .= '&' .$key. '=' . $value;
@@ -218,7 +218,7 @@ function caag_hq_rental_check_for_safari_browser()
             exit;
         }elseif (strpos($post->post_content, 'hq_rental_forms_packages') !== false){
             $strings = explode( 'hq_rental_forms_packages', $post->post_content );
-            $caag_id = substr($strings[1],4,1);
+            $caag_id = substr(trim($strings[1]),3,1);
             $first_step = get_caag_hq_rental_package_link($caag_id);
             foreach ($post_request_data as $key => $value){
                 $first_step .= '&' .$key. '=' . $value;
@@ -227,7 +227,7 @@ function caag_hq_rental_check_for_safari_browser()
             exit;
         }elseif (strpos($post->post_content, 'hq_rental_forms_reservation_packages') !== false){
             $strings = explode( 'hq_rental_forms_reservation_packages', $post->post_content );
-            $caag_id = substr($strings[1],4,1);
+            $caag_id = substr(trim($strings[1]),3,1);
             $first_step = get_caag_hq_rental_reservation_package_link($caag_id);
             foreach ($post_request_data as $key => $value){
                 $first_step .= '&' .$key. '=' . $value;
@@ -236,7 +236,7 @@ function caag_hq_rental_check_for_safari_browser()
             exit;
         }elseif (strpos($post->post_content, 'hq_rental_forms_my_reservations') !== false){
             $strings = explode( 'hq_rental_forms_my_reservations', $post->post_content );
-            $caag_id = substr($strings[1],4,1);
+            $caag_id = substr(trim($strings[1]),3,1);
             $first_step = get_caag_hq_rental_my_reservation_link($caag_id);
             foreach ($post_request_data as $key => $value){
                 $first_step .= '&' .$key. '=' . $value;
@@ -245,7 +245,7 @@ function caag_hq_rental_check_for_safari_browser()
             exit;
         }elseif (strpos($post->post_content, 'hq_rental_forms_my_package_reservation') !== false){
             $strings = explode( 'hq_rental_forms_my_package_reservation', $post->post_content );
-            $caag_id = substr($strings[1],4,1);
+            $caag_id = substr(trim($strings[1]),3,1);
             $first_step = get_caag_hq_rental_my_package_reservation_link($caag_id);
             foreach ($post_request_data as $key => $value){
                 $first_step .= '&' .$key. '=' . $value;

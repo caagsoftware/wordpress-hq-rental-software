@@ -206,8 +206,8 @@ function caag_hq_rental_check_for_safari_browser()
     global $is_safari;
     global $post;
     $post_request_data = $_POST;
-    if( !$is_safari ){
-        if(strpos($post->post_content, 'hq_rental_reservation_form') !== false){
+    if( $is_safari ){
+        if(strpos($post->post_content, 'hq_rental_reservation_form') !== false and (!is_front_page())){
             $strings = explode( 'hq_rental_reservation_form', $post->post_content );
             $caag_id = substr(trim($strings[1]),3,1);
             $first_step = get_caag_hq_rental_first_step_link($caag_id);
@@ -216,7 +216,7 @@ function caag_hq_rental_check_for_safari_browser()
             }
             wp_redirect($first_step);
             exit;
-        }elseif (strpos($post->post_content, 'hq_rental_forms_packages') !== false){
+        }elseif (strpos($post->post_content, 'hq_rental_forms_packages') !== false and (!is_front_page())){
             $strings = explode( 'hq_rental_forms_packages', $post->post_content );
             $caag_id = substr(trim($strings[1]),3,1);
             $first_step = get_caag_hq_rental_package_link($caag_id);
@@ -225,7 +225,7 @@ function caag_hq_rental_check_for_safari_browser()
             }
             wp_redirect($first_step);
             exit;
-        }elseif (strpos($post->post_content, 'hq_rental_forms_reservation_packages') !== false){
+        }elseif (strpos($post->post_content, 'hq_rental_forms_reservation_packages') !== false and (!is_front_page())){
             $strings = explode( 'hq_rental_forms_reservation_packages', $post->post_content );
             $caag_id = substr(trim($strings[1]),3,1);
             $first_step = get_caag_hq_rental_reservation_package_link($caag_id);
@@ -234,7 +234,7 @@ function caag_hq_rental_check_for_safari_browser()
             }
             wp_redirect($first_step);
             exit;
-        }elseif (strpos($post->post_content, 'hq_rental_forms_my_reservations') !== false){
+        }elseif (strpos($post->post_content, 'hq_rental_forms_my_reservations') !== false and (!is_front_page())){
             $strings = explode( 'hq_rental_forms_my_reservations', $post->post_content );
             $caag_id = substr(trim($strings[1]),3,1);
             $first_step = get_caag_hq_rental_my_reservation_link($caag_id);
@@ -243,7 +243,7 @@ function caag_hq_rental_check_for_safari_browser()
             }
             wp_redirect($first_step);
             exit;
-        }elseif (strpos($post->post_content, 'hq_rental_forms_my_package_reservation') !== false){
+        }elseif (strpos($post->post_content, 'hq_rental_forms_my_package_reservation') !== false and (!is_front_page())){
             $strings = explode( 'hq_rental_forms_my_package_reservation', $post->post_content );
             $caag_id = substr(trim($strings[1]),3,1);
             $first_step = get_caag_hq_rental_my_package_reservation_link($caag_id);

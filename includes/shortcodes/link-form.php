@@ -10,7 +10,8 @@ function caag_hq_rental_link_form($atts = [])
 	if( isset( $atts['link'] ) ){
 		caag_hq_rental_styles();
 		caag_hq_rental_scripts();
-		$link = $atts['link'];
+		$lang = get_option(CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE);
+		$link = $atts['link'] . '&forced_locale=' . $lang;
 		return '<iframe id="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
 	}else {
 	}

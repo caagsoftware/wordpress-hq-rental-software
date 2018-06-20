@@ -12,8 +12,9 @@ function caag_hq_rental_shortcode($atts = [])
 	caag_hq_rental_styles();
 	caag_hq_rental_scripts();
 	$caag_id = $atts['id'];
-	$link = get_caag_hq_rental_link($caag_id);
-	$first_step_link = get_caag_hq_rental_first_step_link($caag_id);
+    $lang = get_option(CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE);
+	$link = get_caag_hq_rental_link($caag_id) . '&forced_locale=' . $lang;
+	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . '&forced_locale=' . $lang;
 	try {
 		if (get_data_from_post_var('pick_up_date')) {
 			if (get_data_from_post_var('pick_up_time')) {

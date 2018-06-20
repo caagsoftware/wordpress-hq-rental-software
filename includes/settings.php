@@ -63,6 +63,30 @@ function caag_hq_rental_settings_html()
                                 <?php endif; ?>
                             </td>
                         </tr>
+                        <tr>
+                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Workflow Language</label></th>
+                            <td>
+                                <?php if(get_option(CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE) == "en"): ?>
+                                    <select name="<?php echo CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE; ?>">
+                                        <option value="en" selected="selected">English</option>
+                                        <option value="es">Spanish</option>
+                                        <option value="pt">Portuguese</option>
+                                    </select>
+                                <?php elseif(get_option(CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE) == "es"): ?>
+                                    <select name="<?php echo CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE; ?>">
+                                        <option value="en">English</option>
+                                        <option value="es" selected="selected">Spanish</option>
+                                        <option value="pt">Portuguese</option>
+                                    </select>
+                                <?php elseif(get_option(CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE) == "pt"): ?>
+                                    <select name="<?php echo CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE; ?>">
+                                        <option value="en">English</option>
+                                        <option value="es">Spanish</option>
+                                        <option value="pt" selected="selected">Portuguese</option>
+                                    </select>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
 						<tr>
                             <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Api Endpoint</label></th>
                             <td>
@@ -88,8 +112,7 @@ function caag_hq_rental_settings_html()
 			}else{
 				$error = __('It was an Error Proccessing the Information. Please Try Again!!!');
 			};
-		}
-		?>
+		}		?>
 		<?php if(isset($success)): ?>
 			<div class="message updated"><p><?php echo $success; ?></p></div>
 		<script>
@@ -120,6 +143,12 @@ function caag_hq_rental_settings_registration()
     if(! get_option(CAAG_HQ_RENTAL_API_END_POINT)){
         add_option(CAAG_HQ_RENTAL_API_END_POINT,'https://api.caagcrm.com/api/fleets/brands');
     }
+    if(! get_option(CAAG_HQ_RENTAL_API_END_POINT)){
+        add_option(CAAG_HQ_RENTAL_API_END_POINT,'https://api.caagcrm.com/api/fleets/brands');
+    }
+    if(! get_option(CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE)){
+        add_option(CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE,'en');
+    }
 }
 
 /*
@@ -133,6 +162,7 @@ function caag_hq_rental_save_settings($settings)
 	update_option(CAAG_HQ_RENTAL_TENANT_TOKEN, $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]);
     update_option(CAAG_HQ_RENTAL_DATE_FORMAT, $settings[CAAG_HQ_RENTAL_DATE_FORMAT]);
     update_option(CAAG_HQ_RENTAL_API_END_POINT, $settings[CAAG_HQ_RENTAL_API_END_POINT]);
+    update_option(CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE, $settings[CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE]);
 }
 
 /*
@@ -142,5 +172,5 @@ function caag_hq_rental_save_settings($settings)
  */
 function caag_hq_rental_check_settings_save($settings)
 {
-	return (get_option(CAAG_HQ_RENTAL_TENANT_TOKEN) == $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]) and (get_option(CAAG_HQ_RENTAL_USER_TOKEN) == $settings[CAAG_HQ_RENTAL_USER_TOKEN]);
+	return (get_option(CAAG_HQ_RENTAL_TENANT_TOKEN) == $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]) and (get_option(CAAG_HQ_RENTAL_USER_TOKEN) == $settings[CAAG_HQ_RENTAL_USER_TOKEN]) and (get_option(CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE) == $settings[CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE]);
 }

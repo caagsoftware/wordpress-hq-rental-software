@@ -29,6 +29,7 @@ define('CAAG_HQ_RENTAL_TENANT_TOKEN','caag_hq_rental_tenant_token');
 define('CAAG_HQ_RENTAL_DATE_FORMAT','caag_hq_rental_date_format');
 define('CAAG_HQ_RENTAL_CUSTOM_POST_TYPE','caag_hq_rental_forms');
 define('CAAG_HQ_RENTAL_API_END_POINT','caag_hq_rental_api_end_point');
+define('CAAG_HQ_RENTAL_WORKFLOW_LANGUAGUE', 'caag_hq_rental_workflow_languague');
 
 /*
  * Meta Values Keys

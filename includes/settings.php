@@ -73,6 +73,17 @@ function caag_hq_rental_settings_html()
                                 </select>
                             </td>
                         </tr>
+                        <tr>
+                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Redirect Reservation Workflow on Safari Browser</label></th>
+                            <td>
+                                <?php $safari_option = get_option(CAAG_HQ_RENTAL_SAFARI_BROWSER); ?>
+                                <?php if($safari_option == '0'): ?>
+                                    <input name="<?php echo CAAG_HQ_RENTAL_SAFARI_BROWSER; ?>" type="checkbox" id="thumbnail_crop" value="1">
+                                <?php elseif($safari_option == '1'): ?>
+                                    <input name="<?php echo CAAG_HQ_RENTAL_SAFARI_BROWSER; ?>" type="checkbox" id="thumbnail_crop" value="1" checked="checked">
+                                <?php endif; ?>
+                            </td>
+                        </tr>
 						</tbody>
 					</table>
 					<?php wp_nonce_field( CAAG_HQ_RENTAL_NONCE, 'caag_nonce' ); ?>
@@ -122,6 +133,9 @@ function caag_hq_rental_settings_registration()
     if(! get_option(CAAG_HQ_RENTAL_API_END_POINT)){
         add_option(CAAG_HQ_RENTAL_API_END_POINT,'https://api.caagcrm.com/api/fleets/brands');
     }
+    if(! get_option(CAAG_HQ_RENTAL_SAFARI_BROWSER)){
+        add_option(CAAG_HQ_RENTAL_SAFARI_BROWSER,'0');
+    }
 }
 
 /*
@@ -135,6 +149,13 @@ function caag_hq_rental_save_settings($settings)
 	update_option(CAAG_HQ_RENTAL_TENANT_TOKEN, $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]);
     update_option(CAAG_HQ_RENTAL_DATE_FORMAT, $settings[CAAG_HQ_RENTAL_DATE_FORMAT]);
     update_option(CAAG_HQ_RENTAL_API_END_POINT, $settings[CAAG_HQ_RENTAL_API_END_POINT]);
+    if(isset($settings[CAAG_HQ_RENTAL_SAFARI_BROWSER])){
+        if($settings[CAAG_HQ_RENTAL_SAFARI_BROWSER] == '1'){
+            update_option(CAAG_HQ_RENTAL_SAFARI_BROWSER, '1');
+        }
+    }else{
+            update_option(CAAG_HQ_RENTAL_SAFARI_BROWSER, '0');
+    }
 }
 
 /*

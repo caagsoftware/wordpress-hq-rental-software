@@ -66,8 +66,6 @@ function get_caag_hq_rental_by_meta($caag_id)
     return $post_id;
 }
 
-add_action('get_caag_hq_rental_by_meta', 'get_caag_hq_rental_by_meta');
-
 /*
  * Retrieve the Rental Link
  * @param int | Caag CRM id
@@ -79,8 +77,6 @@ function get_caag_hq_rental_link($caag_id)
 
     return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_LINK)[0];
 }
-
-add_action('get_caag_hq_rental_link', 'get_caag_hq_rental_link');
 
 /*
  * Retrieve the Package Link
@@ -94,8 +90,6 @@ function get_caag_hq_rental_first_step_link($caag_id)
     return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK)[0];
 }
 
-add_action('get_caag_hq_rental_first_step_link', 'get_caag_hq_rental_first_step_link');
-
 /*
  * Retrieve the Package Link
  * @param int | Caag CRM id
@@ -104,11 +98,9 @@ add_action('get_caag_hq_rental_first_step_link', 'get_caag_hq_rental_first_step_
 function get_caag_hq_rental_package_link($caag_id)
 {
     $post = get_caag_hq_rental_by_meta($caag_id);
-
     return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_PUBLIC_PACKAGES_LINK)[0];
 }
 
-add_action('get_caag_hq_rental_package_link', 'get_caag_hq_rental_package_link');
 
 /*
  * Retrieve the Package First Step Link
@@ -132,7 +124,7 @@ function get_caag_hq_rental_my_reservation_link($caag_id)
 	$post = get_caag_hq_rental_by_meta($caag_id);
 	return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_MY_RESERVATION_LINK)[0];
 }
-add_action('get_caag_hq_rental_my_reservation_link','get_caag_hq_rental_my_reservation_link');
+
 
 /*
  * Retrieve the My Reservation + Package Link
@@ -144,7 +136,6 @@ function get_caag_hq_rental_my_package_reservation_link($caag_id)
 	$post = get_caag_hq_rental_by_meta($caag_id);
 	return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK)[0];
 }
-add_action('get_caag_hq_rental_my_package_reservation_link','get_caag_hq_rental_my_package_reservation_link');
 
 /*
  * 
@@ -155,7 +146,6 @@ function get_caag_hq_rental_reservation_package_link($caag_id)
 
     return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK)[0];
 }
-add_action('get_caag_hq_rental_reservation_package_link','get_caag_hq_rental_reservation_package_link');
 
 /*
  *
@@ -260,3 +250,44 @@ function caag_hq_rental_check_for_safari_browser()
     }
 }
 add_action('template_redirect', 'caag_hq_rental_check_for_safari_browser');
+
+
+/*
+ * Retrieves post id for a Meta Value
+ * @param int | meta Id
+ * @return Array
+ */
+function caag_hq_exists_location($caag_id, $meta)
+{
+    global $wpdb;
+    $post_id = $wpdb->get_results('SELECT post_id FROM ' . $wpdb->prefix . 'postmeta WHERE meta_value = ' . $caag_id .
+        ' and meta_key = "' . $meta . '"');
+    return empty($post_id);
+}
+
+/*
+ * Retrieves post id for a Meta Value
+ * @param int | meta Id
+ * @return Array
+ */
+function caag_hq_get_locations_post($caag_id)
+{
+    global $wpdb;
+    $post_id = $wpdb->get_results('SELECT post_id FROM ' . $wpdb->prefix . 'postmeta WHERE meta_value = ' . $caag_id .
+        ' and meta_key = "' . CAAG_HQ_RENTAL_LOCATION_ID_META . '"');
+    return $post_id;
+}
+
+/*
+ *
+ */
+function caag_hq_is_was_upload_it($caag_id)
+{
+    global $wpdb;
+    $post_id = $wpdb->get_results('SELECT post_id FROM ' . $wpdb->prefix . 'postmeta WHERE meta_value = ' . $caag_id .
+        ' and meta_key = "' . CAAG_HQ_RENTAL_LOCATION_ID_META . '"');
+    //var_dump($post_id);
+    return ! empty(get_post_meta($post_id[0]->post_id, CAAG_HQ_RENTAL_LOCATION_WAS_UPLOAD_IT_META)[0]);
+}
+
+

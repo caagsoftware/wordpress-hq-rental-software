@@ -1,6 +1,8 @@
 <?php
 
-
+/*
+ * Settings on Plugin Activations
+ */
 function caag_hq_rental_settings_init()
 {
 	caag_hq_rental_settings_registration();
@@ -128,13 +130,13 @@ function caag_hq_rental_settings_registration()
         add_option(CAAG_HQ_RENTAL_DATE_FORMAT,'YYYY-MM-DD');
     }
     if(! get_option(CAAG_HQ_RENTAL_API_END_POINT)){
-        add_option(CAAG_HQ_RENTAL_API_END_POINT,'https://api.caagcrm.com/api/fleets/brands');
-    }
-    if(! get_option(CAAG_HQ_RENTAL_API_END_POINT)){
-        add_option(CAAG_HQ_RENTAL_API_END_POINT,'https://api.caagcrm.com/api/fleets/brands');
+        add_option(CAAG_HQ_RENTAL_API_END_POINT,'https://api.caagcrm.com/api/');
     }
     if(! get_option(CAAG_HQ_RENTAL_SAFARI_BROWSER)){
         add_option(CAAG_HQ_RENTAL_SAFARI_BROWSER,'0');
+    }
+    if(! get_option(CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED)){
+        add_option(CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED,'0');
     }
 }
 

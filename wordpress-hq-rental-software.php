@@ -6,7 +6,7 @@
  *
 Plugin Name:  HQ Rental
 Description:  HQ Rental Software
-Version:      0.5
+Version:      1.0.0.0
 Author:       Caag Software
 Author URI:   https://www.caagsoftware.com
 License: GPLv3
@@ -17,7 +17,7 @@ License URI: https://www.gnu.org/licenses/gpl.html
 /*
  * Global Constant
  */
-define('CAAG_HQ_RENTAL_VERSION','0.2');
+define('CAAG_HQ_RENTAL_VERSION','1.0.0.0');
 define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');
 
 
@@ -28,8 +28,10 @@ define('CAAG_HQ_RENTAL_USER_TOKEN','caag_hq_rental_user_token');
 define('CAAG_HQ_RENTAL_TENANT_TOKEN','caag_hq_rental_tenant_token');
 define('CAAG_HQ_RENTAL_DATE_FORMAT','caag_hq_rental_date_format');
 define('CAAG_HQ_RENTAL_CUSTOM_POST_TYPE','caag_hq_rental_forms');
+define('CAAG_HQ_RENTAL_CUSTOM_POST_LOCATIONS','caag_hq_rental_locs');
 define('CAAG_HQ_RENTAL_API_END_POINT','caag_hq_rental_api_end_point');
 define('CAAG_HQ_RENTAL_SAFARI_BROWSER', 'caag_hq_rental_safari_browser');
+define('CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED', 'caag_hq_rental_current_brand_selected');
 
 /*
  * Meta Values Keys
@@ -71,23 +73,8 @@ define('CAAG_HQ_RENTAL_NONCE', 'caag_nonce');
 /*
  * Require Files
  */
-require_once('assets/init.php');
-require_once('includes/settings.php');
-require_once('includes/utils.php');
-require_once('includes/post-registration.php');
-require_once('includes/forms.php');
-require_once('includes/shortcodes/link-form.php');
-if(! class_exists('Carbon\Carbon')){
-    require_once('includes/Carbon.php');
-}
-/*
- * Shortcode Includes
- */
-require_once('includes/shortcodes/my-package-reservation-form.php');
-require_once('includes/shortcodes/my-reservation-form.php');
-require_once('includes/shortcodes/package-form.php');
-require_once('includes/shortcodes/reservation-form.php');
-require_once('includes/shortcodes/reservation-package-form.php');
+require_once('includes/init.php');
+
 
 /*
  * Activation Routine

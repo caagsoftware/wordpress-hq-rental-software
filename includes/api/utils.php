@@ -13,7 +13,7 @@ function caag_hq_get_location_endpoint()
  */
 function caag_hq_get_rates_endpoint()
 {
-    return get_option( CAAG_HQ_RENTAL_API_END_POINT ) . 'fleets/locations';
+    return get_option( CAAG_HQ_RENTAL_API_END_POINT ) . 'car-rental/rates';
 }
 
 /*
@@ -56,6 +56,17 @@ function caag_hq_get_locations_on_website()
         'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_LOCATIONS,
         'post_status'       =>  'publish',
         'meta_key'          =>  CAAG_HQ_RENTAL_LOCATION_ID_META
+    );
+    $query = new WP_Query( $args );
+    return $query->posts;
+}
+
+function caag_hq_get_rates_on_website()
+{
+    $args = array(
+        'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_RATES,
+        'post_status'       =>  'publish',
+        'meta_key'          =>  CAAG_HQ_RENTAL_RATE_ID_META
     );
     $query = new WP_Query( $args );
     return $query->posts;

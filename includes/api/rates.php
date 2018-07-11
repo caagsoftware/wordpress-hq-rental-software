@@ -71,12 +71,12 @@ function caag_hq_get_rates_for_display()
     foreach( $query->posts as $rate ){
         $new_rate = new stdClass();
         $new_rate->id = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_ID_META, true );
-        $new_rate->name = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_SEASON_ID_META, true );
-        $new_rate->brand_id = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_VEHICLE_CLASS_ID_META, true );
-        $new_rate->is_airport = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_BASE_RATE_META, true );
-        $new_rate->is_office = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_DAILY_RATE_META, true );
-        $new_rate->active = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_WEEKLY_RATE_META, true );
-        $new_rate->active = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_MONTHLY_RATE_META, true );
+        $new_rate->season_id = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_SEASON_ID_META, true );
+        $new_rate->vehicle_class_id = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_VEHICLE_CLASS_ID_META, true );
+        $new_rate->base_rate = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_BASE_RATE_META, true );
+        $new_rate->daily_rate = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_DAILY_RATE_META, true );
+        $new_rate->weekly_rate = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_WEEKLY_RATE_META, true );
+        $new_rate->monthly_rate = get_post_meta( $rate->ID, CAAG_HQ_RENTAL_RATE_MONTHLY_RATE_META, true );
         $rates[] = $new_rate;
     }
     return $rates;

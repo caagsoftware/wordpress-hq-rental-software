@@ -29,10 +29,22 @@ define('CAAG_HQ_RENTAL_RATE_DAILY_RATE_META','caag_hq_rental_rate_daily_rate_met
 define('CAAG_HQ_RENTAL_RATE_WEEKLY_RATE_META','caag_hq_rental_rate_weekly_rate_meta');
 define('CAAG_HQ_RENTAL_RATE_MONTHLY_RATE_META','caag_hq_rental_rate_monthly_rate_meta');
 
+/*
+ * Vehicle Classeses Custom Metas keys
+ */
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META', 'caag_hq_rental_vehicle_class_id_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META', 'caag_hq_rental_vehicle_class_brand_id_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META', 'caag_hq_rental_vehicle_class_name_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_EN_META', 'caag_hq_rental_vehicle_class_label_for_website_en_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_SHORT_DESCRIPTION_FOR_WEBSITE_EN_META', 'caag_hq_rental_vehicle_class_short_description_for_website_en_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_DESCRIPTION_FOR_WEBSITE_EN_META', 'caag_hq_rental_vehicle_class_description_for_website_en_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_LINK_META', 'caag_hq_rental_vehicle_class_image_link_meta');
+
 
 require_once('utils.php');
 require_once('locations.php');
 require_once('rates.php');
+require_once('vehicles-classes.php');
 
 
 

@@ -9,10 +9,10 @@
 /*
  * Scheduling the Cronjob
  */
-/*
+
 if ( ! wp_next_scheduled( 'caag_hq_vehicle_classes_update' ) ) {
     wp_schedule_event( time(), 'hourly', 'caag_hq_vehicle_classes_update' );
-}*/
+}
 
 /*
  *  Get rates From Api
@@ -86,12 +86,4 @@ function caag_hq_get_vehicle_classes_for_display()
     return $vehicles;
 }
 
-
-function hq_vehicles()
-{
-    caag_hq_vehicle_classes_cron_job();
-    var_dump(caag_hq_get_rates_for_display());
-    var_dump(caag_hq_get_vehicle_classes_for_display());
-}
-add_action('template_redirect', 'hq_vehicles');
 

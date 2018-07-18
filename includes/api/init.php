@@ -53,6 +53,7 @@ define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_HOURLY_RATE_META', 'caag_hq_ren
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_META', 'caag_hq_rental_vehicle_class_active_rate_daily_rate_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_META', 'caag_hq_rental_vehicle_class_active_rate_weekly_rate_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_META', 'caag_hq_rental_vehicle_class_active_rate_monthly_rate_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CAAG_ID_ON_WOOCOMMERCE_PRODUCT_META', 'caag_hq_rental_vehicle_class_caag_id_on_woocommerce_product_meta');
 
 /*
  * Seasons Custom Metas keys

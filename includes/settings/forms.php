@@ -55,6 +55,9 @@ function caag_hq_rental_form_index($query)
                                 add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK, esc_url_raw($form->my_package_reservations_link) );
                                 add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION, '[hq_rental_forms_my_package_reservation id=' . $form->id . ']' );
                             }
+                            $url = explode('packages', $form->my_package_reservations_link );
+                            add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CALENDAR_LINK, esc_url_raw( $url[0] . 'calendar?brand_id=' . $form->uuid ));
+                            add_post_meta( (int)$post_id, CAAG_HQ_RENTAL_SHORTCODE_VEHICLE_CLASS_CALENDAR, '[hq_rental_forms_calendar id='. $form->id .']' );
                         } else {
                             $post = get_caag_hq_rental_by_meta( $form->id )[0];
                             update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_LINK, esc_url_raw($form->public_reservations_link_full) );
@@ -77,6 +80,9 @@ function caag_hq_rental_form_index($query)
                                 update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK, esc_url_raw($form->my_package_reservations_link) );
                                 update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION, '[hq_rental_forms_my_package_reservation id=' . $form->id . ']' );
                             }
+                            $url = explode('packages', $form->my_package_reservations_link );
+                            update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CALENDAR_LINK, esc_url_raw( $url[0] . 'calendar?brand_id=' . $form->uuid ));
+                            update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_VEHICLE_CLASS_CALENDAR, '[hq_rental_forms_calendar id='. $form->id .']' );
                             $args    = array(
                                 'ID'    => (int)$post->post_id,
                                 'title' => $form->name
@@ -117,6 +123,7 @@ function caag_hq_rental_add_meta_columns($defaults)
 	$columns[CAAG_HQ_RENTAL_SHORTCODE_RESERVATION_PACKAGES_COLUMN] = CAAG_HQ_RENTAL_SHORTCODE_RESERVATION_PACKAGES_COLUMN;
 	$columns[CAAG_HQ_RENTAL_SHORTCODE_MY_RESERVATION_COLUMN] = CAAG_HQ_RENTAL_SHORTCODE_MY_RESERVATION_COLUMN;
 	$columns[CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION_COLUMN] = CAAG_HQ_RENTAL_SHORTCODE_MY_PACKAGE_RESERVATION_COLUMN;
+    $columns[CAAG_HQ_RENTAL_SHORTCODE_VEHICLE_CLASS_CALENDAR_COLUMN] = CAAG_HQ_RENTAL_SHORTCODE_VEHICLE_CLASS_CALENDAR_COLUMN;
 	return $columns;
 }
 
@@ -173,6 +180,13 @@ function caag_hq_rental_fill_meta_columns($column_name, $post_id)
 			echo '';
 		}
 	}
+	if($column_name == CAAG_HQ_RENTAL_SHORTCODE_VEHICLE_CLASS_CALENDAR_COLUMN){
+        if(! empty(get_post_meta($post_id, CAAG_HQ_RENTAL_SHORTCODE_VEHICLE_CLASS_CALENDAR)[0])){
+            echo get_post_meta($post_id, CAAG_HQ_RENTAL_SHORTCODE_VEHICLE_CLASS_CALENDAR)[0];
+        }else{
+            echo '';
+        }
+    }
 
 }
 
@@ -188,7 +202,6 @@ function caag_hq_rental_all_sortable_columns($columns)
 {
     $columns[CAAG_HQ_RENTAL_ID_COLUMN] = 'Identifier';
     $columns[CAAG_HQ_RENTAL_NAME_COLUMN] = 'Name';
-
     return $columns;
 }
 
@@ -213,6 +226,9 @@ function caag_hq_rental_sort_by_column($query)
     }
 }
 
+/*
+ *
+ */
 add_filter('query_vars', 'caag_hq_rental_add_query_vars');
 function caag_hq_rental_add_query_vars($public_query_vars)
 {
@@ -222,6 +238,5 @@ function caag_hq_rental_add_query_vars($public_query_vars)
     $public_query_vars[] = 'return_time';
     $public_query_vars[] = 'some_unique_identifier_for_your_var';
     $public_query_vars[] = 'some_unique_identifier_for_your_var';
-
     return $public_query_vars;
 }

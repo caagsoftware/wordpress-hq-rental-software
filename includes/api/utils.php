@@ -76,7 +76,7 @@ function caag_hq_get_locations_on_website()
     $args = array(
         'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_LOCATIONS,
         'post_status'       =>  'publish',
-        'meta_key'          =>  CAAG_HQ_RENTAL_LOCATION_ID_META
+        'posts_per_page'    =>  -1
     );
     $query = new WP_Query( $args );
     return $query->posts;
@@ -91,7 +91,7 @@ function caag_hq_get_rates_on_website()
     $args = array(
         'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_RATES,
         'post_status'       =>  'publish',
-        'meta_key'          =>  CAAG_HQ_RENTAL_RATE_ID_META
+        'posts_per_page'    =>  -1
     );
     $query = new WP_Query( $args );
     return $query->posts;
@@ -106,6 +106,7 @@ function caag_hq_get_vehicle_classes_on_website()
     $args = array(
         'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES,
         'post_status'       =>  'publish',
+        'posts_per_page'    =>  -1
     );
     $query = new WP_Query( $args );
     return $query->posts;
@@ -116,7 +117,7 @@ function caag_hq_get_seasons_on_website()
     $args = array(
         'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_SEASONS,
         'post_status'       =>  'publish',
-        'meta_key'          =>  CAAG_HQ_RENTAL_SEASON_ID_META
+        'posts_per_page'    =>  -1
     );
     $query = new WP_Query( $args );
     return $query->posts;

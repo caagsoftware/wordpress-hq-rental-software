@@ -106,7 +106,6 @@ function caag_hq_get_vehicle_classes_on_website()
     $args = array(
         'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES,
         'post_status'       =>  'publish',
-        'meta_key'          =>  CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META
     );
     $query = new WP_Query( $args );
     return $query->posts;

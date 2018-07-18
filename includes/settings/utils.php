@@ -143,9 +143,15 @@ function get_caag_hq_rental_my_package_reservation_link($caag_id)
 function get_caag_hq_rental_reservation_package_link($caag_id)
 {
     $post = get_caag_hq_rental_by_meta($caag_id);
-
     return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK)[0];
 }
+
+function caag_hq_rental_get_calendar_link($caag_id)
+{
+    $post = get_caag_hq_rental_by_meta($caag_id);
+    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CALENDAR_LINK)[0];
+}
+
 
 /*
  *

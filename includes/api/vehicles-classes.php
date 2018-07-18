@@ -239,8 +239,3 @@ function caag_hq_get_post_attachment_id( $post_id )
     return get_post_meta( $post_id, '_thumbnail_id', true );
 }
 
-function hqnow()
-{
-    caag_hq_vehicle_classes_cron_job();
-}
-add_action('template_redirect', 'hqnow');

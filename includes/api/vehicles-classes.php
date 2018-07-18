@@ -74,6 +74,7 @@ function caag_hq_vehicle_classes_cron_job()
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_META, number_format((float)$vehicles_classes_caag->active_rates[0]->weekly_rate, 2) );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_META, number_format((float)$vehicles_classes_caag->active_rates[0]->monthly_rate, 2) );
     }
+    caag_hq_sync_woocommerce_products_with_vehicles_classes();
 }
 add_action('caag_hq_vehicle_classes_update','caag_hq_vehicle_classes_cron_job');
 
@@ -218,11 +219,3 @@ function caag_hq_get_post_attachment_id( $post_id )
 {
     return get_post_meta( $post_id, '_thumbnail_id', true );
 }
-
-
-function hqtest()
-{
-    //caag_hq_vehicle_classes_cron_job();
-    caag_hq_sync_woocommerce_products_with_vehicles_classes();
-}
-add_action('template_redirect', 'hqtest');

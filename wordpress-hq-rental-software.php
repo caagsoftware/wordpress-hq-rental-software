@@ -1,12 +1,12 @@
 <?php
 /*
  * @package Wordpress HQ Rental Software
- * @version 1.2.1.0
+ * @version 1.2.1.1
  *
  *
 Plugin Name:  HQ Rental
 Description:  HQ Rental Software
-Version:      1.2.1.0
+Version:      1.2.1.1
 Author:       HQ Rental Software
 Author URI:   https://www.hqrentalsoftware.com
 License: GPLv3
@@ -17,7 +17,7 @@ License URI: https://www.gnu.org/licenses/gpl.html
 /*
  * Global Constant
  */
-define('CAAG_HQ_RENTAL_VERSION','1.2.1.0');
+define('CAAG_HQ_RENTAL_VERSION','1.2.1.1');
 define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');
 
 

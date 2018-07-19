@@ -9,10 +9,10 @@
 /*
  * Scheduling the Cronjob
  */
-
+/*
 if ( ! wp_next_scheduled( 'caag_hq_vehicle_classes_update' ) ) {
     wp_schedule_event( time(), 'hourly', 'caag_hq_vehicle_classes_update' );
-}
+}*/
 
 /*
  *  Get rates From Api

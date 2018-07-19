@@ -112,6 +112,22 @@ function caag_hq_get_vehicle_classes_on_website()
     return $query->posts;
 }
 
+function caag_hq_get_features_from_vehicle_class_post_on_website($vehicle_class_post_id)
+{
+    $args = array(
+        'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_FEATURES,
+        'post_status'       =>  'publish',
+        'posts_per_page'    =>  -1,
+        'meta_query'        =>  array(
+            'key'       =>  CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_POST_ID_META,
+            'value'     =>  $vehicle_class_post_id,
+            'compare'   =>  '='
+        )
+    );
+    $query = new WP_Query( $args );
+    return $query->posts;
+}
+
 function caag_hq_get_seasons_on_website()
 {
     $args = array(

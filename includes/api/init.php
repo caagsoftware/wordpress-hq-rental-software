@@ -55,6 +55,17 @@ define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_META', 'caag_hq_ren
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_META', 'caag_hq_rental_vehicle_class_active_rate_monthly_rate_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CAAG_ID_ON_WOOCOMMERCE_PRODUCT_META', 'caag_hq_rental_vehicle_class_caag_id_on_woocommerce_product_meta');
 
+
+/*
+ * Features Custom Metas Keys
+ */
+define('CAAG_HQ_RENTAL_FEATURES_ID_META', 'caag_hq_rental_features_id_meta');
+define('CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_ID_META', 'caag_hq_rental_features_vehicle_class_id_meta');
+define('CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_POST_ID_META', 'caag_hq_rental_features_vehicle_class_post_id_meta');
+define('CAAG_HQ_RENTAL_FEATURES_LABEL_META', 'caag_hq_rental_features_label_meta');
+define('CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_META', 'caag_hq_rental_features_label_for_website_meta');
+define('CAAG_HQ_RENTAL_FEATURES_ICON_META', 'caag_hq_rental_features_icon_meta');
+
 /*
  * Seasons Custom Metas keys
  */
@@ -69,6 +80,7 @@ define('CAAG_HQ_RENTAL_SEASON_MINIMAL_RENTAL_PERIOD_META', 'caag_hq_rental_seaso
 require_once('utils.php');
 require_once('locations.php');
 require_once('rates.php');
+require_once('features.php');
 require_once('vehicles-classes.php');
 require_once('seasons.php');
 

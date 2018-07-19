@@ -288,5 +288,6 @@ function caag_hq_get_vehicle_classes_for_display_by_caag_id( $caag_vehicle_class
 function tester()
 {
     //caag_hq_vehicle_classes_cron_job();
+    //caag_hq_additional_charges_cron_job();
 }
 add_action('template_redirect', 'tester');

@@ -31,6 +31,11 @@ function caag_hq_get_vehicle_classes_endpoint()
 }
 
 
+function caag_hq_additional_charges_endpoint()
+{
+    return get_option( CAAG_HQ_RENTAL_API_END_POINT ) . 'fleets/additional-charges';
+}
+
 /*
  * API Call Handler
  *
@@ -105,6 +110,17 @@ function caag_hq_get_vehicle_classes_on_website()
 {
     $args = array(
         'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES,
+        'post_status'       =>  'publish',
+        'posts_per_page'    =>  -1
+    );
+    $query = new WP_Query( $args );
+    return $query->posts;
+}
+
+function caag_hq_get_additional_charges_on_website()
+{
+    $args = array(
+        'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_ADDITIONAL_CHARGES,
         'post_status'       =>  'publish',
         'posts_per_page'    =>  -1
     );

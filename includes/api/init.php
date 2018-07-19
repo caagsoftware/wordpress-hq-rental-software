@@ -67,9 +67,32 @@ define('CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_META', 'caag_hq_rental_feature
 define('CAAG_HQ_RENTAL_FEATURES_ICON_META', 'caag_hq_rental_features_icon_meta');
 
 /*
+ * Additional Charges Metas Keys
+ */
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_ID_META', 'caag_hq_rental_additional_charges_id_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_NAME_META', 'caag_hq_rental_additional_charges_name_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_CHARGE_TYPE_META', 'caag_hq_rental_additional_charges_charge_type_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SELECTION_TYPE_META', 'caag_hq_rental_additional_charges_selection_type_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_EN_META', 'caag_hq_rental_additional_charges_description_en_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_NL_META', 'caag_hq_rental_additional_charges_description_nl_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_ES_META', 'caag_hq_rental_additional_charges_description_es_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_PT_META', 'caag_hq_rental_additional_charges_description_pt_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_DE_META', 'caag_hq_rental_additional_charges_description_de_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_ICON_META', 'caag_hq_rental_additional_charges_icon_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_LABEL_FOR_WEBSITE_EN_META', 'caag_hq_rental_additional_charges_label_for_website_en_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_LABEL_FOR_WEBSITE_NL_META', 'caag_hq_rental_additional_charges_label_for_website_nl_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_LABEL_FOR_WEBSITE_ES_META', 'caag_hq_rental_additional_charges_label_for_website_es_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_LABEL_FOR_WEBSITE_PT_META', 'caag_hq_rental_additional_charges_label_for_website_pt_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_LABEL_FOR_WEBSITE_DE_META', 'caag_hq_rental_additional_charges_label_for_website_de_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SHORT_DESCRIPTION_FOR_WEBSITE_EN_META', 'caag_hq_rental_additional_charges_short_description_for_website_en_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SHORT_DESCRIPTION_FOR_WEBSITE_NL_META', 'caag_hq_rental_additional_charges_short_description_for_website_nl_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SHORT_DESCRIPTION_FOR_WEBSITE_ES_META', 'caag_hq_rental_additional_charges_short_description_for_website_es_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SHORT_DESCRIPTION_FOR_WEBSITE_PT_META', 'caag_hq_rental_additional_charges_short_description_for_website_pt_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SHORT_DESCRIPTION_FOR_WEBSITE_DE_META', 'caag_hq_rental_additional_charges_short_description_for_website_de_meta');
+
+/*
  * Seasons Custom Metas keys
  */
-
 define('CAAG_HQ_RENTAL_SEASON_ID_META', 'caag_hq_rental_season_id_meta');
 define('CAAG_HQ_RENTAL_SEASON_BRAND_ID_META', 'caag_hq_rental_season_brand_id_meta');
 define('CAAG_HQ_RENTAL_SEASON_NAME_META', 'caag_hq_rental_season_name_meta');
@@ -81,8 +104,9 @@ require_once('utils.php');
 require_once('locations.php');
 require_once('rates.php');
 require_once('features.php');
-require_once('vehicles-classes.php');
 require_once('seasons.php');
+require_once('additional-charges.php');
+require_once('vehicles-classes.php');
 
 
 

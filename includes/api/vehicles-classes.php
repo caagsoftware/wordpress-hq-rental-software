@@ -9,10 +9,10 @@
 /*
  * Scheduling the Cronjob
  */
-/*
+
 if ( ! wp_next_scheduled( 'caag_hq_vehicle_classes_update' ) ) {
     wp_schedule_event( time(), 'hourly', 'caag_hq_vehicle_classes_update' );
-}*/
+}
 
 /*
  *  Get rates From Api
@@ -106,7 +106,8 @@ function caag_hq_vehicle_classes_cron_job()
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F222_META, (int)$vehicles_classes_caag->f222 );
         if( !empty( $vehicles_classes_caag->images ) ){
             foreach ( $vehicles_classes_caag->images as $image) {
-                update_post_meta($id, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_LINK_META, $image->public_link);
+                update_post_meta($id, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_LINK_META, $image->public_link) ;
+                update_post_meta($id, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_EXTENSION_META, $image->extension );
             }
         }
     }
@@ -140,7 +141,7 @@ function caag_hq_get_vehicle_classes_for_display()
         $new_vehicle->label_de = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_DE_META, true );
         $new_vehicle->short_description_de = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_SHORT_DESCRIPTION_FOR_WEBSITE_DE_META, true );
         $new_vehicle->description_de = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_DESCRIPTION_FOR_WEBSITE_DE_META, true );
-        $new_vehicle->image_links = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_LINK_META, true );
+        $new_vehicle->image_link = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_LINK_META, true );
         $new_vehicle->image_link_extension = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_EXTENSION_META, true );
         $new_vehicle->active_rate_id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_ID_META, true );
         $new_vehicle->active_rate_season_id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_SEASON_ID_META, true );
@@ -168,7 +169,8 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
         $vehicles_classes = caag_hq_get_vehicle_classes_for_display();
         $args_woocommerce = array(
             'post_type'     =>  'product',
-            'post_status'   =>  'publish'
+            'post_status'   =>  'publish',
+            'posts_per_page'    =>  -1
         );
         $woo_products = new WP_Query( $args_woocommerce );
         foreach ( $woo_products->posts as $woocommerce_product ){
@@ -326,9 +328,4 @@ function caag_hq_get_vehicle_classes_for_display_by_caag_id( $caag_vehicle_class
     return $new_vehicle;
 }
 
-function tester()
-{
-    //caag_hq_vehicle_classes_cron_job();
-}
-add_action('template_redirect', 'tester');
 

@@ -23,7 +23,10 @@ function caag_hq_rental_calendar_form($atts = [])
         $get_data = $_GET;
         if(!empty($get_data['vehicle_class_id'])){
             $link .= '&vehicle_class_id=' . $get_data['vehicle_class_id'];
+        }elseif( isset( $atts['vehicle_class_id'] ) ){
+            $link .= '&vehicle_class_id=' . $atts['vehicle_class_id'];
         }
+
         if( isset( $atts['forced_locale'] ) ){
             $lang = '&forced_locale=' . $atts['forced_locale'];
         }else{

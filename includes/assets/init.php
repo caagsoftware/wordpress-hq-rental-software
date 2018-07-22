@@ -39,3 +39,27 @@ function caag_hq_rental_inline_script()
         ['jquery']);
 }
 add_action('wp_enqueue_script', 'caag_hq_rental_inline_script');
+
+/**
+ *
+ * Get times as option-list.
+ *
+ * @return string List of times
+ */
+function caag_hq_rental_get_times( $begining, $end, $default = '12:00', $interval = '+15 minutes' ) {
+
+    $output = '';
+
+    $current = strtotime( $begining );
+    $end = strtotime( $end   );
+
+    while( $current <= $end ) {
+        $time = date( 'H:i', $current );
+        $sel = ( $time == $default ) ? ' selected' : '';
+
+        $output .= "<option value=\"{$time}\"{$sel}>" . date( 'h:i A', $current ) .'</option>';
+        $current = strtotime( $interval, $current );
+    }
+
+    return $output;
+}

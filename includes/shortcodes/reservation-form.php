@@ -12,13 +12,20 @@ function caag_hq_rental_shortcode($atts = [])
 	caag_hq_rental_styles();
 	caag_hq_rental_scripts();
 	$caag_id = $atts['id'];
+    $passenger = get_data_from_post_var( 'passengers_number' );
     if(isset( $atts['forced_locale'] )){
         $lang = '&forced_locale=' . $atts['forced_locale'];
     }else{
         $lang = '';
     }
-	$link = get_caag_hq_rental_link($caag_id) . $lang;
-	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang;
+    if( !empty( $passenger ) ){
+        $vehicles = caag_hq_get_vehicle_classes_ids_by_passengers_numbers( (int)$passenger );
+        $query_string_passenger = caag_hq_get_query_string_passenger($vehicles);
+    }else{
+        $query_string_passenger = '';
+    }
+	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger;
+	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger;
 	try {
 		if (get_data_from_post_var('pick_up_date')) {
 			if (get_data_from_post_var('pick_up_time')) {

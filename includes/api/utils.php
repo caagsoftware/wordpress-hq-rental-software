@@ -135,9 +135,29 @@ function caag_hq_get_features_from_vehicle_class_post_on_website($vehicle_class_
         'post_status'       =>  'publish',
         'posts_per_page'    =>  -1,
         'meta_query'        =>  array(
-            'key'       =>  CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_POST_ID_META,
-            'value'     =>  $vehicle_class_post_id,
-            'compare'   =>  '='
+                array(
+                    'key'               =>  CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_POST_ID_META,
+                    'value'             =>  $vehicle_class_post_id,
+                    'compare'           =>  '=',
+                    'posts_per_page'    =>  -1,
+                )
+        )
+    );
+    $query = new WP_Query( $args );
+    return $query->posts;
+}
+function caag_hq_get_vehicle_classes_ids_by_passengers_numbers( $passenger_number )
+{
+    $args = array(
+        'post_type'     =>   CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES,
+        'post_status'   =>  'publish',
+        'posts_per_page'    =>  -1,
+        'meta_query'        =>  array(
+                array(
+                    'key'               =>  CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F222_META,
+                    'value'             =>  $passenger_number,
+                    'compare'           =>  '='
+                )
         )
     );
     $query = new WP_Query( $args );

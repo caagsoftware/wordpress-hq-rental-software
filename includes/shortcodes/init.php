@@ -4,6 +4,7 @@
 /*
  * Requiring Module Files
  */
+require_once('utils.php');
 require_once('link-form.php');
 require_once('my-package-reservation-form.php');
 require_once('my-reservation-form.php');

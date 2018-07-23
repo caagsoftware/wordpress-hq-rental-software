@@ -69,6 +69,7 @@ function caag_hq_vehicle_classes_cron_job()
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F227_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F235_META);
         caag_hq_delete_feature_from_vehicle_class( $vehicle->ID );
+        caag_hq_delete_vehicle_class_image( $vehicle->ID );
         wp_delete_post( $vehicle->ID, true );
     }
     foreach ( $vehicle_classes_system as $vehicles_classes_caag ) {
@@ -108,8 +109,7 @@ function caag_hq_vehicle_classes_cron_job()
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F235_META, $vehicles_classes_caag->f235 );
         if( !empty( $vehicles_classes_caag->images ) ){
             foreach ( $vehicles_classes_caag->images as $image) {
-                update_post_meta($id, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_LINK_META, $image->public_link) ;
-                update_post_meta($id, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_EXTENSION_META, $image->extension );
+                caag_hq_add_vehicle_class_images( $id, $vehicles_classes_caag->id, $image );
             }
         }
     }
@@ -132,6 +132,7 @@ function caag_hq_get_vehicle_classes_for_display()
     foreach( $query->posts as $vehicle ){
         $new_vehicle = new stdClass();
         $new_vehicle->id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META, true );
+        $new_vehicle->post_id = $vehicle->ID;
         $new_vehicle->brand_id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META, true );
         $new_vehicle->name = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META, true );
         $new_vehicle->label_en = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_EN_META, true );
@@ -221,8 +222,16 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
             update_post_meta( $post_id, '_backorders', 'no' );
             update_post_meta( $post_id, '_stock', 10 );
             update_post_meta( $post_id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CAAG_ID_ON_WOOCOMMERCE_PRODUCT_META, $vehicle->id );
-            if(! empty($vehicle->image_link)){
-                caag_hq_download_and_set_post_image($vehicle->image_link, $post_id, $title . $vehicle->id . $post_id, $vehicle->image_link_extension);
+            $images = caag_hq_get_vehicles_images_from_vehicle_class_post_on_website( $vehicle->post_id );
+            if(! empty($images)){
+                if(count($images) == 1){
+                    caag_hq_download_and_set_post_image($images[0]->link, $post_id, $title . $images[0]->id . $post_id, $images[0]->extension);
+                }elseif(count($images) >= 1){
+                        caag_hq_download_and_set_post_image($images[0]->link, $post_id, $title . $images[0]->id . $post_id, $images[0]->extension);
+                    foreach ($images as $image){
+                        caag_hq_download_and_set_post_image($image->link, $post_id, $title . $image->id . $post_id, $image->extension);
+                    }
+                }
             }
         }
     }

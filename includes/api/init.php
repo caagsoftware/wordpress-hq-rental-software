@@ -124,6 +124,7 @@ require_once('rates.php');
 require_once('features.php');
 require_once('seasons.php');
 require_once('additional-charges.php');
+require_once('vehicle-class-images.php');
 require_once('vehicles-classes.php');
 
 

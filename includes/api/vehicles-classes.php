@@ -79,7 +79,7 @@ function caag_hq_vehicle_classes_cron_job()
             'post_name'     =>  CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES . '_' . $vehicles_classes_caag->id,
         );
         $id = wp_insert_post( $args );
-        caag_hq_add_feature_to_vehicle_class( $id, $vehicles_classes_caag->features );
+        caag_hq_add_feature_to_vehicle_class( $id, $vehicles_classes_caag->id, $vehicles_classes_caag->features );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META, $vehicles_classes_caag->id );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META, $vehicles_classes_caag->brand_id );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META, $vehicles_classes_caag->name );

@@ -178,6 +178,12 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
         );
         $woo_products = new WP_Query( $args_woocommerce );
         foreach ( $woo_products->posts as $woocommerce_product ){
+            $woo_helper = new WC_Product_Factory();
+            $product = $woo_helper->get_product( $woocommerce_product->ID );
+            $gallery_ids = $product->get_gallery_image_ids();
+            foreach ($gallery_ids as $attached_id){
+                $deleted_attachment = wp_delete_attachment( $attached_id );
+            }
             if(has_post_thumbnail( $woocommerce_product->ID )){
                 $attachment_id = get_post_thumbnail_id( $woocommerce_product->ID );
             }
@@ -223,14 +229,9 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
             update_post_meta( $post_id, '_stock', 10 );
             update_post_meta( $post_id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CAAG_ID_ON_WOOCOMMERCE_PRODUCT_META, $vehicle->id );
             $images = caag_hq_get_vehicles_images_from_vehicle_class_post_on_website( $vehicle->post_id );
-            if(! empty($images)){
-                if(count($images) == 1){
-                    caag_hq_download_and_set_post_image($images[0]->link, $post_id, $title . $images[0]->id . $post_id, $images[0]->extension);
-                }elseif(count($images) >= 1){
-                        caag_hq_download_and_set_post_image($images[0]->link, $post_id, $title . $images[0]->id . $post_id, $images[0]->extension);
-                    foreach ($images as $image){
-                        caag_hq_download_and_set_post_image($image->link, $post_id, $title . $image->id . $post_id, $image->extension);
-                    }
+            if(!empty($images)){
+                foreach ($images as $image){
+                    caag_hq_download_and_set_post_image($image->link, $post_id, $title . $image->id . $post_id, $image->extension, true);
                 }
             }
         }
@@ -241,7 +242,7 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
 /*
  * Download and Set Products Thumnbnail
  */
-function caag_hq_download_and_set_post_image( $url, $post_id, $file_name, $file_extension )
+function caag_hq_download_and_set_post_image( $url, $post_id, $file_name, $file_extension, $gallery)
 {
     if( !class_exists( 'WP_Http' ) ){
         include_once( ABSPATH . WPINC . '/class-http.php' );
@@ -272,19 +273,37 @@ function caag_hq_download_and_set_post_image( $url, $post_id, $file_name, $file_
         'post_content'		=> '',
         'post_status'		=> 'inherit',
     );
+    if($gallery){
+        // Create the attachment
+        $attach_id = wp_insert_attachment( $post_info, $file_path, $post_id );
+        $woo_helper = new WC_Product_Factory();
+        $product = $woo_helper->get_product( $post_id );
+        $product->set_gallery_image_ids( array_merge($product->get_gallery_image_ids(), array( $attach_id )) );
+        $product->save();
 
-    // Create the attachment
-    $attach_id = wp_insert_attachment( $post_info, $file_path, $post_id );
+        // Include image.php
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );
 
-    // Include image.php
-    require_once( ABSPATH . 'wp-admin/includes/image.php' );
+        // Define attachment metadata
+        $attach_data = wp_generate_attachment_metadata( $attach_id, $file_path );
 
-    // Define attachment metadata
-    $attach_data = wp_generate_attachment_metadata( $attach_id, $file_path );
+        // Assign metadata to attachment
+        wp_update_attachment_metadata( $attach_id,  $attach_data );
+        return set_post_thumbnail( $post_id, $attach_id );
+    }else{
+        // Create the attachment
+        $attach_id = wp_insert_attachment( $post_info, $file_path, $post_id );
 
-    // Assign metadata to attachment
-    wp_update_attachment_metadata( $attach_id,  $attach_data );
-    return set_post_thumbnail( $post_id, $attach_id );
+        // Include image.php
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+        // Define attachment metadata
+        $attach_data = wp_generate_attachment_metadata( $attach_id, $file_path );
+
+        // Assign metadata to attachment
+        wp_update_attachment_metadata( $attach_id,  $attach_data );
+        return set_post_thumbnail( $post_id, $attach_id );
+    }
 }
 
 function caag_hq_get_post_attachment_id( $post_id )
@@ -340,11 +359,3 @@ function caag_hq_get_vehicle_classes_for_display_by_caag_id( $caag_vehicle_class
     }
     return $new_vehicle;
 }
-
-function tester()
-{
-    //caag_hq_vehicle_classes_cron_job();
-}
-add_action('template_redirect', 'tester');
-
-

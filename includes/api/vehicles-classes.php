@@ -68,8 +68,12 @@ function caag_hq_vehicle_classes_cron_job()
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F226_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F227_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F235_META);
+        delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DECREASING_RATES_BASED_ON_INTERVALS_META);
+
         caag_hq_delete_feature_from_vehicle_class( $vehicle->ID );
+
         caag_hq_delete_vehicle_class_image( $vehicle->ID );
+        caag_hq_delete_decreasing_rate_from_custom_post_vehicle_class( $vehicle->ID );
         wp_delete_post( $vehicle->ID, true );
     }
     foreach ( $vehicle_classes_system as $vehicles_classes_caag ) {
@@ -81,6 +85,7 @@ function caag_hq_vehicle_classes_cron_job()
         );
         $id = wp_insert_post( $args );
         caag_hq_add_feature_to_vehicle_class( $id, $vehicles_classes_caag->id, $vehicles_classes_caag->features );
+        caag_hq_add_decreasing_rate_to_vehicle_class( $id, $vehicles_classes_caag->id, $vehicles_classes_caag->active_rates[0]->price_intervals );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META, $vehicles_classes_caag->id );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META, $vehicles_classes_caag->brand_id );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META, $vehicles_classes_caag->name );
@@ -107,6 +112,7 @@ function caag_hq_vehicle_classes_cron_job()
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F226_META, $vehicles_classes_caag->f226 );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F227_META, $vehicles_classes_caag->f227 );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F235_META, $vehicles_classes_caag->f235 );
+        update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DECREASING_RATES_BASED_ON_INTERVALS_META, $vehicles_classes_caag->active_rates[0]->decreasing_rates_based_on_intervals );
         if( !empty( $vehicles_classes_caag->images ) ){
             foreach ( $vehicles_classes_caag->images as $image) {
                 caag_hq_add_vehicle_class_images( $id, $vehicles_classes_caag->id, $image );
@@ -159,6 +165,7 @@ function caag_hq_get_vehicle_classes_for_display()
         $new_vehicle->tech_nl = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F226_META, true );
         $new_vehicle->inb_nl = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F227_META, true );
         $new_vehicle->rating = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F235_META, true );
+        $new_vehicle->decreasing_rate_based_on_intervals = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DECREASING_RATES_BASED_ON_INTERVALS_META, true );
         $vehicles[] = $new_vehicle;
     }
     return $vehicles;
@@ -204,7 +211,11 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
                 'post_type'     => 'product'
             );
             $post_id = wp_insert_post( $args );
-            $rate = $vehicle->daily_rate;
+            if($vehicle->decreasing_rate_based_on_intervals){
+                $rate = caag_hq_get_lower_decreasing_rates_for_display_by_caag_id( $vehicle->id );
+            }else{
+                $rate = $vehicle->daily_rate;
+            }
             update_post_meta( $post_id, '_visibility', 'visible' );
             update_post_meta( $post_id, '_stock_status', 'instock');
             update_post_meta( $post_id, 'total_sales', '0' );
@@ -356,6 +367,13 @@ function caag_hq_get_vehicle_classes_for_display_by_caag_id( $caag_vehicle_class
         $new_vehicle->tech_nl = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F226_META, true );
         $new_vehicle->inb_nl = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F227_META, true );
         $new_vehicle->rating = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F235_META, true );
+        $new_vehicle->decreasing_rate_based_on_intervals = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DECREASING_RATES_BASED_ON_INTERVALS_META, true );
     }
     return $new_vehicle;
 }
+
+function hqtest()
+{
+    caag_hq_vehicle_classes_cron_job();
+}
+add_action('template_redirect', 'hqtest');

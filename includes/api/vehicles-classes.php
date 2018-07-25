@@ -69,6 +69,7 @@ function caag_hq_vehicle_classes_cron_job()
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F227_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F235_META);
         caag_hq_delete_feature_from_vehicle_class( $vehicle->ID );
+        caag_hq_delete_vehicle_class_image( $vehicle->ID );
         wp_delete_post( $vehicle->ID, true );
     }
     foreach ( $vehicle_classes_system as $vehicles_classes_caag ) {
@@ -79,7 +80,7 @@ function caag_hq_vehicle_classes_cron_job()
             'post_name'     =>  CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES . '_' . $vehicles_classes_caag->id,
         );
         $id = wp_insert_post( $args );
-        caag_hq_add_feature_to_vehicle_class( $id, $vehicles_classes_caag->features );
+        caag_hq_add_feature_to_vehicle_class( $id, $vehicles_classes_caag->id, $vehicles_classes_caag->features );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META, $vehicles_classes_caag->id );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META, $vehicles_classes_caag->brand_id );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META, $vehicles_classes_caag->name );
@@ -108,8 +109,7 @@ function caag_hq_vehicle_classes_cron_job()
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F235_META, $vehicles_classes_caag->f235 );
         if( !empty( $vehicles_classes_caag->images ) ){
             foreach ( $vehicles_classes_caag->images as $image) {
-                update_post_meta($id, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_LINK_META, $image->public_link) ;
-                update_post_meta($id, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_EXTENSION_META, $image->extension );
+                caag_hq_add_vehicle_class_images( $id, $vehicles_classes_caag->id, $image );
             }
         }
     }
@@ -132,6 +132,7 @@ function caag_hq_get_vehicle_classes_for_display()
     foreach( $query->posts as $vehicle ){
         $new_vehicle = new stdClass();
         $new_vehicle->id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META, true );
+        $new_vehicle->post_id = $vehicle->ID;
         $new_vehicle->brand_id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META, true );
         $new_vehicle->name = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META, true );
         $new_vehicle->label_en = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_EN_META, true );
@@ -177,6 +178,12 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
         );
         $woo_products = new WP_Query( $args_woocommerce );
         foreach ( $woo_products->posts as $woocommerce_product ){
+            $woo_helper = new WC_Product_Factory();
+            $product = $woo_helper->get_product( $woocommerce_product->ID );
+            $gallery_ids = $product->get_gallery_image_ids();
+            foreach ($gallery_ids as $attached_id){
+                $deleted_attachment = wp_delete_attachment( $attached_id );
+            }
             if(has_post_thumbnail( $woocommerce_product->ID )){
                 $attachment_id = get_post_thumbnail_id( $woocommerce_product->ID );
             }
@@ -221,8 +228,11 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
             update_post_meta( $post_id, '_backorders', 'no' );
             update_post_meta( $post_id, '_stock', 10 );
             update_post_meta( $post_id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CAAG_ID_ON_WOOCOMMERCE_PRODUCT_META, $vehicle->id );
-            if(! empty($vehicle->image_link)){
-                caag_hq_download_and_set_post_image($vehicle->image_link, $post_id, $title . $vehicle->id . $post_id, $vehicle->image_link_extension);
+            $images = caag_hq_get_vehicles_images_from_vehicle_class_post_on_website( $vehicle->post_id );
+            if(!empty($images)){
+                foreach ($images as $image){
+                    caag_hq_download_and_set_post_image($image->link, $post_id, $title . $image->id . $post_id, $image->extension, true);
+                }
             }
         }
     }
@@ -232,7 +242,7 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
 /*
  * Download and Set Products Thumnbnail
  */
-function caag_hq_download_and_set_post_image( $url, $post_id, $file_name, $file_extension )
+function caag_hq_download_and_set_post_image( $url, $post_id, $file_name, $file_extension, $gallery)
 {
     if( !class_exists( 'WP_Http' ) ){
         include_once( ABSPATH . WPINC . '/class-http.php' );
@@ -263,19 +273,37 @@ function caag_hq_download_and_set_post_image( $url, $post_id, $file_name, $file_
         'post_content'		=> '',
         'post_status'		=> 'inherit',
     );
+    if($gallery){
+        // Create the attachment
+        $attach_id = wp_insert_attachment( $post_info, $file_path, $post_id );
+        $woo_helper = new WC_Product_Factory();
+        $product = $woo_helper->get_product( $post_id );
+        $product->set_gallery_image_ids( array_merge($product->get_gallery_image_ids(), array( $attach_id )) );
+        $product->save();
 
-    // Create the attachment
-    $attach_id = wp_insert_attachment( $post_info, $file_path, $post_id );
+        // Include image.php
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );
 
-    // Include image.php
-    require_once( ABSPATH . 'wp-admin/includes/image.php' );
+        // Define attachment metadata
+        $attach_data = wp_generate_attachment_metadata( $attach_id, $file_path );
 
-    // Define attachment metadata
-    $attach_data = wp_generate_attachment_metadata( $attach_id, $file_path );
+        // Assign metadata to attachment
+        wp_update_attachment_metadata( $attach_id,  $attach_data );
+        return set_post_thumbnail( $post_id, $attach_id );
+    }else{
+        // Create the attachment
+        $attach_id = wp_insert_attachment( $post_info, $file_path, $post_id );
 
-    // Assign metadata to attachment
-    wp_update_attachment_metadata( $attach_id,  $attach_data );
-    return set_post_thumbnail( $post_id, $attach_id );
+        // Include image.php
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+        // Define attachment metadata
+        $attach_data = wp_generate_attachment_metadata( $attach_id, $file_path );
+
+        // Assign metadata to attachment
+        wp_update_attachment_metadata( $attach_id,  $attach_data );
+        return set_post_thumbnail( $post_id, $attach_id );
+    }
 }
 
 function caag_hq_get_post_attachment_id( $post_id )
@@ -331,11 +359,3 @@ function caag_hq_get_vehicle_classes_for_display_by_caag_id( $caag_vehicle_class
     }
     return $new_vehicle;
 }
-
-function tester()
-{
-    //caag_hq_vehicle_classes_cron_job();
-}
-add_action('template_redirect', 'tester');
-
-

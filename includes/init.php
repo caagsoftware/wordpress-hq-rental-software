@@ -10,3 +10,4 @@ require_once('custom-posts/init.php');
 require_once('api/init.php');
 require_once('vendor/init.php');
 require_once('settings/init.php');
+require_once('templates/init.php');

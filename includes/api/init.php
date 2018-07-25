@@ -62,6 +62,16 @@ define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F227_META', 'caag_hq_rental_ve
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F235_META', 'caag_hq_rental_vehicle_class_custom_field_235_product_meta');
 //define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F217_META', 'caag_hq_rental_vehicle_class_custom_field_217_product_meta');
 
+/*
+ * Vehicle Classes Images
+ */
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_ID_META', 'caag_hq_rental_vehicle_class_image_id_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_CAAG_VEHICLE_CLASS_CAAG_ID_META', 'caag_hq_rental_vehicle_class_image_vehicle_class_caag_id_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_FILENAME_META', 'caag_hq_rental_vehicle_class_image_filename_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_EXTENSION_META', 'caag_hq_rental_vehicle_class_image_extension_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_MIME_META', 'caag_hq_rental_vehicle_class_image_mime_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_PUBLIC_LINK_META', 'caag_hq_rental_vehicle_class_image_public_link_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_VEHICLE_CLASS_CUSTOM_POST_ID_META', 'caag_hq_rental_vehicle_class_image_custom_post_id_meta');
 
 /*
  * Features Custom Metas Keys
@@ -97,6 +107,7 @@ define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SHORT_DESCRIPTION_FOR_WEBSITE_ES_META'
 define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SHORT_DESCRIPTION_FOR_WEBSITE_PT_META', 'caag_hq_rental_additional_charges_short_description_for_website_pt_meta');
 define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SHORT_DESCRIPTION_FOR_WEBSITE_DE_META', 'caag_hq_rental_additional_charges_short_description_for_website_de_meta');
 
+
 /*
  * Seasons Custom Metas keys
  */
@@ -113,6 +124,7 @@ require_once('rates.php');
 require_once('features.php');
 require_once('seasons.php');
 require_once('additional-charges.php');
+require_once('vehicle-class-images.php');
 require_once('vehicles-classes.php');
 
 

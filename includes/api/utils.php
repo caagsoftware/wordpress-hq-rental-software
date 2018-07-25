@@ -146,6 +146,26 @@ function caag_hq_get_features_from_vehicle_class_post_on_website($vehicle_class_
     $query = new WP_Query( $args );
     return $query->posts;
 }
+function caag_hq_get_vehicles_images_on_website($vehicle_class_post_id)
+{
+    $args = array(
+        'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES_IMAGES,
+        'post_status'       =>  'publish',
+        'posts_per_page'    =>  -1,
+        'meta_query'        =>  array(
+            array(
+                'key'               =>  CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_VEHICLE_CLASS_CUSTOM_POST_ID_META,
+                'value'             =>  $vehicle_class_post_id,
+                'compare'           =>  '=',
+                'posts_per_page'    =>  -1,
+            )
+        )
+    );
+    $query = new WP_Query( $args );
+    return $query->posts;
+}
+
+
 function caag_hq_get_vehicle_classes_ids_by_passengers_numbers( $passenger_number )
 {
     $args = array(
@@ -173,4 +193,9 @@ function caag_hq_get_seasons_on_website()
     );
     $query = new WP_Query( $args );
     return $query->posts;
+}
+
+function caag_hq_get_vehicles_images()
+{
+
 }

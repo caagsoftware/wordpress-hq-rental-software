@@ -29,6 +29,9 @@ function caag_hq_locations_cron_job()
 {
     $locations_system = caag_hq_get_api_locations()->fleets_locations;
     $locations_wp = caag_hq_get_locations_on_website();
+    if(is_wp_error($locations_system)){
+        return true;
+    }
     foreach ( $locations_wp as $location ){
         delete_post_meta($location->ID, CAAG_HQ_RENTAL_LOCATION_ID_META);
         delete_post_meta($location->ID, CAAG_HQ_RENTAL_LOCATION_NAME_META);

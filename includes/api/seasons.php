@@ -26,6 +26,9 @@ function caag_hq_seasons_cron_job()
 {
     $seasons_system = caag_hq_get_api_seasons();
     $seasons_wp = caag_hq_get_seasons_on_website();
+    if(is_wp_error($seasons_system)){
+        return true;
+    }
     foreach ( $seasons_wp as $season ){
         delete_post_meta($season->ID, CAAG_HQ_RENTAL_SEASON_ID_META);
         delete_post_meta($season->ID, CAAG_HQ_RENTAL_SEASON_BRAND_ID_META);

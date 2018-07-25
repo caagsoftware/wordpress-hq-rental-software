@@ -29,6 +29,9 @@ function caag_hq_additional_charges_cron_job()
 {
     $additional_charges_system = caag_hq_get_api_additional_charges()->fleets_additional_charges;
     $additional_charges_wp = caag_hq_get_additional_charges_on_website();
+    if(is_wp_error($additional_charges_system)){
+        return true;
+    }
     foreach ( $additional_charges_wp as $charge ){
         delete_post_meta($charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_ID_META);
         delete_post_meta($charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_NAME_META);

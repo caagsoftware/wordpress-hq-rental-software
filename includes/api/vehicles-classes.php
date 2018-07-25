@@ -35,10 +35,10 @@ function caag_hq_get_api_vehicle_classes()
 function caag_hq_vehicle_classes_cron_job()
 {
     $vehicle_classes_system = caag_hq_get_api_vehicle_classes()->fleets_vehicle_classes;
-    if( empty( $vehicle_classes_system ) ){
+    $vehicle_classes_wp = caag_hq_get_vehicle_classes_on_website();
+    if(is_wp_error($vehicle_classes_system)){
         return true;
     }
-    $vehicle_classes_wp = caag_hq_get_vehicle_classes_on_website();
     foreach ( $vehicle_classes_wp as $vehicle ){
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META);

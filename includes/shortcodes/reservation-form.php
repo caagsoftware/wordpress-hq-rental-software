@@ -13,6 +13,11 @@ function caag_hq_rental_shortcode($atts = [])
 	caag_hq_rental_scripts();
 	$caag_id = $atts['id'];
     $passenger = get_data_from_post_var( 'passengers_number' );
+    if( !empty($vehicle_class_id) ){
+        $single_vehicle = '&vehicle_class_id=' . $vehicle_class_id;
+    }else{
+        $single_vehicle = '';
+    }
     if(isset( $atts['forced_locale'] )){
         $lang = '&forced_locale=' . $atts['forced_locale'];
     }else{
@@ -25,7 +30,7 @@ function caag_hq_rental_shortcode($atts = [])
         $query_string_passenger = '';
     }
 	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger;
-	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger;
+	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle;
 	try {
 		if (get_data_from_post_var('pick_up_date')) {
 			if (get_data_from_post_var('pick_up_time')) {

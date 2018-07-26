@@ -87,8 +87,7 @@ function caag_hq_get_features_for_display_by_caag_id($caag_id)
             array(
                 'key'               =>  CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_ID_META,
                 'value'             =>  $caag_id,
-                'compare'           =>  '=',
-                'posts_per_page'    =>  -1,
+                'compare'           =>  '='
             )
         )
     );

@@ -115,3 +115,39 @@ function caag_hq_get_active_locations_for_display()
     }
     return $locations;
 }
+
+/*
+ * Get Locations for display
+ */
+function caag_hq_get_active_locations_by_brand_id_for_display($caag_brand_id)
+{
+    $args = array(
+        'post_type'     =>  CAAG_HQ_RENTAL_CUSTOM_POST_LOCATIONS,
+        'post_status'   =>  'publish',
+        'meta_query'    =>  array(
+            array(
+                'key'       =>  CAAG_HQ_RENTAL_LOCATION_ACTIVE_META,
+                'value'     =>  '1',
+                'compare'   =>  '='
+            ),
+            array(
+                'key'       =>  CAAG_HQ_RENTAL_LOCATION_BRAND_ID_META,
+                'value'     =>  $caag_brand_id,
+                'compare'   =>  '='
+            )
+        )
+    );
+    $query = new WP_Query( $args );
+    $locations = array();
+    foreach ( $query->posts as $location ){
+        $new_location = new stdClass();
+        $new_location->id = get_post_meta( $location->ID, CAAG_HQ_RENTAL_LOCATION_ID_META, true );
+        $new_location->name = get_post_meta( $location->ID, CAAG_HQ_RENTAL_LOCATION_NAME_META, true );
+        $new_location->brand_id = get_post_meta( $location->ID, CAAG_HQ_RENTAL_LOCATION_BRAND_ID_META, true );
+        $new_location->is_airport = get_post_meta( $location->ID, CAAG_HQ_RENTAL_LOCATION_IS_AIRPORT_META, true );
+        $new_location->is_office = get_post_meta( $location->ID, CAAG_HQ_RENTAL_LOCATION_IS_OFFICE_META, true );
+        $new_location->active = get_post_meta( $location->ID, CAAG_HQ_RENTAL_LOCATION_ACTIVE_META, true );
+        $locations[] = $new_location;
+    }
+    return $locations;
+}

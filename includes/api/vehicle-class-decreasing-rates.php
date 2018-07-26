@@ -109,21 +109,19 @@ function caag_hq_get_decreasing_rates_for_display_by_caag_id($caag_id)
 
 function caag_hq_order_classes_by_price($a, $b)
 {
-    if($a->price > $b->price) {
-        return 1;
+    if($a->price == $b->price){
+        return 0 ;
     }
-    elseif($a->price < $b->price) {
-        return -1;
-    }
-    else {
-        return 0;
-    }
+    return ($a->price < $b->price) ? -1 : 1;
 }
 
 function caag_hq_get_lower_decreasing_rates_for_display_by_caag_id($caag_id)
 {
     $rates = caag_hq_get_decreasing_rates_for_display_by_caag_id($caag_id);
     usort($rates, "caag_hq_order_classes_by_price");
+    var_dump($rates);
+    var_dump($rates[count($rates) -  1]->price);
+    die();
     return str_replace(",", "", $rates[count($rates) -  1]->price);
 }
 

@@ -14,6 +14,7 @@ define('CAAG_HQ_RENTAL_CUSTOM_POST_SEASONS','caag_hq_rental_seas');
 define('CAAG_HQ_RENTAL_CUSTOM_POST_FEATURES', 'caag_hq_rental_fea');
 define('CAAG_HQ_RENTAL_CUSTOM_POST_ADDITIONAL_CHARGES', 'caag_hq_charges');
 define('CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES_IMAGES', 'caag_hq_veh_images');
+define('CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES_DECREASING_RATES', 'caag_hq_veh_de_ra');
 
 
 /*
@@ -27,3 +28,4 @@ require_once('caag-seasons-posts.php');
 require_once('caag-class-features.php');
 require_once('caag-additional-charges.php');
 require_once('caag-vehicle-classes-images.php');
+require_once('caag-vehicle-class-decreasing-rates.php');

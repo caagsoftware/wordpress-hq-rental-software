@@ -195,7 +195,3 @@ function caag_hq_get_seasons_on_website()
     return $query->posts;
 }
 
-function caag_hq_get_vehicles_images()
-{
-
-}

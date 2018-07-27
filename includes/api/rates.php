@@ -26,6 +26,9 @@ function caag_hq_rates_cron_job()
 {
     $rates_system = caag_hq_get_api_rates();
     $rates_wp = caag_hq_get_rates_on_website();
+    if(is_wp_error($rates_system)){
+        return true;
+    }
     foreach ( $rates_wp as $rate ){
         delete_post_meta($rate->ID, CAAG_HQ_RENTAL_RATE_ID_META);
         delete_post_meta($rate->ID, CAAG_HQ_RENTAL_RATE_SEASON_ID_META);

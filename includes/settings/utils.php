@@ -292,7 +292,6 @@ function caag_hq_is_was_upload_it($caag_id)
     global $wpdb;
     $post_id = $wpdb->get_results('SELECT post_id FROM ' . $wpdb->prefix . 'postmeta WHERE meta_value = ' . $caag_id .
         ' and meta_key = "' . CAAG_HQ_RENTAL_LOCATION_ID_META . '"');
-    //var_dump($post_id);
     return ! empty(get_post_meta($post_id[0]->post_id, CAAG_HQ_RENTAL_LOCATION_WAS_UPLOAD_IT_META)[0]);
 }
 

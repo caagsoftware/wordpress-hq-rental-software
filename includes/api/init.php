@@ -53,7 +53,9 @@ define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_HOURLY_RATE_META', 'caag_hq_ren
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_META', 'caag_hq_rental_vehicle_class_active_rate_daily_rate_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_META', 'caag_hq_rental_vehicle_class_active_rate_weekly_rate_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_META', 'caag_hq_rental_vehicle_class_active_rate_monthly_rate_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DECREASING_RATES_BASED_ON_INTERVALS_META', 'caag_hq_rental_vehicle_class_active_rate_decreasing_rates_based_on_intervals_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CAAG_ID_ON_WOOCOMMERCE_PRODUCT_META', 'caag_hq_rental_vehicle_class_caag_id_on_woocommerce_product_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CAAG_BRAND_ID_ON_WOOCOMMERCE_PRODUCT_META', 'caag_hq_rental_vehicle_class_caag_brand_id_on_woocommerce_product_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F214_META', 'caag_hq_rental_vehicle_class_custom_field_214_product_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F215_META', 'caag_hq_rental_vehicle_class_custom_field_215_product_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F222_META', 'caag_hq_rental_vehicle_class_custom_field_222_product_meta');
@@ -73,6 +75,15 @@ define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_MIME_META', 'caag_hq_rental_vehicle_
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_PUBLIC_LINK_META', 'caag_hq_rental_vehicle_class_image_public_link_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_VEHICLE_CLASS_CUSTOM_POST_ID_META', 'caag_hq_rental_vehicle_class_image_custom_post_id_meta');
 
+/*
+ * Decreasing Rates
+ */
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_DECREASING_RATE_ORDER_META', 'caag_hq_rental_vehicle_class_decreasing_rate_order_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_DECREASING_RATE_PRICE_META', 'caag_hq_rental_vehicle_class_decreasing_price_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_DECREASING_RATE_START_INTERVAL_META', 'caag_hq_rental_vehicle_class_decreasing_rate_start_interval_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_DECREASING_RATE_END_INTERVAL_META', 'caag_hq_rental_vehicle_class_decreasing_rate_end_interval_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_DECREASING_RATE_VEHICLE_CLASS_CAAG_ID_META', 'caag_hq_rental_vehicle_class_decreasing_rate_vehicle_class_caag_id_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_DECREASING_RATE_VEHICLE_CLASS_CUSTOM_POST_ID_META', 'caag_hq_rental_vehicle_class_decreasing_rate_vehicle_class_custom_post_id_meta');
 /*
  * Features Custom Metas Keys
  */
@@ -125,6 +136,7 @@ require_once('features.php');
 require_once('seasons.php');
 require_once('additional-charges.php');
 require_once('vehicle-class-images.php');
+require_once('vehicle-class-decreasing-rates.php');
 require_once('vehicles-classes.php');
 
 

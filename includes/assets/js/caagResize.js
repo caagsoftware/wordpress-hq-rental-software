@@ -5,7 +5,7 @@ iFrameResize({
     sizeWidth: true,
     resizedCallback: function(message) {
         var height = document.getElementById('caag-rental-iframe').clientHeight;
-        var newheight = height * 1.05;
+        var newheight = height * 1.1;
         document.getElementById("caag-rental-iframe").style.height = newheight + "px";
     }
 }, '#caag-rental-iframe');

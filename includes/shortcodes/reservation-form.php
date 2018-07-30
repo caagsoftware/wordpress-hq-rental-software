@@ -29,8 +29,15 @@ function caag_hq_rental_shortcode($atts = [])
     }else{
         $query_string_passenger = '';
     }
+    $vehicles_class_post = get_data_from_post_var( 'vehicle_class_id' );
+    if( !empty( $vehicles_class_post ) ){
+        $vehicles_from_post = '&vehicle_class_id=' . $vehicles_class_post;
+    }else{
+        $vehicles_from_post = '';
+    }
+
 	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger;
-	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle;
+	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle . $vehicles_from_post;
 	try {
 		if (get_data_from_post_var('pick_up_date')) {
 			if (get_data_from_post_var('pick_up_time')) {

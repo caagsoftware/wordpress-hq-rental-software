@@ -9,6 +9,9 @@
 
 function caag_hq_add_decreasing_rate_to_vehicle_class($vehicle_class_post_id, $vehicle_class_caag_id, $rates)
 {
+    if(empty($rates)){
+        return true;
+    }
     foreach ($rates as $rate){
         $args = array(
             'post_type'     =>  CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES_DECREASING_RATES,

@@ -372,7 +372,7 @@ function caag_hq_get_vehicle_classes_for_display_by_caag_id( $caag_vehicle_class
         $new_vehicle->decreasing_rate_based_on_intervals = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DECREASING_RATES_BASED_ON_INTERVALS_META, true );
         $vehicles[] = $new_vehicle;
     }
-    return $new_vehicle[0];
+    return $vehicles[0];
 }
 
 

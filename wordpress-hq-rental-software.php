@@ -30,6 +30,7 @@ define('CAAG_HQ_RENTAL_DATE_FORMAT','caag_hq_rental_date_format');
 define('CAAG_HQ_RENTAL_API_END_POINT','caag_hq_rental_api_end_point');
 define('CAAG_HQ_RENTAL_SAFARI_BROWSER', 'caag_hq_rental_safari_browser');
 define('CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED', 'caag_hq_rental_current_brand_selected');
+define('CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION', 'caag_hq_rental_woocommerce_sync_option');
 
 /*
  * Meta Values Keys

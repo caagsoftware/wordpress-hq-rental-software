@@ -295,4 +295,25 @@ function caag_hq_is_was_upload_it($caag_id)
     return ! empty(get_post_meta($post_id[0]->post_id, CAAG_HQ_RENTAL_LOCATION_WAS_UPLOAD_IT_META)[0]);
 }
 
-
+function caag_hq_options_get_datetime_options($plugin_option)
+{
+    $now = \Carbon\Carbon::now();
+    $output = '';
+    $system_date_options = array(
+        'iso'   =>  'Y-m-d H:i',
+        'eu'    =>  'd-m-Y H:i',
+        'us'    =>  'm/d/Y g:i a',
+        've'    =>  'd/m/Y g:i a',
+        'int'   =>  'd.m.Y g:i a',
+        'id'    =>  'd-M-Y g:i a',
+        'ch'    =>  'd.m.Y H:i'
+    );
+    foreach ( $system_date_options as $key => $value ){
+        if($plugin_option == $value){
+            $output .= '<option value="'. $value .'" selected="selected">'. $now->format($value) .'</option>';
+        }else{
+            $output .= '<option value="'. $value .'">'. $now->format($value) .'</option>';
+        }
+    }
+    return $output;
+}

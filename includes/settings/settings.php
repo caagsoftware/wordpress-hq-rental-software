@@ -52,17 +52,9 @@ function caag_hq_rental_settings_html()
                         <tr>
                             <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Date Format</label></th>
                             <td>
-                                <?php if(get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == "YYYY-MM-DD"): ?>
-                                    <select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT; ?>">
-                                        <option value="YYYY-MM-DD" selected="selected">YYYY-MM-DD</option>
-                                        <option value="DD-MM-YYYY">DD-MM-YYYY</option>
-                                    </select>
-                                <?php elseif(get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == "DD-MM-YYYY"): ?>
-                                    <select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT; ?>">
-                                        <option value="YYYY-MM-DD" selected="selected">YYYY-MM-DD</option>
-                                        <option value="DD-MM-YYYY" selected="selected">DD-MM-YYYY</option>
-                                    </select>
-                                <?php endif; ?>
+                                <select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT; ?>">
+                                    <?php echo caag_hq_options_get_datetime_options(get_option(CAAG_HQ_RENTAL_DATE_FORMAT)); ?>
+                                </select>
                             </td>
                         </tr>
 						<tr>

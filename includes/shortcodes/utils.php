@@ -15,3 +15,8 @@ function caag_hq_get_query_string_passenger($vehicles)
     }
     return $query_string_passenger;
 }
+
+function caag_hq_get_carbon_date_format_from_date_option($option)
+{
+
+}

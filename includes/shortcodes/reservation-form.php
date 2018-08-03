@@ -35,31 +35,17 @@ function caag_hq_rental_shortcode($atts = [])
     }else{
         $vehicles_from_post = '';
     }
-
+    $plugin_date_format = get_option( CAAG_HQ_RENTAL_DATE_FORMAT, 'Y-m-d H:i' );
 	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger;
 	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle . $vehicles_from_post;
 	try {
 		if (get_data_from_post_var('pick_up_date')) {
 			if (get_data_from_post_var('pick_up_time')) {
-				if(get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == 'YYYY-MM-DD'){
-					$pickup_date = Carbon::createFromFormat('Y-m-d H:i',
-						get_data_from_post_var('pick_up_date') . ' ' . get_data_from_post_var('pick_up_time'));
-					$return_date = Carbon::createFromFormat('Y-m-d H:i',
-						get_data_from_post_var('return_date') . ' ' . get_data_from_post_var('return_time'));
-				} elseif (get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == 'DD-MM-YYYY'){
-					$pickup_date = Carbon::createFromFormat('d-m-Y H:i',
-						get_data_from_post_var('pick_up_date') . ' ' . get_data_from_post_var('pick_up_time'));
-					$return_date = Carbon::createFromFormat('d-m-Y H:i',
-						get_data_from_post_var('return_date') . ' ' . get_data_from_post_var('return_time'));
-				}
+                $pickup_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('pick_up_date') . ' ' . get_data_from_post_var('pick_up_time'));
+                $return_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('return_date') . ' ' . get_data_from_post_var('return_time'));
 			} else {
-				if(get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == 'YYYY-MM-DD'){
-					$pickup_date = Carbon::createFromFormat('Y-m-d H:i', get_data_from_post_var('pick_up_date'));
-					$return_date = Carbon::createFromFormat('Y-m-d H:i', get_data_from_post_var('return_date'));
-				} elseif (get_option(CAAG_HQ_RENTAL_DATE_FORMAT) == 'DD-MM-YYYY'){
-					$pickup_date = Carbon::createFromFormat('d-m-Y H:i', get_data_from_post_var('pick_up_date'));
-					$return_date = Carbon::createFromFormat('d-m-Y H:i', get_data_from_post_var('return_date'));
-				}
+                $pickup_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('pick_up_date'));
+                $return_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('return_date'));
 			}
 			$pick_up_location = get_data_from_post_var('pick_up_location');
 			$pick_up_location_custom = get_data_from_post_var('pick_up_location_custom');

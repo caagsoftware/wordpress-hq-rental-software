@@ -119,7 +119,10 @@ function caag_hq_vehicle_classes_cron_job()
             }
         }
     }
-    caag_hq_sync_woocommerce_products_with_vehicles_classes();
+    if(get_option(CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION, false) == "1"){
+        caag_hq_sync_woocommerce_products_with_vehicles_classes();
+    }
+
 }
 add_action('caag_hq_vehicle_classes_update','caag_hq_vehicle_classes_cron_job');
 

@@ -86,6 +86,17 @@ function caag_hq_rental_settings_html()
                                 <?php endif; ?>
                             </td>
                         </tr>
+                        <tr>
+                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Enable Woocommerce Product Syncronization</label></th>
+                            <td>
+                                <?php $woocommerce_option = get_option(CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION); ?>
+                                <?php if($woocommerce_option == '0'): ?>
+                                    <input name="<?php echo CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION; ?>" type="checkbox" id="thumbnail_crop" value="1">
+                                <?php elseif($woocommerce_option == '1'): ?>
+                                    <input name="<?php echo CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION; ?>" type="checkbox" id="thumbnail_crop" value="1" checked="checked">
+                                <?php endif; ?>
+                            </td>
+                        </tr>
 						</tbody>
 					</table>
 					<?php wp_nonce_field( CAAG_HQ_RENTAL_NONCE, 'caag_nonce' ); ?>
@@ -187,6 +198,12 @@ function caag_hq_rental_settings_registration()
     if(! get_option(CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED)){
         add_option(CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED,'0');
     }
+    if(! get_option(CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED)){
+        add_option(CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED,'0');
+    }
+    if( ! get_option(CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION) ){
+        add_option( CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION, '0' );
+    }
 }
 
 /*
@@ -201,12 +218,21 @@ function caag_hq_rental_save_settings($settings)
 	update_option(CAAG_HQ_RENTAL_TENANT_TOKEN, $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]);
     update_option(CAAG_HQ_RENTAL_DATE_FORMAT, $settings[CAAG_HQ_RENTAL_DATE_FORMAT]);
     update_option(CAAG_HQ_RENTAL_API_END_POINT, $settings[CAAG_HQ_RENTAL_API_END_POINT]);
+    update_option( CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION, $settings[CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION] );
     if(isset($settings[CAAG_HQ_RENTAL_SAFARI_BROWSER])){
         if($settings[CAAG_HQ_RENTAL_SAFARI_BROWSER] == '1'){
             update_option(CAAG_HQ_RENTAL_SAFARI_BROWSER, '1');
         }
     }else{
-            update_option(CAAG_HQ_RENTAL_SAFARI_BROWSER, '0');
+        update_option(CAAG_HQ_RENTAL_SAFARI_BROWSER, '0');
+    }
+    /*WOOCOMMERCE OPTION*/
+    if(isset($settings[CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION])){
+        if($settings[CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION] == '1'){
+            update_option(CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION, '1');
+        }
+    }else{
+        update_option(CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION, '0');
     }
 }
 

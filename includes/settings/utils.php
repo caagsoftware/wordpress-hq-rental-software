@@ -75,7 +75,7 @@ function get_caag_hq_rental_link($caag_id)
 {
     $post = get_caag_hq_rental_by_meta($caag_id);
 
-    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_LINK)[0];
+    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_LINK, true);
 }
 
 /*
@@ -87,7 +87,7 @@ function get_caag_hq_rental_first_step_link($caag_id)
 {
     $post = get_caag_hq_rental_by_meta($caag_id);
 
-    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK)[0];
+    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK, true);
 }
 
 /*
@@ -98,7 +98,7 @@ function get_caag_hq_rental_first_step_link($caag_id)
 function get_caag_hq_rental_package_link($caag_id)
 {
     $post = get_caag_hq_rental_by_meta($caag_id);
-    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_PUBLIC_PACKAGES_LINK)[0];
+    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_PUBLIC_PACKAGES_LINK, true);
 }
 
 
@@ -110,8 +110,7 @@ function get_caag_hq_rental_package_link($caag_id)
 function get_caag_hq_rental_package_first_step_link($caag_id)
 {
     $post = get_caag_hq_rental_by_meta($caag_id);
-
-    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK_PACKAGES[0]);
+    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_FIRST_STEP_LINK_PACKAGES, true);
 }
 
 /*
@@ -134,7 +133,7 @@ function get_caag_hq_rental_my_reservation_link($caag_id)
 function get_caag_hq_rental_my_package_reservation_link($caag_id)
 {
 	$post = get_caag_hq_rental_by_meta($caag_id);
-	return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK)[0];
+	return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_MY_PACKAGE_RESERVATION_LINK, true);
 }
 
 /*
@@ -143,13 +142,13 @@ function get_caag_hq_rental_my_package_reservation_link($caag_id)
 function get_caag_hq_rental_reservation_package_link($caag_id)
 {
     $post = get_caag_hq_rental_by_meta($caag_id);
-    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK)[0];
+    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_PUBLIC_RESERVATION_PACKAGES_LINK, true);
 }
 
 function caag_hq_rental_get_calendar_link($caag_id)
 {
     $post = get_caag_hq_rental_by_meta($caag_id);
-    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CALENDAR_LINK)[0];
+    return get_post_meta($post[0]->post_id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CALENDAR_LINK, true);
 }
 
 
@@ -292,7 +291,7 @@ function caag_hq_is_was_upload_it($caag_id)
     global $wpdb;
     $post_id = $wpdb->get_results('SELECT post_id FROM ' . $wpdb->prefix . 'postmeta WHERE meta_value = ' . $caag_id .
         ' and meta_key = "' . CAAG_HQ_RENTAL_LOCATION_ID_META . '"');
-    return ! empty(get_post_meta($post_id[0]->post_id, CAAG_HQ_RENTAL_LOCATION_WAS_UPLOAD_IT_META)[0]);
+    return ! empty(get_post_meta($post_id[0]->post_id, CAAG_HQ_RENTAL_LOCATION_WAS_UPLOAD_IT_META, true));
 }
 
 function caag_hq_options_get_datetime_options($plugin_option)

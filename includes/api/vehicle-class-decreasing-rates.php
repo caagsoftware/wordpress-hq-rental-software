@@ -112,14 +112,34 @@ function caag_hq_get_decreasing_rates_for_display_by_caag_id($caag_id)
 
 function caag_hq_order_classes_by_price($a, $b)
 {
-    return strnatcmp($a->name, $b->name);
+    if (caag_get_price_to_float($a->price) == caag_get_price_to_float($b->price)) {
+        return 0;
+    }
+    return (caag_get_price_to_float($a->price) < caag_get_price_to_float($b->price)) ? -1 : 1;
+    //return strnatcmp($a->price, $b->price);
 }
 
 function caag_hq_get_lower_decreasing_rates_for_display_by_caag_id($caag_id)
 {
     $rates = caag_hq_get_decreasing_rates_for_display_by_caag_id($caag_id);
     usort($rates, "caag_hq_order_classes_by_price");
-    return str_replace(",", "", $rates[count($rates) -  1]->price);
+    return str_replace(",", "", $rates[0]->price);
+}
+
+
+function caag_get_price_to_float($s)
+{
+    // convert "," to "."
+    $s = str_replace(',', '', $s);
+
+    // remove everything except numbers and dot "."
+    $s = preg_replace("/[^0-9\.]/", "", $s);
+
+    // remove all seperators from first part and keep the end
+    //$s = str_replace('.', '',substr($s, 0, -3)) . substr($s, -3);
+
+    // return float
+    return (float) $s;
 }
 
 

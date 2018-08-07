@@ -224,8 +224,8 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
             update_post_meta( $post_id, 'total_sales', '0' );
             update_post_meta( $post_id, '_downloadable', 'no' );
             update_post_meta( $post_id, '_virtual', 'yes' );
-            update_post_meta( $post_id, '_regular_price', $rate );
-            update_post_meta( $post_id, '_sale_price', $rate );
+            update_post_meta( $post_id, '_regular_price', str_replace(",", "", $rate));
+            update_post_meta( $post_id, '_sale_price', str_replace(",", "", $rate) );
             update_post_meta( $post_id, '_purchase_note', '' );
             update_post_meta( $post_id, '_featured', 'no' );
             update_post_meta( $post_id, '_weight', '' );
@@ -236,7 +236,7 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
             update_post_meta( $post_id, '_product_attributes', array() );
             update_post_meta( $post_id, '_sale_price_dates_from', '' );
             update_post_meta( $post_id, '_sale_price_dates_to', '' );
-            update_post_meta( $post_id, '_price', $rate );
+            update_post_meta( $post_id, '_price', str_replace(",", "", $rate) );
             update_post_meta( $post_id, '_sold_individually', '' );
             update_post_meta( $post_id, '_manage_stock', 'no' );
             update_post_meta( $post_id, '_backorders', 'no' );

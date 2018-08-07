@@ -435,9 +435,3 @@ function caag_hq_get_vehicle_classes_for_display_by_brand_id( $caag_brand_id )
     }
     return $vehicles;
 }
-
-function caag_tesssst()
-{
-    //caag_hq_vehicle_classes_cron_job();
-}
-add_action('template_redirect', 'caag_tesssst');

@@ -61,6 +61,11 @@ function caag_hq_vehicle_classes_cron_job()
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_META);
+        delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_BASE_RATE_PLUS_TAX_META);
+        delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_HOURLY_RATE_PLUS_TAX_META);
+        delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_PLUS_TAX_META);
+        delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_PLUS_TAX_META);
+        delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_PLUS_TAX_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CAAG_ID_ON_WOOCOMMERCE_PRODUCT_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F214_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F215_META);
@@ -101,11 +106,16 @@ function caag_hq_vehicle_classes_cron_job()
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_EXTENSION_META, $vehicles_classes_caag->images[0]->extension );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_ID_META, $vehicles_classes_caag->active_rates[0]->id );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_SEASON_ID_META, $vehicles_classes_caag->active_rates[0]->season_id );
-        update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_BASE_RATE_META, number_format((float)$vehicles_classes_caag->active_rates[0]->base_rate,2) );
+        update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_BASE_RATE_META, number_format((float)$vehicles_classes_caag->active_rates[0]->base_rate, 2) );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_HOURLY_RATE_META, number_format((float)$vehicles_classes_caag->active_rates[0]->hourly_rate, 2) );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_META, number_format((float)$vehicles_classes_caag->active_rates[0]->daily_rate, 2) );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_META, number_format((float)$vehicles_classes_caag->active_rates[0]->weekly_rate, 2) );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_META, number_format((float)$vehicles_classes_caag->active_rates[0]->monthly_rate, 2) );
+        update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_BASE_RATE_PLUS_TAX_META, caag_hq_set_prices_with_taxes( $vehicles_classes_caag->active_rates[0]->base_rate, $vehicles_classes_caag->brand->abb_tax ) );
+        update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_HOURLY_RATE_PLUS_TAX_META, caag_hq_set_prices_with_taxes( $vehicles_classes_caag->active_rates[0]->hourly_rate, $vehicles_classes_caag->brand->abb_tax ) );
+        update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_PLUS_TAX_META, caag_hq_set_prices_with_taxes( $vehicles_classes_caag->active_rates[0]->daily_rate, $vehicles_classes_caag->brand->abb_tax ) );
+        update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_PLUS_TAX_META, caag_hq_set_prices_with_taxes( $vehicles_classes_caag->active_rates[0]->weekly_rate, $vehicles_classes_caag->brand->abb_tax ) );
+        update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_PLUS_TAX_META, caag_hq_set_prices_with_taxes( $vehicles_classes_caag->active_rates[0]->monthly_rate, $vehicles_classes_caag->brand->abb_tax ) );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F214_META, $vehicles_classes_caag->f214 );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F215_META, $vehicles_classes_caag->f215 );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F222_META, $vehicles_classes_caag->f222 );
@@ -162,6 +172,11 @@ function caag_hq_get_vehicle_classes_for_display()
         $new_vehicle->daily_rate = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_META, true );
         $new_vehicle->weekly_rate = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_META, true );
         $new_vehicle->monthly_rate = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_META, true );
+        $new_vehicle->base_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_BASE_RATE_PLUS_TAX_META, true );
+        $new_vehicle->hourly_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_HOURLY_RATE_PLUS_TAX_META, true );
+        $new_vehicle->daily_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_PLUS_TAX_META, true );
+        $new_vehicle->weekly_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_PLUS_TAX_META, true );
+        $new_vehicle->monthly_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_PLUS_TAX_META, true );
         $new_vehicle->inb_de = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F214_META, true );
         $new_vehicle->tech_de = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F215_META, true );
         $new_vehicle->passengers = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F222_META, true );
@@ -216,6 +231,8 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
             $post_id = wp_insert_post( $args );
             if($vehicle->decreasing_rate_based_on_intervals){
                 $rate = caag_hq_get_lower_decreasing_rates_for_display_by_caag_id( $vehicle->id );
+            }else if(get_option(CAAG_HQ_RENTAL_ADD_TAXES_TO_RATES_ON_API_SYNC) == "1"){
+                $rate = $vehicle->daily_rate_plus_tax;
             }else{
                 $rate = $vehicle->daily_rate;
             }
@@ -366,6 +383,11 @@ function caag_hq_get_vehicle_classes_for_display_by_caag_id( $caag_vehicle_class
         $new_vehicle->daily_rate = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_META, true );
         $new_vehicle->weekly_rate = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_META, true );
         $new_vehicle->monthly_rate = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_META, true );
+        $new_vehicle->base_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_BASE_RATE_PLUS_TAX_META, true );
+        $new_vehicle->hourly_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_HOURLY_RATE_PLUS_TAX_META, true );
+        $new_vehicle->daily_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_PLUS_TAX_META, true );
+        $new_vehicle->weekly_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_PLUS_TAX_META, true );
+        $new_vehicle->monthly_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_PLUS_TAX_META, true );
         $new_vehicle->inb_de = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F214_META, true );
         $new_vehicle->tech_de = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F215_META, true );
         $new_vehicle->passengers = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F222_META, true );
@@ -424,6 +446,11 @@ function caag_hq_get_vehicle_classes_for_display_by_brand_id( $caag_brand_id )
         $new_vehicle->daily_rate = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_META, true );
         $new_vehicle->weekly_rate = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_META, true );
         $new_vehicle->monthly_rate = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_META, true );
+        $new_vehicle->base_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_BASE_RATE_PLUS_TAX_META, true );
+        $new_vehicle->hourly_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_HOURLY_RATE_PLUS_TAX_META, true );
+        $new_vehicle->daily_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_DAILY_RATE_PLUS_TAX_META, true );
+        $new_vehicle->weekly_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_WEEKLY_RATE_PLUS_TAX_META, true );
+        $new_vehicle->monthly_rate_plus_tax = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_MONTHLY_RATE_PLUS_TAX_META, true );
         $new_vehicle->inb_de = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F214_META, true );
         $new_vehicle->tech_de = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F215_META, true );
         $new_vehicle->passengers = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F222_META, true );

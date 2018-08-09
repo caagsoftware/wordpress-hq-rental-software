@@ -194,4 +194,9 @@ function caag_hq_get_seasons_on_website()
     $query = new WP_Query( $args );
     return $query->posts;
 }
+function caag_hq_set_prices_with_taxes( $price, $tax ){
+    $price_number = (float)number_format((float)$price,2);
+    $tax_number = (float)number_format((float)$tax,2);
+    return number_format( $price_number * ( 1 + ( $tax_number / 100.00 )), 2 );
+}
 

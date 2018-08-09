@@ -1,12 +1,12 @@
 <?php
 /*
  * @package Wordpress HQ Rental Software
- * @version 1.3.7.0
+ * @version 1.3.7.11
  *
  *
 Plugin Name:  HQ Rental
 Description:  HQ Rental Software
-Version:      1.3.7.0
+Version:      1.3.7.1
 Author:       HQ Rental Software
 Author URI:   https://www.hqrentalsoftware.com
 License: GPLv3
@@ -17,7 +17,7 @@ License URI: https://www.gnu.org/licenses/gpl.html
 /*
  * Global Constant
  */
-define('CAAG_HQ_RENTAL_VERSION','1.3.7.0');
+define('CAAG_HQ_RENTAL_VERSION','1.3.7.1');
 define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');
 
 
@@ -31,7 +31,7 @@ define('CAAG_HQ_RENTAL_API_END_POINT','caag_hq_rental_api_end_point');
 define('CAAG_HQ_RENTAL_SAFARI_BROWSER', 'caag_hq_rental_safari_browser');
 define('CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED', 'caag_hq_rental_current_brand_selected');
 define('CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION', 'caag_hq_rental_woocommerce_sync_option');
-
+define('CAAG_HQ_RENTAL_ADD_TAXES_TO_RATES_ON_API_SYNC', 'caag_hq_rental_add_taxes_to_rates_on_api_sync');
 /*
  * Meta Values Keys
  */

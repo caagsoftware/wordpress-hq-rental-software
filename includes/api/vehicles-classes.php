@@ -103,6 +103,7 @@ function caag_hq_vehicle_classes_cron_job()
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_DESCRIPTION_FOR_WEBSITE_EN_META, $vehicles_classes_caag->description_for_website->en );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_DESCRIPTION_FOR_WEBSITE_NL_META, $vehicles_classes_caag->description_for_website->nl );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_DESCRIPTION_FOR_WEBSITE_DE_META, $vehicles_classes_caag->description_for_website->de );
+        update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_LINK_META, $vehicles_classes_caag->images[0]->public_link );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGE_EXTENSION_META, $vehicles_classes_caag->images[0]->extension );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_ID_META, $vehicles_classes_caag->active_rates[0]->id );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_RATE_SEASON_ID_META, $vehicles_classes_caag->active_rates[0]->season_id );
@@ -462,3 +463,4 @@ function caag_hq_get_vehicle_classes_for_display_by_brand_id( $caag_brand_id )
     }
     return $vehicles;
 }
+

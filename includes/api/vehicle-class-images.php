@@ -52,10 +52,12 @@ function caag_hq_get_vehicle_image_for_display($caag_vehicle_class_id)
         'post_status'       =>  'publish',
         'posts_per_page'    =>  -1,
         'meta_query'        =>  array(
-            'key'               =>  CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_CAAG_VEHICLE_CLASS_CAAG_ID_META,
-            'value'             =>  $caag_vehicle_class_id,
-            'compare'           =>  '=',
-            'posts_per_page'    =>  -1,
+            array(
+                'key'               =>  CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_CAAG_VEHICLE_CLASS_CAAG_ID_META,
+                'value'             =>  $caag_vehicle_class_id,
+                'compare'           =>  '=',
+                'posts_per_page'    =>  -1,
+            )
         )
     );
     $query = new WP_Query( $args );

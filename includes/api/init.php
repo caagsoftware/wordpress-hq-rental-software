@@ -134,6 +134,7 @@ define('CAAG_HQ_RENTAL_SEASON_DATE_START_META', 'caag_hq_rental_season_date_star
 define('CAAG_HQ_RENTAL_SEASON_DATE_END_META', 'caag_hq_rental_season_date_end_meta');
 define('CAAG_HQ_RENTAL_SEASON_MINIMAL_RENTAL_PERIOD_META', 'caag_hq_rental_season_minimal_rental_period_meta');
 
+require_once('assets.php');
 require_once('utils.php');
 require_once('locations.php');
 require_once('rates.php');

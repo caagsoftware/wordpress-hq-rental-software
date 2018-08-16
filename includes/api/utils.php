@@ -9,6 +9,14 @@ function caag_hq_get_location_endpoint()
 }
 
 /*
+ * Get Locations Api Endpoint
+ */
+function caag_hq_get_assets_endpoint()
+{
+    return 'https://api.caagcrm.com/api/assets/files';
+}
+
+/*
  * Get Rates Api Endpoint
  */
 function caag_hq_get_rates_endpoint()
@@ -198,5 +206,13 @@ function caag_hq_set_prices_with_taxes( $price, $tax ){
     $price_number = (float)number_format((float)$price,2);
     $tax_number = (float)number_format((float)$tax,2);
     return number_format( $price_number * ( 1 + ( $tax_number / 100.00 )), 2 );
+}
+function caag_hq_get_fontawesome_icon_tag($icon)
+{
+    if((strpos($icon, 'fas fa') !== false) or (strpos($icon, 'fab fa') !== false)){
+        return $icon;
+    }else{
+        return 'fas fa-'. $icon;
+    }
 }
 

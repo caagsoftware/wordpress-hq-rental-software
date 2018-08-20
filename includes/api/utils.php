@@ -9,6 +9,14 @@ function caag_hq_get_location_endpoint()
 }
 
 /*
+ * Get Locations Api Endpoint
+ */
+function caag_hq_get_assets_endpoint()
+{
+    return 'https://api.caagcrm.com/api/assets/files';
+}
+
+/*
  * Get Rates Api Endpoint
  */
 function caag_hq_get_rates_endpoint()

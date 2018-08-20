@@ -79,7 +79,10 @@ function caag_hq_rental_settings_html()
                             </td>
                         </tr>
                         <tr>
-                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Enable Woocommerce Product Syncronization</label></th>
+                            <th>
+
+                                <label class="wp-heading-inline" id="title-prompt-text" for="title">Enable Woocommerce Product Syncronization</label>
+                            </th>
                             <td>
                                 <?php $woocommerce_option = get_option(CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION); ?>
                                 <?php if($woocommerce_option == '0'): ?>
@@ -87,6 +90,7 @@ function caag_hq_rental_settings_html()
                                 <?php elseif($woocommerce_option == '1'): ?>
                                     <input name="<?php echo CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION; ?>" type="checkbox" id="thumbnail_crop" value="1" checked="checked">
                                 <?php endif; ?>
+                                <span class="hq-warning-woo">If this option is enabled, all Woocommerce product all products will be deleted</span>
                             </td>
                         </tr>
                         <tr>
@@ -98,6 +102,7 @@ function caag_hq_rental_settings_html()
                                 <?php elseif($taxes_option == '1'): ?>
                                     <input name="<?php echo CAAG_HQ_RENTAL_ADD_TAXES_TO_RATES_ON_API_SYNC; ?>" type="checkbox" id="thumbnail_crop" value="1" checked="checked">
                                 <?php endif; ?>
+
                             </td>
                         </tr>
 						</tbody>
@@ -124,7 +129,7 @@ function caag_hq_rental_settings_html()
                     <li>Asia: 139.162.35.27</li>
                 </ul>
                 <p style="text-align: justify;">
-                    Once you have created the A record please create a support ticket inside the HQ application so our team can proceed with the installation.
+                       Once you have created the A record please create a support ticket inside the HQ application so our team can proceed with the installation.
                 </p>
                 <style>
                     .fw-brz-dismiss {
@@ -151,6 +156,10 @@ function caag_hq_rental_settings_html()
                         color: #fff;
                         border-color: #141923;
                         box-shadow: 0px 2px 0px 0px #141923;
+                    }
+                    .hq-warning-woo{
+                        font-weight: bold;
+                        color: red;
                     }
                 </style>
                 <button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>

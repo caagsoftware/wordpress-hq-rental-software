@@ -57,6 +57,17 @@ function caag_hq_rental_settings_html()
                                 </select>
                             </td>
                         </tr>
+                        <tr>
+                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Use Frontend Date Format on System Backend</label></th>
+                            <td>
+                                <?php $custom_date_option = get_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT); ?>
+                                <?php if($custom_date_option == '0'): ?>
+                                    <input name="<?php echo CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT; ?>" type="checkbox" id="thumbnail_crop" value="1">
+                                <?php elseif($custom_date_option == '1'): ?>
+                                    <input name="<?php echo CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT; ?>" type="checkbox" id="thumbnail_crop" value="1" checked="checked">
+                                <?php endif; ?>
+                            </td>
+                        </tr>
 						<tr>
                             <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Api Region</label></th>
                             <td>
@@ -201,14 +212,14 @@ function caag_hq_rental_settings_registration()
     if(! get_option(CAAG_HQ_RENTAL_DATE_FORMAT)){
         add_option(CAAG_HQ_RENTAL_DATE_FORMAT,'YYYY-MM-DD');
     }
+    if(! get_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT)){
+        add_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT,'0');
+    }
     if(! get_option(CAAG_HQ_RENTAL_API_END_POINT)){
         add_option(CAAG_HQ_RENTAL_API_END_POINT,'https://api.caagcrm.com/api/');
     }
     if(! get_option(CAAG_HQ_RENTAL_SAFARI_BROWSER)){
         add_option(CAAG_HQ_RENTAL_SAFARI_BROWSER,'0');
-    }
-    if(! get_option(CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED)){
-        add_option(CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED,'0');
     }
     if(! get_option(CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED)){
         add_option(CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED,'0');
@@ -219,6 +230,7 @@ function caag_hq_rental_settings_registration()
     if( ! get_option(CAAG_HQ_RENTAL_ADD_TAXES_TO_RATES_ON_API_SYNC) ){
         add_option( CAAG_HQ_RENTAL_ADD_TAXES_TO_RATES_ON_API_SYNC, '0' );
     }
+
 }
 
 /*
@@ -246,6 +258,16 @@ function caag_hq_rental_save_settings($settings)
         }
     }else{
         update_option(CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION, '0');
+    }
+    /*
+     * Custom System Dateformat Functionality
+     */
+    if(isset($settings[CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT])){
+        if($settings[CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT] == '1'){
+            update_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT, '1');
+        }
+    }else{
+        update_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT, '0');
     }
     if(isset($settings[CAAG_HQ_RENTAL_ADD_TAXES_TO_RATES_ON_API_SYNC])){
         if($settings[CAAG_HQ_RENTAL_ADD_TAXES_TO_RATES_ON_API_SYNC] == '1'){

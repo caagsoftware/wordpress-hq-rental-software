@@ -216,3 +216,8 @@ function caag_hq_get_fontawesome_icon_tag($icon)
     }
 }
 
+
+function caag_hq_get_date_format($format)
+{
+    return explode(' ',  $format)[0];
+}

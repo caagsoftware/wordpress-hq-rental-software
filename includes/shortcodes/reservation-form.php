@@ -38,22 +38,26 @@ function caag_hq_rental_shortcode($atts = [])
     $plugin_date_format = get_option( CAAG_HQ_RENTAL_DATE_FORMAT, 'Y-m-d H:i' );
 	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger;
 	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle . $vehicles_from_post;
-    $custom_date_format = get_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT) == '1' ? true : false;
+	$customDateFormat = get_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT, false);
+	if($customDateFormat == '1'){
+	    $custom_date_format = true;
+    }else{
+	    $custom_date_format = false;
+    }
 	try {
 		if (get_data_from_post_var('pick_up_date')) {
 			if (get_data_from_post_var('pick_up_time')) {
                 $pickup_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('pick_up_date') . ' ' . get_data_from_post_var('pick_up_time'));
                 $return_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('return_date') . ' ' . get_data_from_post_var('return_time'));
 			} else {
-                $pickup_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('pick_up_date'));
-                $return_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('return_date'));
+                $pickup_date = Carbon::createFromFormat( caag_hq_get_date_format($plugin_date_format), get_data_from_post_var('pick_up_date'));
+                $return_date = Carbon::createFromFormat( caag_hq_get_date_format($plugin_date_format), get_data_from_post_var('return_date'));
 			}
 			$pick_up_location = get_data_from_post_var('pick_up_location');
 			$pick_up_location_custom = get_data_from_post_var('pick_up_location_custom');
 			$return_location_custom = get_data_from_post_var('return_location_custom');
 			$return_location = get_data_from_post_var('return_location');
 			$email = get_data_from_post_var('email');
-
 			if($custom_date_format){
                 $output = '<form action="' . $first_step_link . '" method="POST" target="caag-rental-iframe" id="caag_form_init">
                     <input type="hidden" name="pick_up_date" id="pick_up_date" value="' .

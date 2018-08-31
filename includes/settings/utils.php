@@ -302,6 +302,8 @@ function caag_hq_options_get_datetime_options($plugin_option)
         'iso'   =>  'Y-m-d H:i',
         'eu'    =>  'd-m-Y H:i',
         'us'    =>  'm/d/Y g:iA',
+        'us_c'  =>  'm/d/Y g:i',
+        'us_G'  =>  'm/d/Y G:i',
         've'    =>  'd/m/Y g:iA',
         'int'   =>  'd.m.Y g:iA',
         'id'    =>  'd-M-Y g:iA',

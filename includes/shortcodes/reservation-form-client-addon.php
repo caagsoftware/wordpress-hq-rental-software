@@ -7,11 +7,12 @@ use Carbon\Carbon;
  * @input caag_form_id
  * @return html string
  */
-function caag_hq_rental_shortcode($atts = [])
+function hq_rental_reservation_form_client_addon($atts = [])
 {
-	caag_hq_rental_styles();
-	caag_hq_rental_scripts();
-	$caag_id = $atts['id'];
+    caag_hq_rental_styles();
+    caag_hq_rental_scripts();
+    $caag_id = $atts['id'];
+    var_dump($atts);
     $passenger = get_data_from_post_var( 'passengers_number' );
     if( !empty($vehicle_class_id) ){
         $single_vehicle = '&vehicle_class_id=' . $vehicle_class_id;
@@ -36,17 +37,17 @@ function caag_hq_rental_shortcode($atts = [])
         $vehicles_from_post = '';
     }
     $plugin_date_format = get_option( CAAG_HQ_RENTAL_DATE_FORMAT, 'Y-m-d H:i' );
-	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger;
-	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle . $vehicles_from_post;
-	$customDateFormat = get_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT, false);
-	if($customDateFormat == '1'){
-	    $custom_date_format = true;
+    $link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger;
+    $first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle . $vehicles_from_post;
+    $customDateFormat = get_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT, false);
+    if($customDateFormat == '1'){
+        $custom_date_format = true;
     }else{
-	    $custom_date_format = false;
+        $custom_date_format = false;
     }
     if(get_data_from_post_var('new_reservation_to_step_4') == '1'){
-	    return do_shortcode('[hq_rental_reservation_form_step_4 base_link='. $atts['base_link'] .']');
-	}else{
+        return do_shortcode('[hq_rental_reservation_form_step_4 base_link='. $atts['base_link_client_step'] .']');
+    }else{
         try {
             if (get_data_from_post_var('pick_up_date')) {
                 if (get_data_from_post_var('pick_up_time')) {
@@ -64,13 +65,13 @@ function caag_hq_rental_shortcode($atts = [])
                 if($custom_date_format){
                     $output = '<form action="' . $first_step_link . '" method="POST" target="caag-rental-iframe" id="caag_form_init">
                         <input type="hidden" name="pick_up_date" id="pick_up_date" value="' .
-                            $pickup_date->format(caag_hq_get_date_format($plugin_date_format)) . '"/>
+                        $pickup_date->format(caag_hq_get_date_format($plugin_date_format)) . '"/>
                         <input type="hidden" name="return_date" id="return_date" value="' .
-                            $return_date->format(caag_hq_get_date_format($plugin_date_format)) . '"/>
+                        $return_date->format(caag_hq_get_date_format($plugin_date_format)) . '"/>
                         <input type="hidden" name="pick_up_time" id="pick_up_time" value="' .
-                            $pickup_date->format(caag_hq_get_time_format($plugin_date_format)) . '"/>
+                        $pickup_date->format(caag_hq_get_time_format($plugin_date_format)) . '"/>
                         <input type="hidden" name="return_time" id="return_time" value="' .
-                            $return_date->format(caag_hq_get_time_format($plugin_date_format)) . '"/>
+                        $return_date->format(caag_hq_get_time_format($plugin_date_format)) . '"/>
                         <input type="hidden" name="pick_up_location" value="' . $pick_up_location . '"/>
                         <input type="hidden" name="email" value="' . $email . '"/>
                         <input type="hidden" name="return_location" value="' . $return_location . '"/>
@@ -101,15 +102,15 @@ function caag_hq_rental_shortcode($atts = [])
                 return $output;
             }
         } catch (Exception $exception) {
-    }
+        }
 
-	}
+    }
     if(isset($_GET['vehicle_class_id'])){
         $class_id = $_GET['vehicle_class_id'];
         $output .= '<iframe id="caag-rental-iframe" src="'. $link . '&new=true&vehicle_class_id='. $class_id .'" scrolling="no"></iframe>';
     }else{
         $output .= '<iframe id="caag-rental-iframe" src="'. $link . '" scrolling="no"></iframe>';
     }
-	return $output;
+    return $output;
 }
-add_shortcode('hq_rental_reservation_form', 'caag_hq_rental_shortcode');
+add_shortcode('hq_rental_reservation_form_client_addon', 'hq_rental_reservation_form_client_addon');

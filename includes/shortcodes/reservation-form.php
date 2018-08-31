@@ -61,9 +61,9 @@ function caag_hq_rental_shortcode($atts = [])
                     <input type="hidden" name="return_date" id="return_date" value="' .
                     $return_date->format(caag_hq_get_date_format($plugin_date_format)) . '"/>
                     <input type="hidden" name="pick_up_time" id="pick_up_time" value="' .
-                    $pickup_date->format('H:i') . '"/>
+                    $pickup_date->format(caag_hq_get_time_format($plugin_date_format)) . '"/>
                     <input type="hidden" name="return_time" id="return_time" value="' .
-                    $return_date->format('H:i') . '"/>
+                    $return_date->format(caag_hq_get_time_format($plugin_date_format)) . '"/>
                     <input type="hidden" name="pick_up_location" value="' . $pick_up_location . '"/>
                     <input type="hidden" name="email" value="' . $email . '"/>
                     <input type="hidden" name="return_location" value="' . $return_location . '"/>

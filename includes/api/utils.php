@@ -221,3 +221,7 @@ function caag_hq_get_date_format($format)
 {
     return explode(' ',  $format)[0];
 }
+function caag_hq_get_time_format($format)
+{
+    return explode(' ',  $format)[1];
+}

@@ -301,10 +301,10 @@ function caag_hq_options_get_datetime_options($plugin_option)
     $system_date_options = array(
         'iso'   =>  'Y-m-d H:i',
         'eu'    =>  'd-m-Y H:i',
-        'us'    =>  'm/d/Y g:i a',
-        've'    =>  'd/m/Y g:i a',
-        'int'   =>  'd.m.Y g:i a',
-        'id'    =>  'd-M-Y g:i a',
+        'us'    =>  'm/d/Y g:iA',
+        've'    =>  'd/m/Y g:iA',
+        'int'   =>  'd.m.Y g:iA',
+        'id'    =>  'd-M-Y g:iA',
         'ch'    =>  'd.m.Y H:i'
     );
     foreach ( $system_date_options as $key => $value ){

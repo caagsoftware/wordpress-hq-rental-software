@@ -36,6 +36,7 @@ function caag_hq_additional_charges_cron_job()
         delete_post_meta($charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_ID_META);
         delete_post_meta($charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_NAME_META);
         delete_post_meta($charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_CHARGE_TYPE_META);
+        delete_post_meta($charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_MANDATORY_CHARGE_META);
         delete_post_meta($charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SELECTION_TYPE_META);
         delete_post_meta($charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_EN_META);
         delete_post_meta($charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_NL_META);
@@ -66,6 +67,7 @@ function caag_hq_additional_charges_cron_job()
         update_post_meta( $id, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_ID_META, $charge_caag->id );
         update_post_meta( $id, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_NAME_META, $charge_caag->name );
         update_post_meta( $id, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_CHARGE_TYPE_META, $charge_caag->charge_type );
+        update_post_meta( $id, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_MANDATORY_CHARGE_META, ((!empty($charge_caag->mandatory)) ? 1 : 0) );
         update_post_meta( $id, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SELECTION_TYPE_META, $charge_caag->selection_type );
         update_post_meta( $id, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_EN_META, $charge_caag->description->en );
         update_post_meta( $id, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_NL_META, $charge_caag->description->nl );
@@ -103,6 +105,7 @@ function caag_hq_get_additional_charges_for_display()
         $new_charge->id = get_post_meta( $charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_ID_META, true );
         $new_charge->name = get_post_meta( $charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_NAME_META, true );
         $new_charge->charge_type = get_post_meta( $charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_CHARGE_TYPE_META, true );
+        $new_charge->mandatory = get_post_meta( $charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_MANDATORY_CHARGE_META, true );
         $new_charge->selection_type = get_post_meta( $charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SELECTION_TYPE_META, true );
         $new_charge->description_en = get_post_meta( $charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_EN_META, true );
         $new_charge->description_nl = get_post_meta( $charge->ID, CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_NL_META, true );

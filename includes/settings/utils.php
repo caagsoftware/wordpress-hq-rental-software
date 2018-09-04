@@ -307,7 +307,8 @@ function caag_hq_options_get_datetime_options($plugin_option)
         've'    =>  'd/m/Y g:iA',
         'int'   =>  'd.m.Y g:iA',
         'id'    =>  'd-M-Y g:iA',
-        'ch'    =>  'd.m.Y H:i'
+        'ch'    =>  'd.m.Y H:i',
+        'ch_c'  =>  'Y-m-d G:i'
     );
     foreach ( $system_date_options as $key => $value ){
         if($plugin_option == $value){

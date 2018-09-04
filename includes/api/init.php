@@ -105,6 +105,7 @@ define('CAAG_HQ_RENTAL_FEATURES_ICON_META', 'caag_hq_rental_features_icon_meta')
 define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_ID_META', 'caag_hq_rental_additional_charges_id_meta');
 define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_NAME_META', 'caag_hq_rental_additional_charges_name_meta');
 define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_CHARGE_TYPE_META', 'caag_hq_rental_additional_charges_charge_type_meta');
+define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_MANDATORY_CHARGE_META', 'caag_hq_rental_additional_charges_mandatory_charge_meta');
 define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_SELECTION_TYPE_META', 'caag_hq_rental_additional_charges_selection_type_meta');
 define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_EN_META', 'caag_hq_rental_additional_charges_description_en_meta');
 define('CAAG_HQ_RENTAL_ADDITIONAL_CHARGES_DESCRIPTION_NL_META', 'caag_hq_rental_additional_charges_description_nl_meta');

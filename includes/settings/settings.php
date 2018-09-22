@@ -101,7 +101,7 @@ function caag_hq_rental_settings_html()
                                 <?php elseif($woocommerce_option == '1'): ?>
                                     <input name="<?php echo CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION; ?>" type="checkbox" id="thumbnail_crop" value="1" checked="checked">
                                 <?php endif; ?>
-                                <span class="hq-warning-woo">If this option is enabled, all Woocommerce product all products will be deleted</span>
+                                <span class="hq-warning-woo">If this option is enabled, all Woocommerce products will be deleted</span>
                             </td>
                         </tr>
                         <tr>

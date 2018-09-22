@@ -3,6 +3,14 @@
 /*
  * Get Locations Api Endpoint
  */
+function caag_hq_get_brands_endpoint()
+{
+    return get_option( CAAG_HQ_RENTAL_API_END_POINT ) . 'fleets/brands';
+}
+
+/*
+ * Get Locations Api Endpoint
+ */
 function caag_hq_get_location_endpoint()
 {
     return get_option( CAAG_HQ_RENTAL_API_END_POINT ) . 'fleets/locations';
@@ -74,11 +82,17 @@ function caag_hq_api_get_basic_header()
 }
 
 /*
- * Get Brands Api Endpoint
+ * Get Brands Custom Posts
  */
-function caag_hq_get_brands_endpoint()
+function caag_hq_get_brands_on_website()
 {
-    return get_option( CAAG_HQ_RENTAL_API_END_POINT ) . 'fleets/brands';
+    $args = array(
+        'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_BRANDS,
+        'post_status'       =>  'publish',
+        'posts_per_page'    =>  -1
+    );
+    $query = new WP_Query( $args );
+    return $query->posts;
 }
 
 /*

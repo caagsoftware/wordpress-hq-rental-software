@@ -68,6 +68,7 @@ function caag_hq_get_locations_for_display()
     $args = array(
         'post_type'     =>  CAAG_HQ_RENTAL_CUSTOM_POST_LOCATIONS,
         'post_status'   =>  'publish',
+        'posts_per_page' =>  -1,
     );
     $query = new WP_Query( $args );
     $locations = array();
@@ -93,6 +94,7 @@ function caag_hq_get_active_locations_for_display()
     $args = array(
         'post_type'     =>  CAAG_HQ_RENTAL_CUSTOM_POST_LOCATIONS,
         'post_status'   =>  'publish',
+        'posts_per_page'    =>  -1,
         'meta_query'    =>  array(
             array(
                 'key'       =>  CAAG_HQ_RENTAL_LOCATION_ACTIVE_META,
@@ -122,9 +124,10 @@ function caag_hq_get_active_locations_for_display()
 function caag_hq_get_active_locations_by_brand_id_for_display($caag_brand_id)
 {
     $args = array(
-        'post_type'     =>  CAAG_HQ_RENTAL_CUSTOM_POST_LOCATIONS,
-        'post_status'   =>  'publish',
-        'meta_query'    =>  array(
+        'post_type'         =>  CAAG_HQ_RENTAL_CUSTOM_POST_LOCATIONS,
+        'post_status'       =>  'publish',
+        'posts_per_page'    =>  -1,
+        'meta_query'        =>  array(
             array(
                 'key'       =>  CAAG_HQ_RENTAL_LOCATION_ACTIVE_META,
                 'value'     =>  '1',

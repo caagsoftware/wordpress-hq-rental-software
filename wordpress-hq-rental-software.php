@@ -27,6 +27,7 @@ define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');
 define('CAAG_HQ_RENTAL_USER_TOKEN','caag_hq_rental_user_token');
 define('CAAG_HQ_RENTAL_TENANT_TOKEN','caag_hq_rental_tenant_token');
 define('CAAG_HQ_RENTAL_DATE_FORMAT','caag_hq_rental_date_format');
+define('CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM','caag_hq_rental_use_custom_date_format_system');
 define('CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT','caag_hq_rental_use_custom_date_format');
 define('CAAG_HQ_RENTAL_API_END_POINT','caag_hq_rental_api_end_point');
 define('CAAG_HQ_RENTAL_SAFARI_BROWSER', 'caag_hq_rental_safari_browser');

@@ -36,6 +36,7 @@ function caag_hq_rental_shortcode($atts = [])
         $vehicles_from_post = '';
     }
     $plugin_date_format = get_option( CAAG_HQ_RENTAL_DATE_FORMAT, 'Y-m-d H:i' );
+    $system_date_format = get_option( CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM );
 	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger;
 	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle . $vehicles_from_post;
 	$customDateFormat = get_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT, false);
@@ -81,13 +82,13 @@ function caag_hq_rental_shortcode($atts = [])
                 }else{
                     $output = '<form action="' . $first_step_link . '" method="POST" target="caag-rental-iframe" id="caag_form_init">
                     <input type="hidden" name="pick_up_date" id="pick_up_date" value="' .
-                        $pickup_date->toDateString() . '"/>
+                        $pickup_date->format(caag_hq_get_date_format( $system_date_format )) . '"/>
                     <input type="hidden" name="return_date" id="return_date" value="' .
-                        $return_date->toDateString() . '"/>
+                        $pickup_date->format(caag_hq_get_date_format( $system_date_format )) . '"/>
                     <input type="hidden" name="pick_up_time" id="pick_up_time" value="' .
-                        $pickup_date->format('H:i') . '"/>
+                        $pickup_date->format( caag_hq_get_time_format( $system_date_format )) . '"/>
                     <input type="hidden" name="return_time" id="return_time" value="' .
-                        $return_date->format('H:i') . '"/>
+                        $return_date->format( caag_hq_get_time_format( $system_date_format )) . '"/>
                     <input type="hidden" name="pick_up_location" value="' . $pick_up_location . '"/>
                     <input type="hidden" name="email" value="' . $email . '"/>
                     <input type="hidden" name="return_location" value="' . $return_location . '"/>

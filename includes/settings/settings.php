@@ -50,10 +50,18 @@ function caag_hq_rental_settings_html()
 							<td><input type="text" name="<?php echo CAAG_HQ_RENTAL_USER_TOKEN; ?>" size="70" value="<?php echo $settings[CAAG_HQ_RENTAL_USER_TOKEN]; ?>" id="title" spellcheck="true" autocomplete="off"></td>
 						</tr>
                         <tr>
-                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Date Format</label></th>
+                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Front-end Date Format</label></th>
                             <td>
                                 <select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT; ?>">
                                     <?php echo caag_hq_options_get_datetime_options(get_option(CAAG_HQ_RENTAL_DATE_FORMAT)); ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select System Date Format</label></th>
+                            <td>
+                                <select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM; ?>">
+                                    <?php echo caag_hq_options_get_datetime_options(get_option(CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM)); ?>
                                 </select>
                             </td>
                         </tr>
@@ -210,7 +218,10 @@ function caag_hq_rental_settings_registration()
         add_option(CAAG_HQ_RENTAL_TENANT_TOKEN,'');
     }
     if(! get_option(CAAG_HQ_RENTAL_DATE_FORMAT)){
-        add_option(CAAG_HQ_RENTAL_DATE_FORMAT,'YYYY-MM-DD');
+        add_option(CAAG_HQ_RENTAL_DATE_FORMAT,'Y-m-d H:i');
+    }
+    if(! get_option(CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM)){
+        add_option(CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM,'Y-m-d H:i');
     }
     if(! get_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT)){
         add_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT,'0');

@@ -54,8 +54,8 @@ function caag_hq_rental_shortcode($atts = [])
                     $pickup_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('pick_up_date') . ' ' . get_data_from_post_var('pick_up_time'));
                     $return_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('return_date') . ' ' . get_data_from_post_var('return_time'));
                 } else {
-                    $pickup_date = Carbon::createFromFormat( caag_hq_get_date_format($plugin_date_format), get_data_from_post_var('pick_up_date'));
-                    $return_date = Carbon::createFromFormat( caag_hq_get_date_format($plugin_date_format), get_data_from_post_var('return_date'));
+                    $pickup_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('pick_up_date'));
+                    $return_date = Carbon::createFromFormat( $plugin_date_format, get_data_from_post_var('return_date'));
                 }
                 $pick_up_location = get_data_from_post_var('pick_up_location');
                 $pick_up_location_custom = get_data_from_post_var('pick_up_location_custom');
@@ -84,7 +84,7 @@ function caag_hq_rental_shortcode($atts = [])
                     <input type="hidden" name="pick_up_date" id="pick_up_date" value="' .
                         $pickup_date->format(caag_hq_get_date_format( $system_date_format )) . '"/>
                     <input type="hidden" name="return_date" id="return_date" value="' .
-                        $pickup_date->format(caag_hq_get_date_format( $system_date_format )) . '"/>
+                        $return_date->format(caag_hq_get_date_format( $system_date_format )) . '"/>
                     <input type="hidden" name="pick_up_time" id="pick_up_time" value="' .
                         $pickup_date->format( caag_hq_get_time_format( $system_date_format )) . '"/>
                     <input type="hidden" name="return_time" id="return_time" value="' .
@@ -101,7 +101,8 @@ function caag_hq_rental_shortcode($atts = [])
                 caag_hq_rental_inline_script();
                 return $output;
             }
-        } catch (Exception $exception) {
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
 
 	}

@@ -12,11 +12,17 @@ function caag_hq_rental_shortcode($atts = [])
 	caag_hq_rental_styles();
 	caag_hq_rental_scripts();
 	$caag_id = $atts['id'];
+	$new = $atts['new'];
     $passenger = get_data_from_post_var( 'passengers_number' );
     if( !empty($vehicle_class_id) ){
         $single_vehicle = '&vehicle_class_id=' . $vehicle_class_id;
     }else{
         $single_vehicle = '';
+    }
+    if( !empty($new) ){
+        $new_iframe = '&new=1';
+    }else{
+        $new_iframe = '';
     }
     if(isset( $atts['forced_locale'] )){
         $lang = '&forced_locale=' . $atts['forced_locale'];
@@ -37,8 +43,8 @@ function caag_hq_rental_shortcode($atts = [])
     }
     $plugin_date_format = get_option( CAAG_HQ_RENTAL_DATE_FORMAT, 'Y-m-d H:i' );
     $system_date_format = get_option( CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM );
-	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger;
-	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle . $vehicles_from_post;
+	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger . $new_iframe;
+	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle . $vehicles_from_post . $new_iframe;
 	$customDateFormat = get_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT, false);
 	if($customDateFormat == '1'){
 	    $custom_date_format = true;
@@ -97,7 +103,7 @@ function caag_hq_rental_shortcode($atts = [])
                     <input type="submit" style="display: none;">
                 </form>';
                 }
-                $output .= '<iframe id="caag-rental-iframe" name="caag-rental-iframe" src="' . $link . '" scrolling="no"></iframe>';
+                $output .= '<iframe id="caag-rental-iframe" name="caag-rental-iframe" src="' . $link . $new_iframe . '" scrolling="no"></iframe>';
                 caag_hq_rental_inline_script();
                 return $output;
             }
@@ -108,9 +114,9 @@ function caag_hq_rental_shortcode($atts = [])
 	}
     if(isset($_GET['vehicle_class_id'])){
         $class_id = $_GET['vehicle_class_id'];
-        $output .= '<iframe id="caag-rental-iframe" src="'. $link . '&new=true&vehicle_class_id='. $class_id .'" scrolling="no"></iframe>';
+        $output .= '<iframe id="caag-rental-iframe" src="'. $link . $new_iframe . '&new=true&vehicle_class_id='. $class_id .'" scrolling="no"></iframe>';
     }else{
-        $output .= '<iframe id="caag-rental-iframe" src="'. $link . '" scrolling="no"></iframe>';
+        $output .= '<iframe id="caag-rental-iframe" src="'. $link . $new_iframe . '" scrolling="no"></iframe>';
     }
 	return $output;
 }

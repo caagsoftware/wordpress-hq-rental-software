@@ -1,12 +1,12 @@
 <?php
 /*
  * @package Wordpress HQ Rental Software
- * @version 1.3.8.5
+ * @version 1.3.8.7
  *
  *
 Plugin Name:  HQ Rental
 Description:  HQ Rental Software
-Version:      1.3.8.5
+Version:      1.3.8.7
 Author:       HQ Rental Software
 Author URI:   https://www.hqrentalsoftware.com
 License: GPLv3

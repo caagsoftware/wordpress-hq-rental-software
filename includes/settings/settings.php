@@ -255,7 +255,6 @@ function caag_hq_rental_save_settings($settings)
 	update_option(CAAG_HQ_RENTAL_USER_TOKEN, $settings[CAAG_HQ_RENTAL_USER_TOKEN]);
 	update_option(CAAG_HQ_RENTAL_TENANT_TOKEN, $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]);
     update_option(CAAG_HQ_RENTAL_DATE_FORMAT, $settings[CAAG_HQ_RENTAL_DATE_FORMAT]);
-    update_option( CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM, $settings[CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM] );
     update_option(CAAG_HQ_RENTAL_API_END_POINT, $settings[CAAG_HQ_RENTAL_API_END_POINT]);
     if(isset($settings[CAAG_HQ_RENTAL_SAFARI_BROWSER])){
         if($settings[CAAG_HQ_RENTAL_SAFARI_BROWSER] == '1'){
@@ -271,7 +270,6 @@ function caag_hq_rental_save_settings($settings)
     }else{
         update_option(CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION, '0');
     }
-
     /*
      * Custom System Dateformat Functionality
      */

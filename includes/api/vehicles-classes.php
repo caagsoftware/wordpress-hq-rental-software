@@ -378,9 +378,9 @@ function caag_hq_get_vehicle_classes_for_display_by_caag_id( $caag_vehicle_class
         )
     );
     $query = new WP_Query( $args );
-    $new_vehicle = new stdClass();
     $vehicles = array();
     foreach( $query->posts as $vehicle ){
+        $new_vehicle = new stdClass();
         $new_vehicle->id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META, true );
         $new_vehicle->brand_id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META, true );
         $new_vehicle->name = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META, true );
@@ -447,8 +447,8 @@ function caag_hq_get_vehicle_classes_for_display_by_brand_id( $caag_brand_id )
     );
     $query = new WP_Query( $args );
     $vehicles = array();
-    $new_vehicle = new stdClass();
     foreach( $query->posts as $vehicle ){
+        $new_vehicle = new stdClass();
         $new_vehicle->id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META, true );
         $new_vehicle->post_id = $vehicle->ID;
         $new_vehicle->brand_id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META, true );

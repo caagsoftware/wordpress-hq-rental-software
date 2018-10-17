@@ -52,28 +52,17 @@ function caag_hq_rental_settings_html()
                         <tr>
                             <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Front-end Date Format</label></th>
                             <td>
-                                <select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT; ?>">
-                                    <?php echo caag_hq_options_get_datetime_options(get_option(CAAG_HQ_RENTAL_DATE_FORMAT)); ?>
+                                <select name="<?php echo CAAG_HQ_RENTAL_FRONTEND_DATE_FORMAT; ?>">
+                                    <?php echo caag_hq_options_get_datetime_options(get_option(CAAG_HQ_RENTAL_FRONTEND_DATE_FORMAT)); ?>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select System Date Format</label></th>
                             <td>
-                                <select name="<?php echo CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM; ?>">
-                                    <?php echo caag_hq_options_get_datetime_options(get_option(CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM)); ?>
+                                <select name="<?php echo CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT; ?>">
+                                    <?php echo caag_hq_options_get_datetime_options(get_option(CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT)); ?>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th><label class="wp-heading-inline" id="title-prompt-text" for="title">Use Frontend Date Format on System Backend</label></th>
-                            <td>
-                                <?php $custom_date_option = get_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT); ?>
-                                <?php if($custom_date_option == '0'): ?>
-                                    <input name="<?php echo CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT; ?>" type="checkbox" id="thumbnail_crop" value="1">
-                                <?php elseif($custom_date_option == '1'): ?>
-                                    <input name="<?php echo CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT; ?>" type="checkbox" id="thumbnail_crop" value="1" checked="checked">
-                                <?php endif; ?>
                             </td>
                         </tr>
 						<tr>
@@ -217,14 +206,11 @@ function caag_hq_rental_settings_registration()
     if(! get_option(CAAG_HQ_RENTAL_TENANT_TOKEN)){
         add_option(CAAG_HQ_RENTAL_TENANT_TOKEN,'');
     }
-    if(! get_option(CAAG_HQ_RENTAL_DATE_FORMAT)){
-        add_option(CAAG_HQ_RENTAL_DATE_FORMAT,'Y-m-d H:i');
+    if(! get_option(CAAG_HQ_RENTAL_FRONTEND_DATE_FORMAT)){
+        add_option(CAAG_HQ_RENTAL_FRONTEND_DATE_FORMAT,'Y-m-d H:i');
     }
-    if(! get_option(CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM)){
-        add_option(CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM,'Y-m-d H:i');
-    }
-    if(! get_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT)){
-        add_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT,'0');
+    if(! get_option(CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT)){
+        add_option(CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT,'Y-m-d H:i');
     }
     if(! get_option(CAAG_HQ_RENTAL_API_END_POINT)){
         add_option(CAAG_HQ_RENTAL_API_END_POINT,'https://api.caagcrm.com/api/');
@@ -254,8 +240,8 @@ function caag_hq_rental_save_settings($settings)
     caag_hq_locations_cron_job();
 	update_option(CAAG_HQ_RENTAL_USER_TOKEN, $settings[CAAG_HQ_RENTAL_USER_TOKEN]);
 	update_option(CAAG_HQ_RENTAL_TENANT_TOKEN, $settings[CAAG_HQ_RENTAL_TENANT_TOKEN]);
-    update_option(CAAG_HQ_RENTAL_DATE_FORMAT, $settings[CAAG_HQ_RENTAL_DATE_FORMAT]);
-    update_option( CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM, $settings[CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM] );
+    update_option(CAAG_HQ_RENTAL_FRONTEND_DATE_FORMAT, $settings[CAAG_HQ_RENTAL_FRONTEND_DATE_FORMAT]);
+    update_option( CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT, $settings[CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT] );
     update_option(CAAG_HQ_RENTAL_API_END_POINT, $settings[CAAG_HQ_RENTAL_API_END_POINT]);
     if(isset($settings[CAAG_HQ_RENTAL_SAFARI_BROWSER])){
         if($settings[CAAG_HQ_RENTAL_SAFARI_BROWSER] == '1'){
@@ -270,17 +256,6 @@ function caag_hq_rental_save_settings($settings)
         }
     }else{
         update_option(CAAG_HQ_RENTAL_WOOCOMMERCE_SYNC_OPTION, '0');
-    }
-
-    /*
-     * Custom System Dateformat Functionality
-     */
-    if(isset($settings[CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT])){
-        if($settings[CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT] == '1'){
-            update_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT, '1');
-        }
-    }else{
-        update_option(CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT, '0');
     }
     if(isset($settings[CAAG_HQ_RENTAL_ADD_TAXES_TO_RATES_ON_API_SYNC])){
         if($settings[CAAG_HQ_RENTAL_ADD_TAXES_TO_RATES_ON_API_SYNC] == '1'){

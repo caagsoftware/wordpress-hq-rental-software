@@ -67,7 +67,7 @@ function caag_hq_rental_global_variables_to_js()
 {
     wp_register_script('hq_dummy_asset', plugin_dir_url(__FILE__) . 'js/hq-dummy.js');
     wp_enqueue_script('hq_dummy_asset');
-    wp_localize_script('hq_dummy_asset', 'hq_plugin_global_date_format', get_option(CAAG_HQ_RENTAL_DATE_FORMAT, 'Y-m-d H:i'));
+    wp_localize_script('hq_dummy_asset', 'hq_plugin_global_date_format', get_option(CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT, 'Y-m-d H:i'));
 }
 add_action( 'wp_enqueue_scripts', 'caag_hq_rental_global_variables_to_js', 12);
 

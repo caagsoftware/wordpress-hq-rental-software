@@ -1,12 +1,12 @@
 <?php
 /*
  * @package Wordpress HQ Rental Software
- * @version 1.3.8.7
+ * @version 1.3.9
  *
  *
 Plugin Name:  HQ Rental
 Description:  HQ Rental Software
-Version:      1.3.8.7
+Version:      1.3.9
 Author:       HQ Rental Software
 Author URI:   https://www.hqrentalsoftware.com
 License: GPLv3
@@ -17,7 +17,7 @@ License URI: https://www.gnu.org/licenses/gpl.html
 /*
  * Global Constant
  */
-define('CAAG_HQ_RENTAL_VERSION','1.3.8.5');
+define('CAAG_HQ_RENTAL_VERSION','1.3.9');
 define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');
 
 
@@ -26,9 +26,8 @@ define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');
  */
 define('CAAG_HQ_RENTAL_USER_TOKEN','caag_hq_rental_user_token');
 define('CAAG_HQ_RENTAL_TENANT_TOKEN','caag_hq_rental_tenant_token');
-define('CAAG_HQ_RENTAL_DATE_FORMAT','caag_hq_rental_date_format');
-define('CAAG_HQ_RENTAL_DATE_FORMAT_SYSTEM','caag_hq_rental_use_custom_date_format_system');
-define('CAAG_HQ_RENTAL_USE_CUSTOM_DATE_FORMAT','caag_hq_rental_use_custom_date_format');
+define('CAAG_HQ_RENTAL_FRONTEND_DATE_FORMAT','caag_hq_rental_frontend_date_format');
+define('CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT','caag_hq_rental_system_date_format');
 define('CAAG_HQ_RENTAL_API_END_POINT','caag_hq_rental_api_end_point');
 define('CAAG_HQ_RENTAL_SAFARI_BROWSER', 'caag_hq_rental_safari_browser');
 define('CAAG_HQ_RENTAL_CURRENT_BRAND_SELECTED', 'caag_hq_rental_current_brand_selected');

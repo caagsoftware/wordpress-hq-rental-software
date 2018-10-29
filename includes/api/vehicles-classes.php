@@ -305,6 +305,8 @@ function caag_hq_download_and_set_post_image( $url, $post_id, $file_name, $file_
     if( !class_exists( 'WP_Http' ) ){
         include_once( ABSPATH . WPINC . '/class-http.php' );
     }
+
+
     $http = new WP_Http();
     $response = $http->request( $url );
     if( is_wp_error($response) ){
@@ -324,6 +326,9 @@ function caag_hq_download_and_set_post_image( $url, $post_id, $file_name, $file_
     $attachment_title = sanitize_file_name( pathinfo( $file_name, PATHINFO_FILENAME ) );
     $wp_upload_dir = wp_upload_dir();
 
+    /*
+     * Attachments
+     */
     $post_info = array(
         'guid'				=> $wp_upload_dir['url'] . '/' . $file_name,
         'post_mime_type'	=> $file_type['type'],
@@ -336,7 +341,7 @@ function caag_hq_download_and_set_post_image( $url, $post_id, $file_name, $file_
         $attach_id = wp_insert_attachment( $post_info, $file_path, $post_id );
         $woo_helper = new WC_Product_Factory();
         $product = $woo_helper->get_product( $post_id );
-        $product->set_gallery_image_ids( array_merge($product->get_gallery_image_ids(), array( $attach_id )) );
+        $product->set_gallery_image_ids( array_merge( $product->get_gallery_image_ids(), array( $attach_id )) );
         $product->save();
 
         // Include image.php
@@ -504,5 +509,3 @@ function caag_hq_get_vehicle_classes_for_display_by_brand_id( $caag_brand_id )
     }
     return $vehicles;
 }
-
-

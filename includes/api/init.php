@@ -42,6 +42,8 @@ define('CAAG_HQ_RENTAL_RATE_MONTHLY_RATE_META','caag_hq_rental_rate_monthly_rate
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META', 'caag_hq_rental_vehicle_class_id_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META', 'caag_hq_rental_vehicle_class_brand_id_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META', 'caag_hq_rental_vehicle_class_name_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_META', 'caag_hq_rental_vehicle_class_active_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_RECOMENDED_META', 'caag_hq_rental_vehicle_class_recommended_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_EN_META', 'caag_hq_rental_vehicle_class_label_for_website_en_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_NL_META', 'caag_hq_rental_vehicle_class_label_for_website_nl_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_DE_META', 'caag_hq_rental_vehicle_class_label_for_website_de_meta');

@@ -43,6 +43,8 @@ function caag_hq_vehicle_classes_cron_job()
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META);
+        delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_META);
+        delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_RECOMENDED_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_EN_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_NL_META);
         delete_post_meta($vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_DE_META);
@@ -100,6 +102,8 @@ function caag_hq_vehicle_classes_cron_job()
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META, $vehicles_classes_caag->id );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META, $vehicles_classes_caag->brand_id );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META, $vehicles_classes_caag->name );
+        update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_META, $vehicles_classes_caag->active );
+        update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_RECOMENDED_META, $vehicles_classes_caag->recommended );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_EN_META, $vehicles_classes_caag->label_for_website->en );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_NL_META, $vehicles_classes_caag->label_for_website->nl );
         update_post_meta( $id, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_DE_META, $vehicles_classes_caag->label_for_website->de );
@@ -167,6 +171,8 @@ function caag_hq_get_vehicle_classes_for_display()
         $new_vehicle->post_id = $vehicle->ID;
         $new_vehicle->brand_id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META, true );
         $new_vehicle->name = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META, true );
+        $new_vehicle->active = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_META, true );
+        $new_vehicle->recommended = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_RECOMENDED_META, true );
         $new_vehicle->label_en = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_EN_META, true );
         $new_vehicle->short_description_en = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_SHORT_DESCRIPTION_FOR_WEBSITE_EN_META, true );
         $new_vehicle->description_en = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_DESCRIPTION_FOR_WEBSITE_EN_META, true );
@@ -384,6 +390,8 @@ function caag_hq_get_vehicle_classes_for_display_by_caag_id( $caag_vehicle_class
         $new_vehicle->id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ID_META, true );
         $new_vehicle->brand_id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META, true );
         $new_vehicle->name = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META, true );
+        $new_vehicle->active = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_META, true );
+        $new_vehicle->recommended = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_RECOMENDED_META, true );
         $new_vehicle->label_en = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_EN_META, true );
         $new_vehicle->short_description_en = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_SHORT_DESCRIPTION_FOR_WEBSITE_EN_META, true );
         $new_vehicle->description_en = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_DESCRIPTION_FOR_WEBSITE_EN_META, true );
@@ -453,6 +461,8 @@ function caag_hq_get_vehicle_classes_for_display_by_brand_id( $caag_brand_id )
         $new_vehicle->post_id = $vehicle->ID;
         $new_vehicle->brand_id = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_BRAND_ID_META, true );
         $new_vehicle->name = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_NAME_META, true );
+        $new_vehicle->active = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_META, true );
+        $new_vehicle->recommended = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_RECOMENDED_META, true );
         $new_vehicle->label_en = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_LABEL_FOR_WEBSITE_EN_META, true );
         $new_vehicle->short_description_en = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_SHORT_DESCRIPTION_FOR_WEBSITE_EN_META, true );
         $new_vehicle->description_en = get_post_meta( $vehicle->ID, CAAG_HQ_RENTAL_VEHICLE_CLASS_DESCRIPTION_FOR_WEBSITE_EN_META, true );

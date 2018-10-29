@@ -80,3 +80,33 @@ function caag_hq_get_brands_for_display()
     }
     return $brands;
 }
+
+
+
+function caag_hq_get_brand_by_caag_id($id)
+{
+    $args = array(
+        'post_type'     =>  CAAG_HQ_RENTAL_CUSTOM_POST_BRANDS,
+        'post_status'   =>  'publish',
+        'posts_per_page' =>  -1,
+        'meta_query'        =>  array(
+            array(
+                'key'           =>  CAAG_HQ_RENTAL_BRAND_ID_META,
+                'value'         =>  $id,
+                'compare'       =>  '='
+            )
+        )
+    );
+    $query = new WP_Query( $args );
+    $brands = array();
+    foreach ( $query->posts as $brand ){
+        $new_brand = new stdClass();
+        $new_brand->id = get_post_meta( $brand->ID, CAAG_HQ_RENTAL_BRAND_ID_META, true );
+        $new_brand->name = get_post_meta( $brand->ID, CAAG_HQ_RENTAL_BRAND_NAME_META, true );
+        $new_brand->tax = get_post_meta( $brand->ID, CAAG_HQ_RENTAL_BRAND_TAX_LABEL_META, true );
+        $new_brand->tax_amount = get_post_meta( $brand->ID, CAAG_HQ_RENTAL_BRAND_TAX_AMOUNT_META, true );
+        $new_brand->page_link = get_post_meta( $brand->ID, CAAG_HQ_RENTAL_BRAND_WEBSITE_LINK, true );
+        $brands[] = $new_brand;
+    }
+    return $brands[0];
+}

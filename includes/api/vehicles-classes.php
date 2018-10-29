@@ -285,6 +285,7 @@ function caag_hq_sync_woocommerce_products_with_vehicles_classes()
             update_post_meta( $post_id, '_stock', 10 );
             update_post_meta( $post_id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CAAG_ID_ON_WOOCOMMERCE_PRODUCT_META, $vehicle->id );
             update_post_meta( $post_id, CAAG_HQ_RENTAL_VEHICLE_CLASS_CAAG_BRAND_ID_ON_WOOCOMMERCE_PRODUCT_META, $vehicle->brand_id );
+            update_post_meta( $post_id, CAAG_HQ_RENTAL_VEHICLE_CLASS_ACTIVE_META, $vehicle->active  );
             $images = caag_hq_get_vehicles_images_from_vehicle_class_post_on_website( $vehicle->post_id );
             if(!empty($images)){
                 foreach ($images as $image){

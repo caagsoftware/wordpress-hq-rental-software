@@ -55,8 +55,8 @@ define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CALENDAR_LINK', 'caag_hq_rental_public_vehi
 /*
  * Security and Decoration Variables
  */
-define('CAAG_HQ_RENTAL_SETTING_TITLE','HQ Rental Setup');
-define('CAAG_HQ_RENTAL_SETTING_MENU','HQ Rental Setup');
+define('CAAG_HQ_RENTAL_SETTING_TITLE','HQ Rentals');
+define('CAAG_HQ_RENTAL_SETTING_MENU','HQ Rentals');
 define('CAAG_HQ_RENTAL_SLUG','caag-rental');
 define('CAAG_HQ_RENTAL_NONCE', 'caag_nonce');
 

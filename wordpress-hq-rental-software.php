@@ -1,12 +1,12 @@
 <?php
 /*
  * @package Wordpress HQ Rental Software
- * @version 1.4.1
+ * @version 1.4.2
  *
  *
 Plugin Name:  HQ Rental
 Description:  HQ Rental Software
-Version:      1.4.1
+Version:      1.4.2
 Author:       HQ Rental Software
 Author URI:   https://www.hqrentalsoftware.com
 License: GPLv3
@@ -17,7 +17,7 @@ License URI: https://www.gnu.org/licenses/gpl.html
 /*
  * Global Constant
  */
-define('CAAG_HQ_RENTAL_VERSION','1.4.1');
+define('CAAG_HQ_RENTAL_VERSION','1.4.2');
 define('CAAG_HQ_RENTAL_POST_TYPE','caag-rental-form');
 
 
@@ -55,8 +55,8 @@ define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CALENDAR_LINK', 'caag_hq_rental_public_vehi
 /*
  * Security and Decoration Variables
  */
-define('CAAG_HQ_RENTAL_SETTING_TITLE','HQ Rental Setup');
-define('CAAG_HQ_RENTAL_SETTING_MENU','HQ Rental Setup');
+define('CAAG_HQ_RENTAL_SETTING_TITLE','HQ Rentals');
+define('CAAG_HQ_RENTAL_SETTING_MENU','HQ Rentals');
 define('CAAG_HQ_RENTAL_SLUG','caag-rental');
 define('CAAG_HQ_RENTAL_NONCE', 'caag_nonce');
 

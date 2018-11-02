@@ -93,8 +93,7 @@ function caag_hq_vehicle_classes_cron_job()
         $args = array(
             'post_type'     =>  CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES,
             'post_status'   =>  'publish',
-            'post_title'    =>  CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES . '_' . $vehicles_classes_caag->id,
-            'post_name'     =>  CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES . '_' . $vehicles_classes_caag->id,
+            'post_title'    =>  $vehicles_classes_caag->name,
         );
         $id = wp_insert_post( $args );
         caag_hq_add_feature_to_vehicle_class( $id, $vehicles_classes_caag->id, $vehicles_classes_caag->features );
@@ -509,3 +508,9 @@ function caag_hq_get_vehicle_classes_for_display_by_brand_id( $caag_brand_id )
     }
     return $vehicles;
 }
+
+function hqtest()
+{
+    //caag_hq_vehicle_classes_cron_job();
+}
+add_action('template_redirect','hqtest');

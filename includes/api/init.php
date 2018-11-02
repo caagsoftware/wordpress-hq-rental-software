@@ -112,6 +112,10 @@ define('CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_ID_META', 'caag_hq_rental_features
 define('CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_POST_ID_META', 'caag_hq_rental_features_vehicle_class_post_id_meta');
 define('CAAG_HQ_RENTAL_FEATURES_LABEL_META', 'caag_hq_rental_features_label_meta');
 define('CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_META', 'caag_hq_rental_features_label_for_website_meta');
+define('CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_EN_META', 'caag_hq_rental_features_label_for_website_en_meta');
+define('CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_NL_META', 'caag_hq_rental_features_label_for_website_nl_meta');
+define('CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_ES_META', 'caag_hq_rental_features_label_for_website_es_meta');
+define('CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_PT_META', 'caag_hq_rental_features_label_for_website_pt_meta');
 define('CAAG_HQ_RENTAL_FEATURES_ICON_META', 'caag_hq_rental_features_icon_meta');
 
 /*

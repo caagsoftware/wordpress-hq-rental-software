@@ -11,7 +11,7 @@ function register_caag_hq_rental_custom_post_locations()
         'query_var'                 => false,
         'rewrite'                   => array( 'slug' => CAAG_HQ_RENTAL_CUSTOM_POST_LOCATIONS ),
         'capability_type'           => 'post',
-        'has_archive'               => false,
+        'has_archive'               => true,
         'hierarchical'              => false,
         'supports'                  => array('title'),
         'capabilities'              => array(

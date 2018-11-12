@@ -21,6 +21,30 @@ function caag_hq_get_all_brands_for_menu_items()
     }
     return $return_data;
 }
+/*
+ * Menu Items
+ * */
+function caag_hq_get_menu_items()
+{
+    $brands = caag_hq_get_brands_for_display();
+    $return_data = array();
+    foreach ( $brands as $brand ){
+        $newData = new stdClass();
+        $newData->brandId = $brand->id;
+        $newData->brandName = $brand->name;
+        $classes = caag_hq_get_vehicle_classes_for_display_by_brand_id($brand->id);
+        $returnClasses = array();
+        foreach ( $classes as $class ){
+            $newClass = new stdClass();
+            $newClass->id = $class->id;
+            $newClass->name = $class->name;
+            $returnClasses[] = $newClass;
+        }
+        $newData->classes = $returnClasses;
+        $return_data[]= $newData;
+    }
+    return $return_data;
+}
 
 function caag_hq_get_all_types_items()
 {

@@ -15,7 +15,7 @@ function caag_hq_rental_shortcode($atts = [])
 	$new = $atts['new'];
     $passenger = get_data_from_post_var( 'passengers_number' );
     $custom_field_filter = $_POST['f218'];
-
+    $custom_field_filter_luso = $_POST['f215'];
     if( !empty($vehicle_class_id) ){
         $single_vehicle = '&vehicle_class_id=' . $vehicle_class_id;
     }else{
@@ -53,11 +53,21 @@ function caag_hq_rental_shortcode($atts = [])
     }else{
         $query_string_vehicles_filter = '';
     }
+    /*
+     * Filter Luso
+     *
+     */
+    if( !empty( $custom_field_filter_luso ) ){
+        $vehicles_filters_luso = caag_hq_get_vehicle_classes_for_display_by_brand_id_and_custom_field($_POST['brand_id'], '215', $_POST['f215']);
+        $query_string_vehicles_filter_luso = caag_hq_get_query_string_from_custom_field_query($vehicles_filters_luso);
+    }else{
+        $query_string_vehicles_filter_luso = '';
+    }
 
     $front_date_format = get_option( CAAG_HQ_RENTAL_FRONTEND_DATE_FORMAT );
     $system_date_format = get_option( CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT );
-	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger . $new_iframe . $query_string_vehicles_filter;
-	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle . $vehicles_from_post . $new_iframe . $query_string_vehicles_filter;
+	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger . $new_iframe . $query_string_vehicles_filter .$query_string_vehicles_filter_luso;
+	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle . $vehicles_from_post . $new_iframe . $query_string_vehicles_filter . $query_string_vehicles_filter_luso;
     if(get_data_from_post_var('new_reservation_to_step_4') == '1'){
 	    return do_shortcode('[hq_rental_reservation_form_step_4 base_link='. $atts['base_link'] .']');
 	}else{

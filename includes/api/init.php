@@ -79,6 +79,7 @@ define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F219_META', 'caag_hq_rental_ve
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F220_META', 'caag_hq_rental_vehicle_class_custom_field_220_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F221_META', 'caag_hq_rental_vehicle_class_custom_field_221_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F222_META', 'caag_hq_rental_vehicle_class_custom_field_222_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F225_META', 'caag_hq_rental_vehicle_class_custom_field_225_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F226_META', 'caag_hq_rental_vehicle_class_custom_field_226_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F227_META', 'caag_hq_rental_vehicle_class_custom_field_227_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_CUSTOM_FIELD_F235_META', 'caag_hq_rental_vehicle_class_custom_field_235_meta');

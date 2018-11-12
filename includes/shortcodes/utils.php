@@ -16,6 +16,21 @@ function caag_hq_get_query_string_passenger($vehicles)
     return $query_string_passenger;
 }
 
+function caag_hq_get_query_string_from_custom_field_query($vehicles)
+{
+    $query_string_passenger = '&vehicle_classes_filter=';
+    $counter = 0;
+    foreach ( $vehicles as $vehicle ){
+        $counter = $counter + 1;
+        if($counter == count($vehicles)){
+            $query_string_passenger .= $vehicle->id;
+        }else{
+            $query_string_passenger .= $vehicle->id . ',';
+        }
+    }
+    return $query_string_passenger;
+}
+
 function caag_hq_get_query_string_additional_charges($charges)
 {
     //https://camperrent.caagcrm.com/public/car-rental/reservations/step4?new=1&brand=736fab41-a47f-4668-b48c-1252835f9a14&pick_up_date=2018-09-03&return_date=2018-09-10&return_time=14:00&pick_up_time=14:00&vehicle_class_id=15&selected_insurances[]=11&selected_insurances[]=4&selected_insurances[]=10

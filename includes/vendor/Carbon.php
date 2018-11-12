@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Carbon;
+namespace HQRentalsPlugin\HQRentalsVendor;
 
 use Carbon\Exceptions\InvalidDateException;
 use Closure;

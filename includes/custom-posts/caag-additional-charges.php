@@ -20,6 +20,7 @@ function register_caag_hq_rental_custom_post_additional_charges()
         'has_archive'               => false,
         'hierarchical'              => false,
         'supports'                  => array('title'),
+        'has_archive'               => false,
         'capabilities'              => array(
             'create_posts'              => 'do_not_allow',
         )

@@ -65,9 +65,13 @@ function caag_hq_rental_get_times( $begining, $end, $default = '12:00', $interva
 
 function caag_hq_rental_global_variables_to_js()
 {
+    $menu_items = caag_hq_get_all_brands_for_menu_items();
+    $types_items = caag_hq_get_all_types_items();
     wp_register_script('hq_dummy_asset', plugin_dir_url(__FILE__) . 'js/hq-dummy.js');
     wp_enqueue_script('hq_dummy_asset');
     wp_localize_script('hq_dummy_asset', 'hq_plugin_global_date_format', get_option(CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT, 'Y-m-d H:i'));
+    wp_localize_script('hq_dummy_asset', 'hq_plugin_global_brands_menu_items', $menu_items);
+    wp_localize_script('hq_dummy_asset', 'hq_plugin_global_brands_type_items', $types_items);
 }
 add_action( 'wp_enqueue_scripts', 'caag_hq_rental_global_variables_to_js', 12);
 

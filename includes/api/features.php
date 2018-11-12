@@ -23,6 +23,10 @@ function caag_hq_add_feature_to_vehicle_class($vehicle_class_post_id, $vehicle_c
         update_post_meta ( $id, CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_POST_ID_META, $vehicle_class_post_id );
         update_post_meta ( $id, CAAG_HQ_RENTAL_FEATURES_LABEL_META, $feature->label );
         update_post_meta ( $id, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_META, $feature->label_for_website->en );
+        update_post_meta ( $id, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_EN_META, $feature->label_for_website->en );
+        update_post_meta ( $id, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_NL_META, $feature->label_for_website->nl );
+        update_post_meta ( $id, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_ES_META, $feature->label_for_website->es );
+        update_post_meta ( $id, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_PT_META, $feature->label_for_website->pt );
         update_post_meta ( $id, CAAG_HQ_RENTAL_FEATURES_ICON_META, $feature->icon );
         update_post_meta ( $id, CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_ID_META, $vehicle_class_caag_id );
     }
@@ -36,6 +40,10 @@ function caag_hq_delete_feature_from_vehicle_class($vehicle_class_post_id)
         delete_post_meta ( $feature->ID, CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_POST_ID_META );
         delete_post_meta ( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_META );
         delete_post_meta ( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_META );
+        delete_post_meta ( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_EN_META );
+        delete_post_meta ( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_NL_META );
+        delete_post_meta ( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_ES_META );
+        delete_post_meta ( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_PT_META );
         delete_post_meta ( $feature->ID, CAAG_HQ_RENTAL_FEATURES_ICON_META );
         delete_post_meta ( $feature->ID, CAAG_HQ_RENTAL_FEATURES_VEHICLE_CLASS_ID_META );
         wp_delete_post( $feature->ID );
@@ -67,6 +75,10 @@ function caag_hq_get_features_for_display_by_post_id($post_id)
         $new_feature->id = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_ID_META, true );
         $new_feature->label = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_META, true );
         $new_feature->label_for_website = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_META, true );
+        $new_feature->label_for_website_en = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_EN_META, true );
+        $new_feature->label_for_website_nl = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_NL_META, true );
+        $new_feature->label_for_website_es = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_ES_META, true );
+        $new_feature->label_for_website_pt = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_PT_META, true );
         $new_feature->icon = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_ICON_META, true );
         $features[] = $new_feature;
     }
@@ -98,6 +110,10 @@ function caag_hq_get_features_for_display_by_caag_id($caag_id)
         $new_feature->id = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_ID_META, true );
         $new_feature->label = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_META, true );
         $new_feature->label_for_website = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_META, true );
+        $new_feature->label_for_website_en = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_EN_META, true );
+        $new_feature->label_for_website_nl = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_NL_META, true );
+        $new_feature->label_for_website_es = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_ES_META, true );
+        $new_feature->label_for_website_pt = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_LABEL_FOR_WEBSITE_PT_META, true );
         $new_feature->icon = get_post_meta( $feature->ID, CAAG_HQ_RENTAL_FEATURES_ICON_META, true );
         $features[] = $new_feature;
     }

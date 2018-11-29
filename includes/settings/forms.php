@@ -85,7 +85,7 @@ function caag_hq_rental_form_index($query)
                             update_post_meta( (int)$post->post_id, CAAG_HQ_RENTAL_SHORTCODE_VEHICLE_CLASS_CALENDAR, '[hq_rental_forms_calendar id='. $form->id .']' );
                             $args    = array(
                                 'ID'    => (int)$post->post_id,
-                                'title' => $form->name
+                                'post_title' => $form->name
                             );
                             wp_update_post( $args );
                         }

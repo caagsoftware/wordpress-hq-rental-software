@@ -48,7 +48,7 @@ function hq_rental_reservation_form_with_filter($atts = [])
      * Filter By Custom Field
      */
     if( !empty( $custom_field_filter ) ){
-        $vehicles_filters = caag_hq_get_vehicle_classes_for_display_by_brand_id_and_custom_field($atts['brand_id'], $atts['custom_field'], $_POST['f' . $atts['custom_field']]);
+        $vehicles_filters = caag_hq_get_vehicle_classes_for_display_by_brand_id_and_custom_field($atts['id'], $atts['custom_field'], $_POST['f' . $atts['custom_field']]);
         $query_string_vehicles_filter = caag_hq_get_query_string_from_custom_field_query($vehicles_filters);
     }else{
         $query_string_vehicles_filter = '';

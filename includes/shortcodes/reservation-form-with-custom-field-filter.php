@@ -14,8 +14,7 @@ function hq_rental_reservation_form_with_filter($atts = [])
     $caag_id = $atts['id'];
     $new = $atts['new'];
     $passenger = get_data_from_post_var( 'passengers_number' );
-    $custom_field_filter = $_POST['f218'];
-    $custom_field_filter_luso = $_POST['f215'];
+    $custom_field_filter = $_POST['f' . $atts['custom_field']];
     if( !empty($vehicle_class_id) ){
         $single_vehicle = '&vehicle_class_id=' . $vehicle_class_id;
     }else{
@@ -31,19 +30,12 @@ function hq_rental_reservation_form_with_filter($atts = [])
     }else{
         $lang = '';
     }
-    if( !empty( $passenger ) ){
-        $vehicles = caag_hq_get_vehicle_classes_ids_by_passengers_numbers( (int)$passenger );
-        $query_string_passenger = caag_hq_get_query_string_passenger($vehicles);
-    }else{
-        $query_string_passenger = '';
-    }
     $vehicles_class_post = get_data_from_post_var( 'vehicle_class_id' );
     if( !empty( $vehicles_class_post ) ){
         $vehicles_from_post = '&vehicle_class_id=' . $vehicles_class_post;
     }else{
         $vehicles_from_post = '';
     }
-
     /*
      * Filter By Custom Field
      */
@@ -53,17 +45,6 @@ function hq_rental_reservation_form_with_filter($atts = [])
     }else{
         $query_string_vehicles_filter = '';
     }
-    /*
-     * Filter Luso
-     *
-     */
-    if( !empty( $custom_field_filter_luso ) ){
-        $vehicles_filters_luso = caag_hq_get_vehicle_classes_for_display_by_brand_id_and_custom_field($_POST['brand_id'], '215', $_POST['f215']);
-        $query_string_vehicles_filter_luso = caag_hq_get_query_string_from_custom_field_query($vehicles_filters_luso);
-    }else{
-        $query_string_vehicles_filter_luso = '';
-    }
-
     $front_date_format = get_option( CAAG_HQ_RENTAL_FRONTEND_DATE_FORMAT );
     $system_date_format = get_option( CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT );
     $link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger . $new_iframe . $query_string_vehicles_filter .$query_string_vehicles_filter_luso;

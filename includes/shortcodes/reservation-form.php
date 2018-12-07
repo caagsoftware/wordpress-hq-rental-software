@@ -31,6 +31,11 @@ function caag_hq_rental_shortcode($atts = [])
     }else{
         $lang = '';
     }
+    if(isset( $_REQUEST['tour_operator_uuid'] )){
+        $to = '&to=' . $_REQUEST['tour_operator_uuid'];
+    }else{
+        $to = '';
+    }
     if( !empty( $passenger ) ){
         $vehicles = caag_hq_get_vehicle_classes_ids_by_passengers_numbers( (int)$passenger );
         $query_string_passenger = caag_hq_get_query_string_passenger($vehicles);
@@ -66,7 +71,7 @@ function caag_hq_rental_shortcode($atts = [])
 
     $front_date_format = get_option( CAAG_HQ_RENTAL_FRONTEND_DATE_FORMAT );
     $system_date_format = get_option( CAAG_HQ_RENTAL_SYSTEM_DATE_FORMAT );
-	$link = get_caag_hq_rental_link($caag_id) . $lang . $query_string_passenger . $new_iframe . $query_string_vehicles_filter .$query_string_vehicles_filter_luso;
+	$link = get_caag_hq_rental_link($caag_id) . $lang . $to . $query_string_passenger . $new_iframe .$query_string_vehicles_filter .$query_string_vehicles_filter_luso;
 	$first_step_link = get_caag_hq_rental_first_step_link($caag_id) . $lang . $query_string_passenger . $single_vehicle . $vehicles_from_post . $new_iframe . $query_string_vehicles_filter . $query_string_vehicles_filter_luso;
     if(get_data_from_post_var('new_reservation_to_step_4') == '1'){
 	    return do_shortcode('[hq_rental_reservation_form_step_4 base_link='. $atts['base_link'] .']');

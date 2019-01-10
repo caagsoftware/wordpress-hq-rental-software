@@ -10,14 +10,14 @@ function register_caag_hq_rental_custom_post_vehicle_classes()
 {
     $args = array(
         'public'                    => false,
-        'publicly_queryable'        => true,
+        'publicly_queryable'        => false,
         'show_ui'                   => false,
         'show_in_menu'              => false,
         'show_in_nav_menus'         => false,
         'query_var'                 => false,
         'rewrite'                   => array( 'slug' => CAAG_HQ_RENTAL_CUSTOM_POST_VEHICLE_CLASSES_SLUG ),
         'capability_type'           => 'post',
-        'has_archive'               => true,
+        'has_archive'               => false,
         'hierarchical'              => false,
         'supports'                  => array('title'),
         'capabilities'              => array(

@@ -9,7 +9,7 @@ function register_caag_hq_rental_custom_post_rates()
 {
     $args = array(
         'public'                    => false,
-        'publicly_queryable'        => true,
+        'publicly_queryable'        => false,
         'show_ui'                   => false,
         'show_in_menu'              => false,
         'show_in_nav_menus'         => false,

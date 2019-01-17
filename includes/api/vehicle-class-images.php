@@ -152,5 +152,5 @@ function caag_hq_get_vehicles_images_from_vehicle_class_post_on_website($vehicle
 
 function caag_hq_order_classes_images($a, $b)
 {
-    return strcmp($a->order, $b->order);
+    return strnatcmp($a->order, $b->order);
 }

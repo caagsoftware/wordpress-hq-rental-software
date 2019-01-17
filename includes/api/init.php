@@ -106,6 +106,7 @@ define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_FILENAME_META', 'caag_hq_rental_vehi
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_EXTENSION_META', 'caag_hq_rental_vehicle_class_image_extension_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_MIME_META', 'caag_hq_rental_vehicle_class_image_mime_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_PUBLIC_LINK_META', 'caag_hq_rental_vehicle_class_image_public_link_meta');
+define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_ORDER_META', 'caag_hq_rental_vehicle_class_image_order_meta');
 define('CAAG_HQ_RENTAL_VEHICLE_CLASS_IMAGES_VEHICLE_CLASS_CUSTOM_POST_ID_META', 'caag_hq_rental_vehicle_class_image_custom_post_id_meta');
 
 /*
